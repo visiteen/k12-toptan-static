@@ -1,0 +1,2230 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#020817" />
+<title>K12 Toptan — Kurumsal Eğitim Çözümleri ve Yönetim Merkezi</title>
+<meta name="description" content="Sınavdan analize, analizden gelişime; tedarikten kurumsal yönetim zekâsına kadar eğitim kurumlarının uçtan uca çözüm ekosistemi." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#022765;
+  --deep:#031D49;
+  --orange:#FC6101;
+  --orange2:#ff7b24;
+  --ink:#101828;
+  --slate:#475467;
+  --muted:#667085;
+  --soft:#F5F7FA;
+  --line:#E4E7EC;
+  --white:#fff;
+  --black:#020817;
+  --surface:#071126;
+  --visi-purple:#51267E;
+  --visi-purple-deep:#341256;
+  --visi-purple-soft:#F7F2FC;
+  --visi-purple-line:#DDD0EE;
+  --visi-purple-text:#43206A;
+  --radius:16px;
+  --shadow:0 24px 80px rgba(2,8,23,.12);
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:white;line-height:1.55}
+button,a{font:inherit}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--orange)}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(42px,5.5vw,76px);line-height:1.02;letter-spacing:-.045em}
+h2{font-size:clamp(32px,4vw,54px);line-height:1.08;letter-spacing:-.035em}
+h3{font-size:24px;letter-spacing:-.02em}
+.lead{font-size:clamp(17px,1.8vw,21px);color:#c7d1e4;max-width:720px}
+.section{padding:104px 0}
+.section.soft{background:var(--soft)}
+.section.dark{background:var(--black);color:white}
+.muted{color:var(--muted)}
+.btn{border:0;border-radius:12px;padding:14px 19px;font-weight:800;display:inline-flex;gap:10px;align-items:center;justify-content:center;transition:.2s ease}
+a:focus-visible,button:focus-visible{outline:3px solid rgba(252,97,1,.38);outline-offset:3px}
+
+.btn.primary{background:var(--orange);color:white}
+.btn.primary:hover{background:#e75600;transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.35);color:white}
+.btn.ghost:hover{border-color:white;background:rgba(255,255,255,.06)}
+.btn.light{background:white;color:var(--deep)}
+.btn.outline{background:white;border:1px solid var(--line);color:var(--deep)}
+.arrow{transition:.2s}.btn:hover .arrow{transform:translateX(4px)}
+
+/* Header */
+.header{position:fixed;z-index:50;top:0;left:0;right:0;background:rgba(2,8,23,.74);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07);transition:.2s}
+.header.scrolled{background:rgba(3,29,73,.97);box-shadow:0 10px 35px rgba(0,0,0,.16)}
+.nav{height:82px;display:flex;align-items:center;gap:28px}
+.logo-wrap{width:226px;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden}
+.logo-wrap img{width:100%;height:auto;display:block;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.08))}
+.logo-wrap img{width:100%;height:auto;display:block}
+.navlinks{display:flex;align-items:center;gap:22px;margin-left:auto}
+.navlink{color:#d7deea;font-size:13px;font-weight:700;white-space:nowrap;padding:28px 0}
+.navlink:hover{color:white}
+.navlink.active{color:#fff;position:relative}
+.navlink.active:after{content:"";position:absolute;left:0;right:0;bottom:18px;height:2px;background:var(--orange);border-radius:99px}
+section[id]{scroll-margin-top:104px}
+.mega-toggle-open{color:#fff!important}
+
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-plain{color:#fff;font-weight:700;font-size:13px}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid rgba(255,255,255,.18);color:white;border-radius:10px;width:44px;height:44px;font-size:22px}
+
+/* Mega menu */
+.mega{position:fixed;z-index:45;left:0;right:0;top:80px;opacity:0;pointer-events:none;transform:translateY(-8px);transition:.18s;background:white;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.mega.open{opacity:1;pointer-events:auto;transform:none}
+.mega-grid{display:grid;grid-template-columns:repeat(4,1fr) 1.1fr;gap:26px;padding:32px 0 36px}
+.mega-col strong{display:block;color:var(--deep);font-size:13px;margin-bottom:14px}
+.mega-col a{display:block;color:var(--slate);font-size:13px;padding:6px 0}
+.mega-col a:hover{color:var(--orange)}
+.feature-card{background:linear-gradient(145deg,var(--deep),#062d71);color:white;border-radius:16px;padding:24px;min-height:190px}
+.feature-card .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#ffb27a;font-weight:800}
+.feature-card h3{margin:10px 0 8px}
+.feature-card p{font-size:13px;color:#c5d0e3}
+
+/* Hero */
+.hero{position:relative;min-height:860px;padding:164px 0 106px;color:white;background:
+radial-gradient(circle at 80% 20%,rgba(252,97,1,.16),transparent 22%),
+radial-gradient(circle at 68% 46%,rgba(23,76,160,.24),transparent 30%),
+radial-gradient(circle at 14% 22%,rgba(255,255,255,.05),transparent 22%),
+linear-gradient(135deg,#020817 0%,#031D49 100%);overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px),
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
+background-size:80px 80px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.28),rgba(0,0,0,.06));pointer-events:none}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(0,0,0,.12));pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero .eyebrow{margin-bottom:18px}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);border-radius:999px;font-size:12px;font-weight:800;color:#e7edf7;backdrop-filter:blur(10px);margin-bottom:20px}
+.hero-kicker .dot{width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 18px rgba(252,97,1,.7)}
+.hero h1 span{color:#ff7c25}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero-meta{display:flex;gap:26px;margin-top:22px;color:#a9b7cf;font-size:12px}
+.hero-meta b{color:#fff}
+.hero-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
+.proof-card{padding:16px 16px 18px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.055);backdrop-filter:blur(14px);border-radius:16px}
+.proof-card strong{display:block;font-size:13px;color:#fff;margin-bottom:6px}
+.proof-card span{display:block;font-size:11px;color:#b7c4d8;line-height:1.45}
+.ecosystem{position:relative;min-height:560px;border:1px solid rgba(255,255,255,.10);background:
+linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+backdrop-filter:blur(8px);border-radius:32px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.20);padding:24px}
+.ecosystem:before{content:"";position:absolute;inset:11%;border-radius:50%;border:1px solid rgba(252,97,1,.18);box-shadow:0 0 110px rgba(252,97,1,.10)}
+.ecosystem:after{content:"";position:absolute;inset:0;background:
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px),
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
+background-size:42px 42px;mask-image:radial-gradient(circle at center,rgba(0,0,0,.72),transparent 86%)}
+.eco-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:188px;height:188px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(145deg,#0b367b,#051c48);border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 60px rgba(0,0,0,.25);z-index:2;padding:20px}
+.eco-center .k12{font-size:20px;font-weight:800;line-height:1.0;color:#fff;letter-spacing:-.03em}
+.eco-center .toptan{font-size:20px;font-weight:800;line-height:1.0;color:#fff;letter-spacing:-.03em;margin-top:3px}
+.eco-center em{font-style:normal;color:var(--orange);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:12px}
+.node{position:absolute;padding:10px 13px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);font-size:11px;font-weight:700;color:#dbe4f4;animation:float 4.8s ease-in-out infinite;z-index:2;box-shadow:0 10px 28px rgba(0,0,0,.12)}
+.node:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block;margin-right:7px;box-shadow:0 0 18px var(--orange)}
+.n1{top:10%;left:40%}.n2{top:26%;right:4%;animation-delay:-1s}.n3{top:46%;right:2%;animation-delay:-2s}.n4{bottom:16%;right:8%;animation-delay:-3s}.n5{bottom:6%;left:36%;animation-delay:-1.4s}.n6{bottom:20%;left:4%;animation-delay:-2.4s}.n7{top:46%;left:2%;animation-delay:-.7s}.n8{top:22%;left:5%;animation-delay:-1.9s}
+.eco-panel.ep2 .label,.eco-panel.ep3 .label{color:#ffbb8f}
+.eco-panel.ep2{background:rgba(252,97,1,.08);border-color:rgba(252,97,1,.18)}
+@keyframes float{50%{transform:translateY(-7px)}}
+.eco-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(252,97,1,.42),transparent);width:78%;left:11%;top:50%;transform:rotate(28deg);z-index:1}
+.eco-line.l2{transform:rotate(-28deg)}
+.eco-line.l3{transform:rotate(90deg)}
+.eco-line.l4{transform:rotate(0deg)}
+
+/* Value chain */
+.section-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:end;margin-bottom:46px}
+.section-head p{color:var(--muted);margin-bottom:7px}
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.chain-item{border:1px solid var(--line);border-radius:14px;padding:18px 15px;background:white;position:relative;min-height:118px;transition:.2s}
+.chain-item:hover,.chain-item.active{transform:translateY(-4px);border-color:#ffd2b2;box-shadow:0 16px 40px rgba(16,24,40,.07)}
+.chain-num{font-size:11px;color:var(--orange);font-weight:800}
+.chain-item b{display:block;font-size:14px;margin-top:8px;color:var(--deep)}
+.chain-item small{color:var(--muted);font-size:11px}
+
+/* Three system cards */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.editorial{background:white;border:1px solid var(--line);border-radius:18px;padding:30px;min-height:320px;position:relative;overflow:hidden;transition:.2s}
+.editorial:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(16,24,40,.08)}
+.editorial .no{font-size:12px;color:var(--orange);font-weight:800}
+.editorial h3{font-size:30px;margin:38px 0 8px;color:var(--deep)}
+.editorial p{color:var(--slate);font-size:14px}
+.editorial .terms{position:absolute;left:30px;right:30px;bottom:24px;padding-top:18px;border-top:1px solid var(--line);font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.06em}
+.editorial:after{content:"";position:absolute;width:120px;height:6px;background:var(--orange);top:0;left:30px}
+
+/* Solution selector */
+.selector-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.sel{padding:13px 17px;border:1px solid var(--line);background:white;border-radius:12px;font-weight:800;color:var(--slate)}
+.sel.active{background:var(--deep);color:white;border-color:var(--deep)}
+.solution-panel{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;background:linear-gradient(145deg,#f9fafb,#fff);border:1px solid var(--line);padding:30px;border-radius:20px}
+.solution-panel .result{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.result-card{border:1px solid var(--line);background:white;border-radius:14px;padding:17px}
+.result-card strong{display:block;color:var(--deep);font-size:14px}
+.result-card span{font-size:11px;color:var(--muted)}
+
+/* Operation */
+.operation{background:
+radial-gradient(circle at 85% 15%,rgba(252,97,1,.16),transparent 25%),
+linear-gradient(135deg,#031D49,#020817);color:white}
+.operation .section-head p{color:#a9b7cf}
+.process{display:grid;grid-template-columns:repeat(8,1fr);gap:7px;margin:38px 0 34px}
+.step{padding:18px 10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);border-radius:12px;min-height:104px}
+.step .dot{width:9px;height:9px;background:var(--orange);border-radius:50%;margin-bottom:16px}
+.step b{font-size:11px;display:block}
+.benefits{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.benefit{padding:15px;border:1px solid rgba(255,255,255,.11);border-radius:12px;color:#cbd5e5;font-size:11px}
+
+/* Product modules */
+.modules{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.module{border:1px solid var(--line);border-radius:16px;padding:22px;min-height:190px;background:white}
+.module .icon{width:38px;height:38px;border-radius:10px;background:#fff1e7;color:var(--orange);display:grid;place-items:center;font-weight:800;margin-bottom:28px}
+.module strong{display:block;color:var(--deep);margin-bottom:8px}
+.module p{font-size:12px;color:var(--muted)}
+.flow{display:flex;gap:0;align-items:center;margin-top:26px;overflow:auto;padding-bottom:6px}
+.flow span{white-space:nowrap;font-size:11px;font-weight:800;color:var(--deep);border:1px solid var(--line);padding:10px 13px;border-radius:999px}
+.flow i{font-style:normal;color:var(--orange);padding:0 7px}
+
+/* Integration */
+.integration{background:linear-gradient(135deg,#f7f9fd,#fff6ef)}
+.integrate-box{display:grid;grid-template-columns:.95fr 1.05fr;gap:26px}
+.quote{background:var(--deep);color:white;padding:34px;border-radius:22px}
+.quote p{font-size:20px;line-height:1.55;margin:0}
+.pipeline{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.pipe{background:white;border:1px solid var(--line);border-radius:13px;padding:16px}
+.pipe small{color:var(--orange);font-weight:800}.pipe strong{display:block;color:var(--deep);font-size:13px}
+
+/* Visiteen */
+.orbit{position:relative;height:430px;border:1px solid var(--line);border-radius:24px;background:#fbfcfe;overflow:hidden}
+#visiteen .orbit{border-color:var(--visi-purple-line);background:radial-gradient(circle at 50% 50%,rgba(81,38,126,.08) 0 15%,transparent 15.5% 100%),linear-gradient(135deg,#fbf8ff 0%,#f5effc 52%,#fcfbfe 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
+#visiteen .orbit:before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:340px;height:340px;border-radius:50%;border:1px dashed rgba(81,38,126,.16)}
+#visiteen .orbit:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:250px;height:250px;border-radius:50%;border:1px solid rgba(81,38,126,.10);box-shadow:0 0 0 20px rgba(81,38,126,.03)}
+.orbit-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:var(--deep);color:white;font-weight:800;font-size:19px;box-shadow:0 18px 50px rgba(3,29,73,.18)}
+#visiteen .orbit-center{width:190px;height:190px;background:linear-gradient(135deg,var(--visi-purple),var(--visi-purple-deep));font-size:20px;letter-spacing:.02em;border:8px solid rgba(255,255,255,.7);box-shadow:0 24px 55px rgba(52,18,86,.26)}
+.person{position:absolute;background:white;border:1px solid var(--line);padding:10px 14px;border-radius:12px;font-size:12px;font-weight:800;color:var(--deep);box-shadow:0 12px 30px rgba(16,24,40,.06)}
+#visiteen .person{padding:14px 18px;border-radius:16px;font-size:14px;font-weight:800;color:var(--visi-purple-text);border-color:var(--visi-purple-line);background:rgba(255,255,255,.97);box-shadow:0 18px 36px rgba(52,18,86,.12)}
+.p1{top:10%;left:44%}.p2{top:26%;right:8%}.p3{bottom:20%;right:8%}.p4{bottom:8%;left:44%}.p5{bottom:22%;left:8%}.p6{top:25%;left:8%}
+.teacher-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.teacher{background:white;border:1px solid var(--line);padding:26px;border-radius:16px}
+.teacher .n{color:var(--orange);font-weight:800;font-size:12px}
+.teacher h3{color:var(--deep);margin:18px 0 8px}
+.teacher p{font-size:12px;color:var(--muted)}
+
+/* Intelligence */
+.statement{font-size:clamp(30px,4.7vw,64px);line-height:1.14;letter-spacing:-.04em;max-width:1100px}
+.statement span{color:#96a6c1}
+.intel-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:42px}
+.intel{border-top:2px solid var(--orange);padding-top:14px;font-size:11px;color:#c7d2e4;font-weight:700}
+
+/* CTA/Footer */
+.final-cta{background:linear-gradient(120deg,var(--deep),#082f72);color:white}
+.cta-box{display:flex;justify-content:space-between;align-items:center;gap:30px}
+.footer{background:#01050d;color:white;padding:60px 0 28px}
+.footer-grid{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:34px}
+.footer-logo{width:220px;max-width:100%;margin-bottom:18px}
+.footer p,.footer a{font-size:12px;color:#9ba9be}
+.footer h4{font-size:12px;color:white;margin:0 0 12px}
+.footer a{display:block;padding:4px 0}
+.footer-bottom{margin-top:38px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;color:#718097;font-size:11px}
+
+/* Wizard */
+.overlay{position:fixed;z-index:100;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:18px}
+.overlay.open{display:flex}
+.modal{width:min(980px,100%);max-height:94vh;overflow:auto;background:white;border-radius:24px;padding:0;box-shadow:0 40px 110px rgba(0,0,0,.38)}
+.modal-top{position:sticky;top:0;z-index:4;display:flex;justify-content:space-between;align-items:center;padding:24px 28px 18px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.modal-top button{border:0;background:var(--soft);border-radius:10px;width:40px;height:40px}
+.lead-modal-inner{padding:0 28px 28px}
+.lead-progress-meta{display:flex;justify-content:space-between;gap:18px;align-items:center;margin:18px 0 8px;font-size:11px;color:var(--muted);font-weight:700}
+.progress{height:6px;background:var(--soft);border-radius:99px;margin:0 0 24px;overflow:hidden}
+.progress > div{height:100%;background:linear-gradient(90deg,var(--orange),#ff934d);width:14.285%;transition:.24s}
+.lead-step-title{font-size:28px;color:var(--deep);margin:0 0 8px;letter-spacing:-.025em}
+.lead-step-desc{font-size:13px;color:var(--muted);margin:0 0 20px}
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.choice{border:1px solid var(--line);border-radius:14px;padding:17px;text-align:left;background:white;font-weight:800;color:var(--deep);transition:.16s}
+.choice:hover,.choice.selected{border-color:var(--orange);background:#fff7f1;box-shadow:0 10px 26px rgba(252,97,1,.07)}
+.choice small{display:block;margin-top:5px;color:var(--muted);font-size:11px;font-weight:500;line-height:1.4}
+.choice.multi{position:relative;padding-left:46px}
+.choice.multi:before{content:"";position:absolute;left:17px;top:18px;width:17px;height:17px;border:1.5px solid #c9d0db;border-radius:5px;background:#fff}
+.choice.multi.selected:before{background:var(--orange);border-color:var(--orange);box-shadow:inset 0 0 0 4px #fff}
+.lead-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:11px;font-weight:800;color:var(--deep)}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 13px;font:inherit;font-size:13px;color:var(--ink);background:#fff;outline:none}
+.field textarea{min-height:95px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(252,97,1,.09)}
+.field .hint{font-size:10px;color:var(--muted)}
+.lead-inline{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.recommend{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-top:16px}
+.rec-card{border:1px solid var(--line);border-radius:15px;padding:17px;background:#fff}
+.rec-card.core{border-color:#ffc9a2;background:#fff9f4}
+.rec-card .rec-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rec-card .rec-badge{font-size:10px;font-weight:800;padding:5px 8px;border-radius:999px;background:#fff0e4;color:#a3430e}
+.rec-card strong{display:block;color:var(--deep);font-size:14px}
+.rec-card p{font-size:11px;color:var(--muted);margin:9px 0 0}
+.lead-summary{display:grid;grid-template-columns:.9fr 1.1fr;gap:14px;margin-top:16px}
+.summary-box{border:1px solid var(--line);border-radius:15px;padding:18px;background:#fff}
+.summary-box h4{font-size:12px;color:var(--deep);margin:0 0 10px}
+.summary-list{display:grid;gap:7px}
+.summary-line{display:flex;justify-content:space-between;gap:14px;font-size:11px;border-bottom:1px dashed var(--line);padding-bottom:7px}
+.summary-line span{color:var(--muted)}
+.summary-line b{text-align:right;color:var(--deep)}
+.consent{display:flex;gap:10px;align-items:flex-start;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.consent input{margin-top:3px}
+.consent label{font-size:11px;color:var(--slate);line-height:1.5}
+.validation{display:none;margin-top:14px;padding:11px 13px;border:1px solid #ffd0d0;background:#fff5f5;color:#a52626;border-radius:10px;font-size:11px;font-weight:700}
+.validation.show{display:block}
+.btn.loading{pointer-events:none;opacity:.72}.btn.loading:before{content:"";width:14px;height:14px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:k12spin .7s linear infinite}@keyframes k12spin{to{transform:rotate(360deg)}}
+.wizard-actions{position:sticky;bottom:0;z-index:4;display:flex;justify-content:space-between;gap:10px;margin:26px -28px -28px;padding:16px 28px;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.lead-success{text-align:center;padding:8px 0 4px}
+.success-icon{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;background:#ecfdf3;color:#027a48;font-size:28px;font-weight:800}
+.lead-id{display:inline-flex;padding:9px 13px;border-radius:999px;background:var(--deep);color:#fff;font-weight:800;font-size:12px;letter-spacing:.05em;margin:8px 0 16px}
+.success-note{font-size:11px;color:var(--muted);max-width:650px;margin:12px auto 0}
+.lead-final-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:18px}
+.lead-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}
+.lead-kpi div{border:1px solid var(--line);border-radius:12px;padding:12px}
+.lead-kpi b{display:block;color:var(--deep);font-size:15px}
+.lead-kpi span{font-size:10px;color:var(--muted)}
+@media(max-width:700px){
+  .modal{max-height:96vh;border-radius:18px}
+  .modal-top{padding:18px 18px 14px}
+  .lead-modal-inner{padding:0 18px 18px}
+  .choices,.lead-grid,.lead-inline,.recommend,.lead-summary{grid-template-columns:1fr}
+  .wizard-actions{margin:22px -18px -18px;padding:14px 18px}
+  .lead-kpi{grid-template-columns:1fr}
+}
+
+/* Mobile menu */
+.mobile-drawer{position:fixed;z-index:90;inset:0;background:#020817;color:white;transform:translateX(100%);transition:.25s;padding:26px;overflow:auto}
+.mobile-drawer.open{transform:none}
+.mobile-top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:30px}
+.mobile-top img{width:190px;max-width:100%;height:auto;object-fit:contain}
+.mobile-top button{width:42px;height:42px;border:1px solid rgba(255,255,255,.15);background:none;color:white;border-radius:10px}
+.mobile-nav a,.mobile-nav button{width:100%;display:block;text-align:left;padding:15px 0;border:0;border-bottom:1px solid rgba(255,255,255,.08);background:none;color:white;font-weight:800}
+.mobile-nav a:active,.mobile-nav button:active{color:var(--orange)}
+.mobile-sub{display:none;padding:10px 0 14px 15px}.mobile-sub.open{display:block}.mobile-sub a{font-size:12px;font-weight:600;color:#adb9ca;border:0;padding:6px 0}
+.mobile-cta{margin-top:28px;width:100%}
+
+@media(max-width:1050px){
+  .navlinks,.nav-actions{display:none}.menu-btn{display:block}
+  .logo-wrap{width:194px}
+  .hero-grid,.section-head,.solution-panel,.integrate-box{grid-template-columns:1fr}
+  .ecosystem{min-height:450px}
+  .chain{grid-template-columns:repeat(3,1fr)}
+  .cards3{grid-template-columns:1fr}
+  .process{grid-template-columns:repeat(4,1fr)}
+  .benefits{grid-template-columns:repeat(2,1fr)}
+  .modules{grid-template-columns:repeat(2,1fr)}
+  .intel-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr}
+  .footer-grid > div:last-child{grid-column:2/4}
+}
+@media(max-width:700px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .section{padding:72px 0}
+  .header .nav{height:74px}.logo-wrap{width:182px}
+  .hero{padding-top:126px;min-height:auto}
+  .hero-grid{gap:32px}
+  .hero-actions .btn{width:100%}
+  .hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .hero-proof{grid-template-columns:1fr}
+  .ecosystem{min-height:470px;border-radius:22px}.eco-center{width:148px;height:148px}.eco-center .k12,.eco-center .toptan{font-size:18px}.eco-center em{font-size:10px}
+  .node{font-size:9px;padding:7px}.n2,.n4{right:2%}.n6,.n8{left:2%}
+  .section-head{gap:16px;margin-bottom:30px}
+  .chain{grid-template-columns:1fr}
+  .cards3,.modules,.teacher-grid{grid-template-columns:1fr}
+  .solution-panel .result{grid-template-columns:1fr}
+  .process{grid-template-columns:repeat(2,1fr)}
+  .benefits{grid-template-columns:1fr 1fr}
+  .pipeline{grid-template-columns:1fr}
+  .orbit{height:390px}#visiteen .person{font-size:12px;padding:12px 14px}.person{font-size:10px}.p1,.p4{left:39%}#visiteen .orbit-center{width:150px;height:150px;font-size:18px}
+  .intel-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-box{display:block}.cta-box .btn{margin-top:18px;width:100%}
+  .footer-grid{grid-template-columns:1fr}.footer-grid > div:last-child{grid-column:auto}
+  .footer-bottom{display:block}.footer-bottom span{display:block;margin-top:5px}
+  .choices,.recommend{grid-template-columns:1fr}
+  .modal{padding:22px}
+}
+
+/* Products dropdown / accordion */
+.product-mega{position:fixed;z-index:46;left:0;right:0;top:82px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 28px 80px rgba(2,8,23,.16);opacity:0;pointer-events:none;transform:translateY(-8px);transition:.18s}
+.product-mega.open{opacity:1;pointer-events:auto;transform:none}
+.product-mega-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:42px;padding:30px 0 34px}
+.product-mega-intro{padding:18px 6px}
+.product-mega-intro h3{font-size:28px;color:var(--deep);margin:8px 0 10px}
+.product-mega-intro p{font-size:13px;color:var(--muted);max-width:390px}
+.product-all{display:inline-flex;align-items:center;gap:8px;color:var(--orange);font-size:13px;font-weight:800;margin-top:12px}
+.product-accordion-stack{display:grid;gap:8px}
+.product-family-accordion{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.product-family-accordion summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:15px 17px}
+.product-family-accordion summary::-webkit-details-marker{display:none}
+.product-family-accordion summary div{display:flex;gap:12px;align-items:center}
+.product-family-accordion summary small{color:var(--orange);font-weight:800}
+.product-family-accordion summary strong{color:var(--deep);font-size:14px}
+.product-family-accordion summary>span{font-size:20px;color:var(--muted);transition:.18s}
+.product-family-accordion[open] summary>span{transform:rotate(45deg);color:var(--orange)}
+.product-accordion-links{padding:0 12px 12px;display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.product-accordion-links a{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:9px;background:var(--soft);font-size:12px;color:var(--slate);font-weight:700}
+.product-accordion-links a:hover{background:#fff2e8;color:var(--deep)}
+.product-accordion-links a b{color:var(--orange)}
+#productsTrigger.menu-open{color:#fff}
+#productsTrigger.menu-open:after{content:"";position:absolute;left:0;right:0;bottom:18px;height:2px;background:var(--orange);border-radius:99px}
+
+/* Full catalog */
+.products-catalog{background:#fff}
+.catalog-family{margin-top:50px}
+.catalog-family:first-of-type{margin-top:12px}
+.catalog-family-head{display:flex;align-items:end;justify-content:space-between;gap:24px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.catalog-family-head>div{display:flex;align-items:center;gap:14px}
+.catalog-family-head span{color:var(--orange);font-size:12px;font-weight:800}
+.catalog-family-head h3{font-size:27px;color:var(--deep);margin:0}
+.catalog-family-head p{font-size:12px;color:var(--muted);margin:0;text-align:right}
+.catalog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.catalog-card{border:1px solid var(--line);border-radius:16px;padding:19px;min-height:190px;background:#fff;transition:.18s;display:block}
+.catalog-card:hover{transform:translateY(-4px);border-color:#ffc89f;box-shadow:0 18px 44px rgba(16,24,40,.07)}
+.catalog-top{display:flex;justify-content:space-between;align-items:center;color:var(--orange);font-size:11px;font-weight:800}
+.catalog-card h3{font-size:17px;color:var(--deep);margin:34px 0 8px;line-height:1.25}
+.catalog-card p{font-size:11px;color:var(--muted);margin:0}
+
+/* Product detail view */
+.product-view{background:#fff}
+.product-view[hidden]{display:none!important}
+.product-detail-hero{padding:128px 0 74px;background:radial-gradient(circle at 82% 18%,rgba(252,97,1,.14),transparent 25%),linear-gradient(135deg,#020817,#031D49);color:#fff}
+.product-back{border:0;background:transparent;color:#c5d1e4;font-weight:800;font-size:12px;padding:0;margin-bottom:18px;cursor:pointer}
+.product-back:hover{color:#fff}
+.product-breadcrumb{font-size:11px;color:#96a6c1;margin-bottom:24px}
+.product-detail-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:center}
+.product-detail-grid h1{font-size:clamp(42px,5.4vw,68px);line-height:1.04;letter-spacing:-.045em;margin:0 0 16px}
+.product-detail-lead{font-size:19px;color:#c7d2e4;max-width:720px}
+.product-definition{border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.055);border-radius:20px;padding:26px;backdrop-filter:blur(14px)}
+.product-definition small{font-size:11px;color:#ffb682;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.product-definition p{font-size:14px;color:#c6d2e3;margin:12px 0 0}
+.pd-problem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.pd-mini{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff;display:flex;gap:13px}
+.pd-mini span,.pd-feature>span,.pd-flow-step span{font-size:11px;color:var(--orange);font-weight:800}
+.pd-mini p{font-size:13px;color:var(--slate);margin:0}
+.pd-flow{display:flex;gap:9px;overflow:auto;padding-bottom:8px}
+.pd-flow-step{min-width:142px;border:1px solid var(--line);background:#fff;border-radius:13px;padding:15px}
+.pd-flow-step b{display:block;font-size:12px;color:var(--deep);margin-top:7px}
+.pd-features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pd-feature{border:1px solid var(--line);border-radius:15px;padding:20px;min-height:190px;background:#fff}
+.pd-feature h3{font-size:17px;color:var(--deep);margin:24px 0 8px}
+.pd-feature p{font-size:12px;color:var(--muted);margin:0}
+.pd-pills{display:flex;flex-wrap:wrap;gap:9px}
+.pd-pill{padding:11px 14px;border-radius:999px;border:1px solid #ffd2b2;background:#fff6ef;color:#7d3511;font-size:12px;font-weight:800}
+.pd-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pd-panel{border:1px solid var(--line);border-radius:18px;padding:24px}
+.pd-panel h3{color:var(--deep);margin:8px 0 18px}
+.pd-list-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.pd-list-item{padding:12px;border:1px solid var(--line);border-radius:11px;font-size:12px;font-weight:700;color:var(--deep)}
+
+/* Mobile Product accordion */
+.product-mobile-sub details{border-bottom:1px solid rgba(255,255,255,.08);padding:7px 0}
+.product-mobile-sub summary{cursor:pointer;font-size:12px;font-weight:800;color:#fff;padding:7px 0}
+.product-mobile-sub details a{padding:7px 0 7px 8px;color:#b6c2d4}
+.product-mobile-sub .all-products-link{color:#ffad73!important;font-weight:800!important;margin-top:8px}
+
+/* clickable cards */
+a:has(.editorial){border-radius:18px}
+
+
+@media(max-width:1050px){
+  .product-mega{display:none}
+  .catalog-grid{grid-template-columns:repeat(2,1fr)}
+  .product-detail-grid{grid-template-columns:1fr}
+  .pd-features{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .catalog-family-head{display:block}
+  .catalog-family-head p{text-align:left;margin-top:6px}
+  .catalog-grid{grid-template-columns:1fr}
+  .product-detail-hero{padding:104px 0 56px}
+  .pd-problem-grid,.pd-features,.pd-two-col,.pd-list-grid{grid-template-columns:1fr}
+}
+
+.text-logo{display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;letter-spacing:.04em;font-size:20px}.text-logo b{color:#FC6101}.footer-text-logo{font-size:22px;margin-bottom:14px}
+
+/* === K12 Toptan Typography Readability V1 === */
+.chain-item{padding:20px 18px;min-height:132px}
+.chain-num{font-size:13px;font-weight:800}
+.chain-item b{font-size:18px;line-height:1.25;font-weight:800;margin-top:10px}
+.chain-item small{font-size:13px;line-height:1.45;font-weight:500;display:block;margin-top:7px}
+
+.result-card{padding:22px 20px}
+.result-card strong{font-size:18px;line-height:1.28;font-weight:800}
+.result-card span{font-size:13.5px;line-height:1.5;display:block;margin-top:7px}
+
+.step{padding:20px 14px;min-height:118px}
+.step .dot{width:10px;height:10px;margin-bottom:18px}
+.step b{font-size:14px;line-height:1.3;font-weight:800}
+.benefit{padding:18px;font-size:13.5px;line-height:1.45;font-weight:600}
+
+.module{padding:26px;min-height:210px}
+.module .icon{margin-bottom:26px}
+.module strong{font-size:19px;line-height:1.3;font-weight:800;margin-bottom:10px}
+.module p{font-size:14px;line-height:1.55;font-weight:500}
+
+.pipe{padding:19px}
+.pipe small{font-size:13px;font-weight:800}
+.pipe strong{font-size:16px;line-height:1.3;font-weight:800;margin-top:5px}
+
+.teacher{padding:30px}
+.teacher .n{font-size:14px;font-weight:800}
+.teacher h3{font-size:24px;line-height:1.25;font-weight:800;margin:20px 0 10px}
+.teacher p{font-size:14.5px;line-height:1.55;font-weight:500}
+
+.intel{font-size:14px;line-height:1.4;font-weight:800;padding-top:16px}
+
+.catalog-family-head span{font-size:13px}
+.catalog-family-head h3{font-size:30px;font-weight:800}
+.catalog-family-head p{font-size:14px;line-height:1.5}
+.catalog-card{padding:24px;min-height:220px}
+.catalog-top{font-size:13px;font-weight:800}
+.catalog-card h3{font-size:22px;line-height:1.28;font-weight:800;margin:38px 0 10px}
+.catalog-card p{font-size:14.5px;line-height:1.55;font-weight:500}
+
+.pd-mini{padding:20px}
+.pd-mini span,.pd-feature>span,.pd-flow-step span{font-size:13px;font-weight:800}
+.pd-mini p{font-size:14px;line-height:1.5;font-weight:500}
+.pd-flow-step{padding:17px;min-width:155px}
+.pd-flow-step b{font-size:14px;line-height:1.3;font-weight:800;margin-top:8px}
+.pd-feature{padding:24px;min-height:210px}
+.pd-feature h3{font-size:21px;line-height:1.28;font-weight:800;margin:26px 0 9px}
+.pd-feature p{font-size:14px;line-height:1.55;font-weight:500}
+.pd-list-item{font-size:14px;line-height:1.4;font-weight:700;padding:14px}
+.pd-pill{font-size:13.5px}
+
+@media(max-width:1050px){
+  .chain-item b{font-size:17px}.chain-item small{font-size:12.5px}
+  .catalog-card h3{font-size:20px}.catalog-card p{font-size:14px}
+  .teacher h3{font-size:22px}
+}
+@media(max-width:560px){
+  .chain-item{padding:18px 16px;min-height:118px}
+  .chain-item b{font-size:17px}.chain-item small{font-size:12.5px}
+  .result-card strong{font-size:17px}.result-card span{font-size:13px}
+  .step b{font-size:13px}.benefit{font-size:13px}
+  .module strong{font-size:18px}.module p{font-size:13.5px}
+  .catalog-card{padding:20px;min-height:190px}
+  .catalog-card h3{font-size:20px;margin-top:30px}.catalog-card p{font-size:13.5px}
+  .teacher{padding:24px}.teacher h3{font-size:21px}.teacher p{font-size:13.5px}
+  .intel{font-size:13px}
+  .pd-feature h3{font-size:19px}.pd-feature p,.pd-mini p{font-size:13.5px}
+}
+/* === End Typography Readability V1 === */
+
+
+
+/* === K12 Toptan Product Family Color System V1 === */
+:root{
+  --xys:#0E3A8A;
+  --xys-soft:#F5F8FF;
+  --xys-line:#D7E3FF;
+  --xys-glow:rgba(14,58,138,.10);
+  --vis:#5B2E91;
+  --vis-soft:#F8F4FF;
+  --vis-line:#E2D6F7;
+  --vis-glow:rgba(91,46,145,.10);
+  --ksy:#8C2533;
+  --ksy-soft:#FFF4F5;
+  --ksy-line:#F0D1D6;
+  --ksy-glow:rgba(140,37,51,.10);
+}
+
+/* Product family dropdown */
+.product-family-accordion.family-xys{border-color:var(--xys-line);background:linear-gradient(180deg,#fff,var(--xys-soft))}
+.product-family-accordion.family-vis{border-color:var(--vis-line);background:linear-gradient(180deg,#fff,var(--vis-soft))}
+.product-family-accordion.family-ksy{border-color:var(--ksy-line);background:linear-gradient(180deg,#fff,var(--ksy-soft))}
+
+.product-family-accordion.family-xys summary strong,
+.product-family-accordion.family-xys summary small,
+.product-family-accordion.family-xys .product-accordion-links a b{color:var(--xys)}
+.product-family-accordion.family-vis summary strong,
+.product-family-accordion.family-vis summary small,
+.product-family-accordion.family-vis .product-accordion-links a b{color:var(--vis)}
+.product-family-accordion.family-ksy summary strong,
+.product-family-accordion.family-ksy summary small,
+.product-family-accordion.family-ksy .product-accordion-links a b{color:var(--ksy)}
+
+.product-family-accordion.family-xys[open] summary>span{color:var(--xys)}
+.product-family-accordion.family-vis[open] summary>span{color:var(--vis)}
+.product-family-accordion.family-ksy[open] summary>span{color:var(--ksy)}
+
+.product-family-accordion.family-xys .product-accordion-links a{background:var(--xys-soft);border:1px solid transparent}
+.product-family-accordion.family-vis .product-accordion-links a{background:var(--vis-soft);border:1px solid transparent}
+.product-family-accordion.family-ksy .product-accordion-links a{background:var(--ksy-soft);border:1px solid transparent}
+.product-family-accordion.family-xys .product-accordion-links a:hover{background:#fff;border-color:var(--xys-line);color:var(--xys)}
+.product-family-accordion.family-vis .product-accordion-links a:hover{background:#fff;border-color:var(--vis-line);color:var(--vis)}
+.product-family-accordion.family-ksy .product-accordion-links a:hover{background:#fff;border-color:var(--ksy-line);color:var(--ksy)}
+
+/* Three main system cards */
+a[data-product="xys-analiz"] .editorial{background:linear-gradient(180deg,#fff,var(--xys-soft));border-color:var(--xys-line)}
+a[data-product="xys-analiz"] .editorial .no,
+ a[data-product="xys-analiz"] .editorial h3{color:var(--xys)}
+a[data-product="xys-analiz"] .editorial .terms{color:#466196}
+a[data-product="xys-analiz"] .editorial:after{background:var(--xys)}
+a[data-product="xys-analiz"] .editorial:hover{box-shadow:0 24px 60px var(--xys-glow)}
+
+a[data-product="visiteen"] .editorial{background:linear-gradient(180deg,#fff,var(--vis-soft));border-color:var(--vis-line)}
+a[data-product="visiteen"] .editorial .no,
+ a[data-product="visiteen"] .editorial h3{color:var(--vis)}
+a[data-product="visiteen"] .editorial .terms{color:#725594}
+a[data-product="visiteen"] .editorial:after{background:var(--vis)}
+a[data-product="visiteen"] .editorial:hover{box-shadow:0 24px 60px var(--vis-glow)}
+
+a[data-product="deneme-takip"] .editorial,
+a[data-product="ozdebir"] .editorial,
+a[data-product="paraf"] .editorial,
+a[data-product="sinav-olcme"] .editorial{background:linear-gradient(180deg,#fff,var(--ksy-soft));border-color:var(--ksy-line)}
+a[data-product="deneme-takip"] .editorial .no,
+a[data-product="ozdebir"] .editorial .no,
+a[data-product="paraf"] .editorial .no,
+a[data-product="sinav-olcme"] .editorial .no,
+a[data-product="deneme-takip"] .editorial h3,
+a[data-product="ozdebir"] .editorial h3,
+a[data-product="paraf"] .editorial h3,
+a[data-product="sinav-olcme"] .editorial h3{color:var(--ksy)}
+a[data-product="deneme-takip"] .editorial .terms,
+a[data-product="ozdebir"] .editorial .terms,
+a[data-product="paraf"] .editorial .terms,
+a[data-product="sinav-olcme"] .editorial .terms{color:#8f5c64}
+a[data-product="deneme-takip"] .editorial:after,
+a[data-product="ozdebir"] .editorial:after,
+a[data-product="paraf"] .editorial:after,
+a[data-product="sinav-olcme"] .editorial:after{background:var(--ksy)}
+a[data-product="deneme-takip"] .editorial:hover,
+a[data-product="ozdebir"] .editorial:hover,
+a[data-product="paraf"] .editorial:hover,
+a[data-product="sinav-olcme"] .editorial:hover{box-shadow:0 24px 60px var(--ksy-glow)}
+
+/* Product architecture section */
+.catalog-family.family-xys .catalog-family-head{border-bottom-color:var(--xys-line)}
+.catalog-family.family-vis .catalog-family-head{border-bottom-color:var(--vis-line)}
+.catalog-family.family-ksy .catalog-family-head{border-bottom-color:var(--ksy-line)}
+
+.catalog-family.family-xys .catalog-family-head span,
+.catalog-family.family-xys .catalog-family-head h3,
+.catalog-family.family-xys .catalog-family-head p{color:var(--xys)}
+.catalog-family.family-vis .catalog-family-head span,
+.catalog-family.family-vis .catalog-family-head h3,
+.catalog-family.family-vis .catalog-family-head p{color:var(--vis)}
+.catalog-family.family-ksy .catalog-family-head span,
+.catalog-family.family-ksy .catalog-family-head h3,
+.catalog-family.family-ksy .catalog-family-head p{color:var(--ksy)}
+
+.catalog-family.family-xys .catalog-card{background:linear-gradient(180deg,#fff,var(--xys-soft));border-color:var(--xys-line)}
+.catalog-family.family-vis .catalog-card{background:linear-gradient(180deg,#fff,var(--vis-soft));border-color:var(--vis-line)}
+.catalog-family.family-ksy .catalog-card{background:linear-gradient(180deg,#fff,var(--ksy-soft));border-color:var(--ksy-line)}
+
+.catalog-family.family-xys .catalog-top,
+.catalog-family.family-xys .catalog-card h3{color:var(--xys)}
+.catalog-family.family-vis .catalog-top,
+.catalog-family.family-vis .catalog-card h3{color:var(--vis)}
+.catalog-family.family-ksy .catalog-top,
+.catalog-family.family-ksy .catalog-card h3{color:var(--ksy)}
+
+.catalog-family.family-xys .catalog-card p{color:#526783}
+.catalog-family.family-vis .catalog-card p{color:#63557d}
+.catalog-family.family-ksy .catalog-card p{color:#745660}
+
+.catalog-family.family-xys .catalog-card:hover{border-color:var(--xys);box-shadow:0 20px 46px var(--xys-glow)}
+.catalog-family.family-vis .catalog-card:hover{border-color:var(--vis);box-shadow:0 20px 46px var(--vis-glow)}
+.catalog-family.family-ksy .catalog-card:hover{border-color:var(--ksy);box-shadow:0 20px 46px var(--ksy-glow)}
+
+/* Subtle continuity in core ecosystem blocks */
+.ecosystem .n3,.ecosystem .n4,.ecosystem .n5,.ecosystem .n6{
+  background:rgba(14,58,138,.10);border-color:rgba(215,227,255,.42);color:#d9e7ff;
+}
+.ecosystem .n3:before,.ecosystem .n4:before,.ecosystem .n5:before,.ecosystem .n6:before{background:#7aa6ff;box-shadow:0 0 18px rgba(122,166,255,.65)}
+.ecosystem .n7{
+  background:rgba(91,46,145,.12);border-color:rgba(226,214,247,.38);color:#eedcff;
+}
+.ecosystem .n7:before{background:#bf8cff;box-shadow:0 0 18px rgba(191,140,255,.65)}
+.ecosystem .n1,.ecosystem .n2,.ecosystem .n8{
+  background:rgba(140,37,51,.13);border-color:rgba(240,209,214,.36);color:#ffe5ea;
+}
+.ecosystem .n1:before,.ecosystem .n2:before,.ecosystem .n8:before{background:#ff8c9a;box-shadow:0 0 18px rgba(255,140,154,.65)}
+
+/* Product detail theme */
+.product-view.theme-xys .product-detail-hero{background:radial-gradient(circle at 82% 18%,rgba(14,58,138,.18),transparent 25%),linear-gradient(135deg,#061730,#0E3A8A)}
+.product-view.theme-vis .product-detail-hero{background:radial-gradient(circle at 82% 18%,rgba(91,46,145,.18),transparent 25%),linear-gradient(135deg,#1b1129,#5B2E91)}
+.product-view.theme-ksy .product-detail-hero{background:radial-gradient(circle at 82% 18%,rgba(140,37,51,.18),transparent 25%),linear-gradient(135deg,#260d13,#8C2533)}
+
+.product-view.theme-xys .pd-mini span,
+.product-view.theme-xys .pd-feature>span,
+.product-view.theme-xys .pd-flow-step span,
+.product-view.theme-xys .pd-panel h3{color:var(--xys)}
+.product-view.theme-vis .pd-mini span,
+.product-view.theme-vis .pd-feature>span,
+.product-view.theme-vis .pd-flow-step span,
+.product-view.theme-vis .pd-panel h3{color:var(--vis)}
+.product-view.theme-ksy .pd-mini span,
+.product-view.theme-ksy .pd-feature>span,
+.product-view.theme-ksy .pd-flow-step span,
+.product-view.theme-ksy .pd-panel h3{color:var(--ksy)}
+
+.product-view.theme-xys .pd-mini,.product-view.theme-xys .pd-feature,.product-view.theme-xys .pd-flow-step,.product-view.theme-xys .pd-panel,.product-view.theme-xys .pd-list-item{border-color:var(--xys-line);background:linear-gradient(180deg,#fff,var(--xys-soft))}
+.product-view.theme-vis .pd-mini,.product-view.theme-vis .pd-feature,.product-view.theme-vis .pd-flow-step,.product-view.theme-vis .pd-panel,.product-view.theme-vis .pd-list-item{border-color:var(--vis-line);background:linear-gradient(180deg,#fff,var(--vis-soft))}
+.product-view.theme-ksy .pd-mini,.product-view.theme-ksy .pd-feature,.product-view.theme-ksy .pd-flow-step,.product-view.theme-ksy .pd-panel,.product-view.theme-ksy .pd-list-item{border-color:var(--ksy-line);background:linear-gradient(180deg,#fff,var(--ksy-soft))}
+
+.product-view.theme-xys .pd-pill{border-color:var(--xys-line);background:var(--xys-soft);color:var(--xys)}
+.product-view.theme-vis .pd-pill{border-color:var(--vis-line);background:var(--vis-soft);color:var(--vis)}
+.product-view.theme-ksy .pd-pill{border-color:var(--ksy-line);background:var(--ksy-soft);color:var(--ksy)}
+/* === End Product Family Color System V1 === */
+
+
+
+/* === Final Responsive Polish: Product Family + Visiteen === */
+@media(max-width:1050px){
+  .catalog-family-head h3{font-size:26px}
+  .catalog-family-head p{font-size:13.5px}
+  .catalog-card{min-height:205px}
+  #visiteen .orbit{height:420px}
+}
+@media(max-width:700px){
+  .catalog-family{margin-top:38px}
+  .catalog-family-head{padding-bottom:13px;margin-bottom:14px}
+  .catalog-family-head h3{font-size:24px;line-height:1.2}
+  .catalog-family-head p{font-size:13px;margin-top:5px}
+  .catalog-card{min-height:170px;padding:19px}
+  .catalog-card h3{font-size:19px;line-height:1.28;margin:27px 0 8px}
+  .catalog-card p{font-size:13px;line-height:1.48}
+  .catalog-top{font-size:12px}
+
+  #visiteen .orbit{height:500px;border-radius:20px}
+  #visiteen .orbit:before{width:290px;height:290px}
+  #visiteen .orbit:after{width:210px;height:210px;box-shadow:0 0 0 14px rgba(81,38,126,.03)}
+  #visiteen .orbit-center{width:142px;height:142px;font-size:17px;border-width:6px}
+  #visiteen .person{font-size:11.5px;padding:10px 12px;border-radius:13px;white-space:nowrap}
+  #visiteen .p1{top:7%;left:50%;transform:translateX(-50%)}
+  #visiteen .p2{top:24%;right:5%}
+  #visiteen .p3{bottom:22%;right:5%}
+  #visiteen .p4{bottom:7%;left:50%;transform:translateX(-50%)}
+  #visiteen .p5{bottom:22%;left:5%}
+  #visiteen .p6{top:24%;left:5%}
+}
+@media(max-width:420px){
+  #visiteen .orbit{height:470px}
+  #visiteen .orbit-center{width:126px;height:126px;font-size:15px}
+  #visiteen .orbit:before{width:250px;height:250px}
+  #visiteen .orbit:after{width:180px;height:180px}
+  #visiteen .person{font-size:10.5px;padding:9px 10px}
+  #visiteen .p2,#visiteen .p3{right:3%}
+  #visiteen .p5,#visiteen .p6{left:3%}
+}
+/* === End Final Responsive Polish === */
+
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo-wrap" aria-label="K12 Toptan ana sayfa">
+      <span class="text-logo"><b>K12</b> TOPTAN</span>
+    </a>
+    <nav class="navlinks" aria-label="Ana navigasyon">
+      <a class="navlink" href="#solutions" id="solutionsTrigger">Çözümler</a>
+      <a class="navlink" href="#products" id="productsTrigger">Ürünler</a>
+      <a class="navlink" href="#operation">Kurumsal Sınav</a>
+      <a class="navlink" href="#publishers">Yayınlar</a>
+      <a class="navlink" href="#selector">Kurumlara Özel</a>
+      <a class="navlink" href="#intelligence">Hakkımızda</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="nav-plain" href="#contact">İletişim</a>
+      <button class="btn primary js-wizard">Kurumunuz İçin Çözüm Alın <span class="arrow">→</span></button>
+    </div>
+    <button class="menu-btn" id="mobileOpen" aria-label="Menüyü aç">☰</button>
+  </div>
+</header>
+
+<div class="mega" id="mega">
+  <div class="wrap mega-grid">
+    <div class="mega-col">
+      <strong>01 · Ölçme, Analiz & Öğrenme</strong>
+      <a href="#product/xys-analiz" data-product="xys-analiz">XYS Analiz</a><a href="#product/sifir-hata" data-product="sifir-hata">Sıfır Hata Kitapçığı</a><a href="#product/kisiye-ozel-soru-bankasi" data-product="kisiye-ozel-soru-bankasi">Kişiye Özel Soru Bankası</a><a href="#product/dijital-egitim" data-product="dijital-egitim">Dijital Eğitim Destek Sistemi</a>
+    </div>
+    <div class="mega-col">
+      <strong>02 · Öğrenci & Akademik Gelişim</strong>
+      <a href="#product/visiteen" data-product="visiteen">Visiteen</a><a href="#product/ogrenci-gelisim" data-product="ogrenci-gelisim">Kurumsal Öğrenci Gelişim Yönetimi</a><a href="#product/kurumsal-kocluk" data-product="kurumsal-kocluk">Kurumsal Koçluk Yönetimi</a><a href="#product/akademik-basari" data-product="akademik-basari">Kurumsal Akademik Başarı Yönetimi</a>
+    </div>
+    <div class="mega-col">
+      <strong>03 · Öğretmen Gelişimi</strong>
+      <a href="#product/ogretmen-radari" data-product="ogretmen-radari">Maarif Öğretmen Radarı</a><a href="#product/ogretmen-akademisi" data-product="ogretmen-akademisi">Maarif Öğretmen Akademisi</a><a href="#product/maarif-gpt" data-product="maarif-gpt">Maarif GPT</a>
+    </div>
+    <div class="mega-col">
+      <strong>04 · Sınav & Operasyon</strong>
+      <a href="#product/deneme-takip" data-product="deneme-takip">Kurumsal Deneme Takip Sistemi</a><a href="#product/sinav-olcme" data-product="sinav-olcme">Sınav Ölçme Değerlendirme</a><a href="#product/ozdebir" data-product="ozdebir">Özdebir Yayınları</a><a href="#product/paraf" data-product="paraf">Paraf Deneme Grubu</a>
+    </div>
+    <aside class="feature-card">
+      <div class="tag">Öne Çıkan Çözüm</div>
+      <h3>Visiteen</h3>
+      <p>Akademik veriyi öğrenci gelişim sürecine dönüştüren kurumsal gelişim ve koçluk yönetim platformu.</p>
+      <a href="#product/visiteen" data-product="visiteen">Çözümü İncele →</a>
+    </aside>
+  </div>
+</div>
+
+<div class="product-mega" id="productMega">
+  <div class="wrap product-mega-grid">
+    <div class="product-mega-intro">
+      <div class="eyebrow">K12 Toptan Ürün Mimarisi</div>
+      <h3>3 ana sistem altında tüm ürünler</h3>
+      <p>Tedarikten ölçmeye, analizden gelişime ve sınav operasyonuna kadar doğrudan ilgili ürün sayfasına geçin.</p>
+      <a href="#products" class="product-all">Tüm Ürünleri Gör <span>→</span></a>
+    </div>
+    <div class="product-accordion-stack">
+      
+    <details class="product-family-accordion family-xys" open>
+      <summary>
+        <div><small>01</small><strong>XYS Analiz</strong></div>
+        <span>+</span>
+      </summary>
+      <div class="product-accordion-links"><a href="#product/xys-analiz" data-product="xys-analiz"><span>Ölçme Değerlendirme Sistemi</span><b>→</b></a>
+<a href="#product/sifir-hata" data-product="sifir-hata"><span>Sıfır Hata Kitapçığı</span><b>→</b></a>
+<a href="#product/kisiye-ozel-soru-bankasi" data-product="kisiye-ozel-soru-bankasi"><span>Kişiye Özel Soru Bankası</span><b>→</b></a>
+<a href="#product/dijital-egitim" data-product="dijital-egitim"><span>Dijital Eğitim Destek Sistemi</span><b>→</b></a></div>
+    </details>
+    
+    <details class="product-family-accordion family-vis" >
+      <summary>
+        <div><small>02</small><strong>Visiteen</strong></div>
+        <span>+</span>
+      </summary>
+      <div class="product-accordion-links"><a href="#product/visiteen" data-product="visiteen"><span>Visiteen Genel Bakış</span><b>→</b></a>
+<a href="#product/ogrenci-gelisim" data-product="ogrenci-gelisim"><span>Kurumsal Öğrenci Gelişim Yönetimi</span><b>→</b></a>
+<a href="#product/kurumsal-kocluk" data-product="kurumsal-kocluk"><span>Kurumsal Koçluk Yönetimi</span><b>→</b></a>
+<a href="#product/akademik-basari" data-product="akademik-basari"><span>Kurumsal Akademik Başarı Yönetimi</span><b>→</b></a>
+<a href="#product/ogretmen-akademisi" data-product="ogretmen-akademisi"><span>Maarif Öğretmen Akademisi</span><b>→</b></a>
+<a href="#product/ogretmen-radari" data-product="ogretmen-radari"><span>Maarif Öğretmen Radarı</span><b>→</b></a>
+<a href="#product/maarif-gpt" data-product="maarif-gpt"><span>Maarif GPT</span><b>→</b></a></div>
+    </details>
+    
+    <details class="product-family-accordion family-ksy" >
+      <summary>
+        <div><small>03</small><strong>Kurumsal Sınav Yönetimi</strong></div>
+        <span>+</span>
+      </summary>
+      <div class="product-accordion-links"><a href="#product/ozdebir" data-product="ozdebir"><span>Özdebir Yayınları Bölge Bayiliği</span><b>→</b></a>
+<a href="#product/paraf" data-product="paraf"><span>Paraf Deneme Grubu Bölge Bayiliği</span><b>→</b></a>
+<a href="#product/sinav-olcme" data-product="sinav-olcme"><span>Sınav Ölçme Değerlendirme</span><b>→</b></a>
+<a href="#product/deneme-takip" data-product="deneme-takip"><span>Kurumsal Deneme Takip Sistemi</span><b>→</b></a></div>
+    </details>
+    
+    </div>
+  </div>
+</div>
+
+
+<section class="product-view" id="productView" hidden>
+  <div class="product-detail-hero">
+    <div class="wrap">
+      <button class="product-back" id="productBack">← Tüm Ürünler</button>
+      <div class="product-breadcrumb" id="pdBreadcrumb"></div>
+      <div class="product-detail-grid">
+        <div>
+          <div class="eyebrow" id="pdCategory"></div>
+          <h1 id="pdTitle"></h1>
+          <p class="product-detail-lead" id="pdTagline"></p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#pdFeatures">Özellikleri İncele <span class="arrow">→</span></a>
+            <button class="btn ghost js-wizard">Kurumunuz İçin Görüşelim <span class="arrow">→</span></button>
+          </div>
+        </div>
+        <aside class="product-definition">
+          <small>Ürün Tanımı</small>
+          <p id="pdSummary"></p>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow">Hangi Sorunu Çözer?</div><h2>Kurumsal ihtiyacı netleştiren çözüm</h2></div>
+        <p>İlgili sürecin dağınık, manuel veya sonuç üretmeyen noktalarını yönetilebilir bir sistem yapısına dönüştürür.</p>
+      </div>
+      <div class="pd-problem-grid" id="pdProblems"></div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow">Nasıl Çalışır?</div><h2>Uçtan uca süreç</h2></div>
+        <p>Ürünün değeri tek bir ekran değil; birbirini besleyen süreç zinciriyle oluşur.</p>
+      </div>
+      <div class="pd-flow" id="pdFlow"></div>
+    </div>
+  </section>
+
+  <section class="section" id="pdFeatures">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow">Temel Özellikler</div><h2>Ürünün çalışma mimarisi</h2></div>
+        <p>Her özellik kurumun günlük operasyonunda ölçülebilir bir kolaylık veya gelişim çıktısı üretmek üzere konumlanır.</p>
+      </div>
+      <div class="pd-features" id="pdFeaturesGrid"></div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow">Kuruma Faydası</div><h2>Teknolojiden daha fazlası: yönetim değeri</h2></div>
+        <p>Süreçleri daha görünür, standart, ölçülebilir ve yönetilebilir hale getirir.</p>
+      </div>
+      <div class="pd-pills" id="pdBenefits"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap pd-two-col">
+      <div class="pd-panel">
+        <div class="eyebrow">Kimler Kullanır?</div>
+        <h3>Rol bazlı kullanım</h3>
+        <div class="pd-list-grid" id="pdUsers"></div>
+      </div>
+      <div class="pd-panel">
+        <div class="eyebrow">Ekosistem Bağlantıları</div>
+        <h3>Birlikte çalışan çözümler</h3>
+        <div class="pd-list-grid" id="pdIntegrations"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section final-cta">
+    <div class="wrap cta-box">
+      <div>
+        <div class="eyebrow">K12 Toptan</div>
+        <h2 id="pdCtaTitle" style="margin-bottom:8px"></h2>
+        <p style="margin:0;color:#c8d4e7">Kurumunuzun ihtiyacına göre doğru ürün kombinasyonunu birlikte yapılandıralım.</p>
+      </div>
+      <button class="btn primary js-wizard">Kurumunuza Uygun Çözümü Bul <span class="arrow">→</span></button>
+    </div>
+  </section>
+</section>
+
+<main id="top" class="home-view">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-kicker"><span class="dot"></span> Eğitimde 360° Çözüm Ortağınız</div>
+      <div class="eyebrow">Kurumsal Eğitim Çözümleri ve Yönetim Merkezi</div>
+      <h1>Eğitim Kurumunuzun Tüm <span>Akademik ve Operasyonel</span> Ekosistemi.</h1>
+      <p class="lead">Sınavdan analize, analizden gelişime; tedarikten kurumsal yönetim zekâsına kadar tüm süreçleri tek sistem yaklaşımıyla yönetin.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#value">Ekosistemi Keşfet <span class="arrow">→</span></a>
+        <button class="btn ghost js-wizard">Kurumunuza Uygun Çözümü Bul <span class="arrow">→</span></button>
+      </div>
+      <div class="hero-meta">
+        <span><b>01</b> Ölçme & Analiz</span><span><b>02</b> Gelişim & Koçluk</span><span><b>03</b> Sınav & Operasyon</span>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-card"><strong>3 Sistem · 1 Ekosistem</strong><span>XYS Analiz, Visiteen ve Kurumsal Sınav Yönetimi tek yapı altında birleşir.</span></div>
+        <div class="proof-card"><strong>Uçtan Uca Yönetim</strong><span>Tedarik, sınav, analiz, gelişim ve kurumsal görünürlük aynı değer zincirinde ilerler.</span></div>
+        <div class="proof-card"><strong>Kurumsal Görünürlük</strong><span>Karar vericiler için süreç, performans ve gelişim verileri merkezi olarak yönetilir.</span></div>
+      </div>
+    </div>
+    <div class="ecosystem" aria-label="K12 Toptan ekosistem şeması">
+      <div class="eco-line"></div><div class="eco-line l2"></div><div class="eco-line l3"></div><div class="eco-line l4"></div>
+      <div class="eco-center">
+        <div class="k12">K12</div>
+        <div class="toptan">TOPTAN</div>
+        <em>360° Ekosistem</em>
+      </div>
+      <div class="node n1">Tedarik</div><div class="node n2">Sınav</div><div class="node n3">Ölçme</div><div class="node n4">Analiz</div>
+      <div class="node n5">Kişiselleştirme</div><div class="node n6">Öğrenme</div><div class="node n7">Koçluk</div><div class="node n8">Yönetim Zekâsı</div>
+      </div>
+    </div>
+</section>
+
+<section class="section" id="value">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">K12 Değer Zinciri</div><h2>Tedarikten Kurumsal Yönetim Zekâsına</h2></div>
+      <p>Birbirinden kopuk ürünler değil; eğitim kurumunun ölçme, öğrenme, gelişim ve operasyon süreçlerini tek değer zincirinde birleştiren yapı.</p>
+    </div>
+    <div class="chain" id="chain"></div>
+  </div>
+</section>
+
+<section class="section soft" id="systems">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">3 Sistem · 1 Ekosistem</div><h2>Tek merkezin üç güçlü motoru</h2></div>
+      <p>K12 Toptan; veriyi üretir, gelişime dönüştürür ve sınav operasyonunu uçtan uca yönetir.</p>
+    </div>
+    <div class="cards3">
+      <a href="#product/xys-analiz" data-product="xys-analiz" style="display:block;color:inherit"><article class="editorial"><div class="no">01</div><h3>XYS Analiz</h3><p>Ölçme verisini öğrenme kararına dönüştürür. Eksikleri görünür kılar ve kişiselleştirilmiş öğrenme aksiyonuna bağlar.</p><div class="terms">ÖLÇME · ANALİZ · KİŞİSELLEŞTİRME</div></article></a>
+      <a href="#product/visiteen" data-product="visiteen" style="display:block;color:inherit"><article class="editorial"><div class="no">02</div><h3>Visiteen</h3><p>Akademik veriyi öğrenci gelişim sürecine dönüştürür; koçluk, görev, müdahale ve takip süreçlerini kurumsallaştırır.</p><div class="terms">GELİŞİM · KOÇLUK · YÖNETİM</div></article></a>
+      <a href="#product/deneme-takip" data-product="deneme-takip" style="display:block;color:inherit"><article class="editorial"><div class="no">03</div><h3>Kurumsal Sınav Yönetimi</h3><p>Deneme ve sınav tedarikini, siparişi, operasyonu, lojistiği ve finansal görünürlüğü tek akışta yönetir.</p><div class="terms">TEDARİK · SINAV · OPERASYON</div></article></a>
+    </div>
+  </div>
+</section>
+
+
+<section class="section products-catalog" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Ürünler</div>
+        <h2>K12 Toptan Ürün ve Operasyon Mimarisi</h2>
+      </div>
+      <p>Üç ana sistem altında ölçme-değerlendirme, öğrenci gelişimi, öğretmen gelişimi ve kurumsal sınav operasyonu çözümlerinin tamamı.</p>
+    </div>
+    
+    <section class="catalog-family family-xys">
+      <div class="catalog-family-head">
+        <div><span>01</span><h3>XYS Analiz</h3></div>
+        <p>Ölçme, Analiz &amp; Kişiselleştirilmiş Öğrenme</p>
+      </div>
+      <div class="catalog-grid">
+        <a class="catalog-card" href="#product/xys-analiz" data-product="xys-analiz">
+          <div class="catalog-top"><span>01</span><b>→</b></div>
+          <h3>Ölçme Değerlendirme Sistemi</h3>
+          <p>Ölçme verisini öğrenme kararına dönüştürün.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/sifir-hata" data-product="sifir-hata">
+          <div class="catalog-top"><span>01</span><b>→</b></div>
+          <h3>Sıfır Hata Kitapçığı</h3>
+          <p>Öğrencinin yaptığı hatayı kişisel tekrar programına dönüştürün.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/kisiye-ozel-soru-bankasi" data-product="kisiye-ozel-soru-bankasi">
+          <div class="catalog-top"><span>01</span><b>→</b></div>
+          <h3>Kişiye Özel Soru Bankası</h3>
+          <p>Herkese aynı soru yerine, öğrencinin ihtiyacına uygun çalışma.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/dijital-egitim" data-product="dijital-egitim">
+          <div class="catalog-top"><span>01</span><b>→</b></div>
+          <h3>Dijital Eğitim Destek Sistemi</h3>
+          <p>Analiz sonucunu doğru dijital öğrenme desteğiyle tamamlayın.</p>
+        </a>
+        </div>
+    </section>
+    
+    <section class="catalog-family family-vis">
+      <div class="catalog-family-head">
+        <div><span>02</span><h3>Visiteen</h3></div>
+        <p>Öğrenci, Akademik Başarı &amp; Öğretmen Gelişimi</p>
+      </div>
+      <div class="catalog-grid">
+        <a class="catalog-card" href="#product/visiteen" data-product="visiteen">
+          <div class="catalog-top"><span>02</span><b>→</b></div>
+          <h3>Visiteen Genel Bakış</h3>
+          <p>Öğrenciyi takip etmekten, gelişimi kurumsal olarak yönetmeye.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/ogrenci-gelisim" data-product="ogrenci-gelisim">
+          <div class="catalog-top"><span>02</span><b>→</b></div>
+          <h3>Kurumsal Öğrenci Gelişim Yönetimi</h3>
+          <p>Öğrencinin akademik ve gelişim yolculuğunu tek profilde yönetin.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/kurumsal-kocluk" data-product="kurumsal-kocluk">
+          <div class="catalog-top"><span>02</span><b>→</b></div>
+          <h3>Kurumsal Koçluk Yönetimi</h3>
+          <p>Koçluğu kişisel uygulamadan kurumsal sisteme dönüştürün.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/akademik-basari" data-product="akademik-basari">
+          <div class="catalog-top"><span>02</span><b>→</b></div>
+          <h3>Kurumsal Akademik Başarı Yönetimi</h3>
+          <p>Akademik veriyi müdahale ve gelişim sürecine dönüştürün.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/ogretmen-akademisi" data-product="ogretmen-akademisi">
+          <div class="catalog-top"><span>02</span><b>→</b></div>
+          <h3>Maarif Öğretmen Akademisi</h3>
+          <p>Radar sonucunu uygulamaya dayalı gelişime dönüştürün.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/ogretmen-radari" data-product="ogretmen-radari">
+          <div class="catalog-top"><span>02</span><b>→</b></div>
+          <h3>Maarif Öğretmen Radarı</h3>
+          <p>Öğretmenin mevcut durumunu görünür hale getirin.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/maarif-gpt" data-product="maarif-gpt">
+          <div class="catalog-top"><span>02</span><b>→</b></div>
+          <h3>Maarif GPT</h3>
+          <p>Öğretmenin günlük üretimine yapay zekâ desteği ekleyin.</p>
+        </a>
+        </div>
+    </section>
+    
+    <section class="catalog-family family-ksy">
+      <div class="catalog-family-head">
+        <div><span>03</span><h3>Kurumsal Sınav Yönetimi</h3></div>
+        <p>Yayın, Deneme, Ölçme &amp; Operasyon</p>
+      </div>
+      <div class="catalog-grid">
+        <a class="catalog-card" href="#product/ozdebir" data-product="ozdebir">
+          <div class="catalog-top"><span>03</span><b>→</b></div>
+          <h3>Özdebir Yayınları Bölge Bayiliği</h3>
+          <p>Kurumsal sınav ve yayın tedarikini operasyon sistemiyle birlikte yönetin.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/paraf" data-product="paraf">
+          <div class="catalog-top"><span>03</span><b>→</b></div>
+          <h3>Paraf Deneme Grubu Bölge Bayiliği</h3>
+          <p>Deneme tedarikini planlama, teslimat ve analiz zincirine bağlayın.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/sinav-olcme" data-product="sinav-olcme">
+          <div class="catalog-top"><span>03</span><b>→</b></div>
+          <h3>Sınav Ölçme Değerlendirme</h3>
+          <p>Sınav sonucunu standart, kullanılabilir akademik veriye dönüştürün.</p>
+        </a>
+        
+        <a class="catalog-card" href="#product/deneme-takip" data-product="deneme-takip">
+          <div class="catalog-top"><span>03</span><b>→</b></div>
+          <h3>Kurumsal Deneme Takip Sistemi</h3>
+          <p>Deneme sınavı satın almaktan, bütün deneme operasyonunu dijital olarak yönetmeye.</p>
+        </a>
+        </div>
+    </section>
+    
+  </div>
+</section>
+
+<section class="section" id="selector">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Kurumunuza Göre Çözüm</div><h2>Ürün değil, doğru sistem kombinasyonu</h2></div>
+      <p>Kurum tipinizi seçin; K12 Toptan ekosisteminin hangi bileşenlerinin sizin için öncelikli olduğunu görün.</p>
+    </div>
+    <div class="selector-tabs" id="selectorTabs"></div>
+    <div class="solution-panel">
+      <div><div class="eyebrow">Önerilen Yapı</div><h3 id="solutionTitle">Okullar İçin</h3><p class="muted" id="solutionDesc"></p><button class="btn primary js-wizard">Detaylı Çözüm Bulucu <span class="arrow">→</span></button></div>
+      <div class="result" id="solutionResult"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section operation" id="operation">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Kurumsal Deneme Takip Sistemi</div><h2>Deneme Operasyonunuzu Tek Merkezden Yönetin</h2></div>
+      <p>Takvimden siparişe, merkezi onaydan tedarike, teslimattan finans ve raporlamaya kadar bütün deneme operasyonu görünür ve yönetilebilir hale gelir.</p>
+    </div>
+    <div class="process" id="process"></div>
+    <div class="benefits">
+      <div class="benefit">Yaklaşan denemeler ve sipariş son tarihleri</div><div class="benefit">Kurum ve sipariş geçmişi</div><div class="benefit">Merkezi admin onayı</div><div class="benefit">Tedarik & satınalma planlama</div><div class="benefit">Durum bazlı operasyon</div>
+      <div class="benefit">Teslimat & lojistik takibi</div><div class="benefit">Akıllı uyarılar</div><div class="benefit">Finans & tahsilat görünürlüğü</div><div class="benefit">Kurum portalı</div><div class="benefit">Yönetim raporları</div>
+    </div>
+  </div>
+
+</section>
+
+<section class="section soft" id="publishers">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Yayınlar & Bölge Operasyonu</div>
+        <h2>Kurumsal Deneme ve Yayın Tedariki</h2>
+      </div>
+      <p>K12 Toptan; yayın tedarikini yalnızca ürün teslimi olarak değil, sınav takvimi, kurum siparişi ve operasyon yönetimiyle birlikte ele alır.</p>
+    </div>
+    <div class="cards3">
+      <a href="#product/ozdebir" data-product="ozdebir" style="display:block;color:inherit"><article class="editorial">
+        <div class="no">01</div>
+        <h3>Özdebir Yayınları</h3>
+        <p>Kurumsal sınav ve yayınların bölgesel tedarik, sipariş ve kurum operasyonlarının yönetimi.</p>
+        <div class="terms">BÖLGE BAYİLİĞİ · TEDARİK · SINAV</div>
+      </article></a>
+      <a href="#product/paraf" data-product="paraf" style="display:block;color:inherit"><article class="editorial">
+        <div class="no">02</div>
+        <h3>Paraf Deneme Grubu</h3>
+        <p>Deneme ürünlerinin kurumlara ulaştırılması, sipariş planlaması ve sınav operasyonlarının yürütülmesi.</p>
+        <div class="terms">BÖLGE BAYİLİĞİ · DENEME · OPERASYON</div>
+      </article></a>
+      <a href="#product/sinav-olcme" data-product="sinav-olcme" style="display:block;color:inherit"><article class="editorial">
+        <div class="no">03</div>
+        <h3>Sınav Ölçme Değerlendirme</h3>
+        <p>Basılı ve dijital sınav sonuçlarının akademik verilere dönüştürülmesi ve analiz ekosistemine aktarılması.</p>
+        <div class="terms">ÖLÇME · VERİ · RAPORLAMA</div>
+      </article></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="xys">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">XYS Analiz</div><h2>Veriyi Öğrenme Kararına Dönüştürün</h2></div>
+      <p>Sınav sonucunu yalnızca raporlamaz; ders, konu ve kazanım düzeyindeki eksikleri görünür kılar ve kişiselleştirilmiş öğrenme aksiyonlarına bağlar.</p>
+    </div>
+    <div class="modules">
+      <div class="module"><div class="icon">01</div><strong>XYS Analiz</strong><p>Öğrenci, sınıf ve kurum düzeyinde ölçme-değerlendirme ve performans analizi.</p></div>
+      <div class="module"><div class="icon">02</div><strong>Sıfır Hata Kitapçığı</strong><p>Öğrencinin yanlışlarından ve eksiklerinden hedefli tekrar ve iyileştirme.</p></div>
+      <div class="module"><div class="icon">03</div><strong>Kişiye Özel Soru Bankası</strong><p>Gerçek gelişim ihtiyacına göre öğrenciye özel soru ve çalışma yapısı.</p></div>
+      <div class="module"><div class="icon">04</div><strong>Dijital Eğitim Destek Sistemi</strong><p>Analiz sonuçlarını dijital içerik, tekrar ve öğrenme kaynaklarıyla destekler.</p></div>
+    </div>
+    <div class="flow"><span>Ölç</span><i>→</i><span>Analiz Et</span><i>→</i><span>Eksikleri Belirle</span><i>→</i><span>Kişiselleştir</span><i>→</i><span>Öğrenmeyi Destekle</span><i>→</i><span>Yeniden Ölç</span></div>
+  </div>
+</section>
+
+<section class="section integration" id="solutions">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">XYS → Visiteen</div><h2>Veriyi Gelişim Sürecine Bağlayın</h2></div>
+      <p>Ölçme verisinin gerçek değeri, sonuç sonrasında hangi gelişim aksiyonunun alındığının yönetilebilmesidir.</p>
+    </div>
+    <div class="integrate-box">
+      <div class="quote"><p>“XYS Analiz gibi ölçme sistemlerinden gelen verilerin Visiteen platformunda öğrencinin gelişim sürecine dönüştürülmesini sağlar.”</p></div>
+      <div class="pipeline" id="pipeline"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="visiteen">
+  <div class="wrap">
+    <div class="section-head">
+      <div><h2>Öğrenciyi takip etmekten, gelişimi kurumsal olarak yönetmeye</h2></div>
+      <p>Öğrenci, koç, öğretmen, veli ve yöneticiyi aynı gelişim ekosisteminde buluşturan; görev, seans, risk, hedef, müdahale ve akademik başarı yönetim platformu.</p>
+    </div>
+    <div class="orbit">
+      <div class="orbit-center">VISITEEN</div>
+      <div class="person p1">Öğrenci</div><div class="person p2">Koç</div><div class="person p3">Öğretmen</div><div class="person p4">Veli</div><div class="person p5">Yönetici</div><div class="person p6">AI / VisiBot</div>
+    </div>
+    <div class="modules">
+      <div class="module"><div class="icon">A</div><strong>Kurumsal Öğrenci Gelişim Yönetimi</strong><p>Hedef, çalışma, görev, gelişim göstergeleri ve akademik performans tek profilde.</p></div>
+      <div class="module"><div class="icon">B</div><strong>Kurumsal Koçluk Yönetimi</strong><p>Seans, görev, takip, geri bildirim ve müdahale süreçlerini standartlaştırır.</p></div>
+      <div class="module"><div class="icon">C</div><strong>Kurumsal Akademik Başarı Yönetimi</strong><p>Ölçme verilerini aksiyon, görev, müdahale ve gelişim takibine dönüştürür.</p></div>
+      <div class="module"><div class="icon">AI</div><strong>Kurumsal Yönetim Görünürlüğü</strong><p>Risk sinyalleri, KPI'lar ve gelişim verileriyle yönetim kararlarını destekler.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft" id="teacher">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Öğretmen Gelişim Ekosistemi</div><h2>Ölç, geliştir, uygulat ve etkiyi izle</h2></div>
+      <p>Öğretmen gelişimini tek seferlik eğitimlerden çıkarıp ölçülebilir, uygulamaya dayalı ve yapay zekâ destekli bir gelişim döngüsüne dönüştürün.</p>
+    </div>
+    <div class="teacher-grid">
+      <div class="teacher"><div class="n">01</div><h3>Maarif Öğretmen Radarı</h3><p>Yetkinlikleri, güçlü yönleri ve gelişim alanlarını görünür hale getirir.</p></div>
+      <div class="teacher"><div class="n">02</div><h3>Maarif Öğretmen Akademisi</h3><p>Radar sonuçlarını eğitim, uygulama, atölye ve gelişim programlarına dönüştürür.</p></div>
+      <div class="teacher"><div class="n">03</div><h3>Maarif GPT</h3><p>Öğretmenin günlük mesleki üretimini ve öğrendiklerini uygulamaya aktarmasını AI ile destekler.</p></div>
+    </div>
+    <div class="flow"><span>Ölç</span><i>→</i><span>Gelişim Alanını Belirle</span><i>→</i><span>Eğit</span><i>→</i><span>Uygulat</span><i>→</i><span>AI ile Destekle</span><i>→</i><span>Etkiyi İzle</span></div>
+  </div>
+</section>
+
+<section class="section dark" id="intelligence">
+  <div class="wrap">
+    <div class="eyebrow">Kurumsal Yönetim Zekâsı</div>
+    <div class="statement">Tedarik ayrı yerde değil. <span>Sınav ayrı yerde değil.</span> Analiz ayrı yerde değil. <span>Koçluk ayrı yerde değil.</span> Gelişim ayrı yerde değil.</div>
+    <h3 style="margin-top:28px;color:#fff">Hepsi aynı eğitim yönetim ekosisteminin parçaları.</h3>
+    <div class="intel-grid"><div class="intel">Tek Merkez</div><div class="intel">Daha Az Manuel Operasyon</div><div class="intel">Görünür Süreçler</div><div class="intel">Veri Temelli Karar</div><div class="intel">Standardizasyon</div><div class="intel">Ölçeklenebilirlik</div></div>
+  </div>
+</section>
+
+<section class="section final-cta" id="contact">
+  <div class="wrap cta-box">
+    <div>
+      <div class="eyebrow">K12 Toptan</div>
+      <h2 style="margin-bottom:10px">Kurumunuz İçin K12 Toptan Ekosistemini Yapılandıralım.</h2>
+      <p style="margin:0;color:#c8d4e7;max-width:720px">Kurum tipinizi, ölçeğinizi ve ihtiyaçlarınızı girin; sistem size uygun K12 Toptan çözüm kombinasyonunu otomatik oluştursun.</p>
+    </div>
+    <button class="btn primary js-wizard">Kurumunuza Uygun Çözümü Bul <span class="arrow">→</span></button>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="text-logo footer-text-logo"><b>K12</b> TOPTAN</div><p>Kurumsal eğitim çözümleri, sınav operasyonu, ölçme-değerlendirme, öğrenci ve öğretmen gelişimini tek ekosistemde birleştirir.</p></div>
+      <div><h4>Çözümler</h4><a href="#xys">Ölçme & Analiz</a><a href="#visiteen">Öğrenci Gelişimi</a><a href="#teacher">Öğretmen Gelişimi</a><a href="#operation">Sınav & Operasyon</a></div>
+      <div><h4>Ürünler</h4><a href="#product/xys-analiz" data-product="xys-analiz">XYS Analiz</a><a href="#product/visiteen" data-product="visiteen">Visiteen</a><a href="#operation">Deneme Takip Sistemi</a><a href="#teacher">Maarif Ekosistemi</a></div>
+      <div><h4>K12 Toptan</h4><a href="#intelligence">Hakkımızda</a><a href="#selector">Kurumlara Özel</a><a href="#contact">İletişim</a><a href="#top">Başa Dön</a><a href="https://k12-toptan-admin.vercel.app">Yönetici Girişi</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 K12 Toptan</span><span>Eğitimde 360° Çözüm Ortağınız</span></div>
+  </div>
+</footer>
+
+<!-- K12 Toptan Lead Motoru -->
+<div class="overlay" id="wizard" role="dialog" aria-modal="true" aria-labelledby="wizardTitle">
+  <div class="modal">
+    <div class="modal-top">
+      <div>
+        <div class="eyebrow">K12 Toptan Çözüm & Lead Motoru</div>
+        <h3 id="wizardTitle" style="margin:4px 0 0">Kurumunuz için doğru çözüm mimarisini oluşturalım</h3>
+      </div>
+      <button id="wizardClose" aria-label="Kapat">✕</button>
+    </div>
+    <div class="lead-modal-inner">
+      <div class="lead-progress-meta">
+        <span id="leadStepLabel">Adım 1 / 7</span>
+        <span id="leadStepName">Kurum Tipi</span>
+      </div>
+      <div class="progress"><div id="prog"></div></div>
+      <div id="wizardBody"></div>
+      <div class="validation" id="leadValidation"></div>
+      <div class="wizard-actions" id="wizardActions">
+        <button class="btn outline" id="wizardBack">← Geri</button>
+        <button class="btn primary" id="wizardNext">Devam →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-top"><span class="text-logo"><b>K12</b> TOPTAN</span><button id="mobileClose">✕</button></div>
+  <nav class="mobile-nav">
+    <button id="mobileSolutions">Çözümler +</button>
+    <div class="mobile-sub" id="mobileSub"><a href="#xys">Ölçme, Analiz & Öğrenme</a><a href="#visiteen">Öğrenci & Akademik Gelişim</a><a href="#teacher">Öğretmen Gelişimi</a><a href="#operation">Sınav & Operasyon</a></div>
+    
+<button id="mobileProducts">Ürünler +</button>
+<div class="mobile-sub product-mobile-sub" id="mobileProductsSub">
+  <details open>
+    <summary>01 · XYS Analiz</summary>
+    <a href="#product/xys-analiz" data-product="xys-analiz">Ölçme Değerlendirme Sistemi</a>
+    <a href="#product/sifir-hata" data-product="sifir-hata">Sıfır Hata Kitapçığı</a>
+    <a href="#product/kisiye-ozel-soru-bankasi" data-product="kisiye-ozel-soru-bankasi">Kişiye Özel Soru Bankası</a>
+    <a href="#product/dijital-egitim" data-product="dijital-egitim">Dijital Eğitim Destek Sistemi</a>
+  </details>
+  <details>
+    <summary>02 · Visiteen</summary>
+    <a href="#product/visiteen" data-product="visiteen">Visiteen Genel Bakış</a>
+    <a href="#product/ogrenci-gelisim" data-product="ogrenci-gelisim">Kurumsal Öğrenci Gelişim Yönetimi</a>
+    <a href="#product/kurumsal-kocluk" data-product="kurumsal-kocluk">Kurumsal Koçluk Yönetimi</a>
+    <a href="#product/akademik-basari" data-product="akademik-basari">Kurumsal Akademik Başarı Yönetimi</a>
+    <a href="#product/ogretmen-akademisi" data-product="ogretmen-akademisi">Maarif Öğretmen Akademisi</a>
+    <a href="#product/ogretmen-radari" data-product="ogretmen-radari">Maarif Öğretmen Radarı</a>
+    <a href="#product/maarif-gpt" data-product="maarif-gpt">Maarif GPT</a>
+  </details>
+  <details>
+    <summary>03 · Kurumsal Sınav Yönetimi</summary>
+    <a href="#product/ozdebir" data-product="ozdebir">Özdebir Yayınları Bölge Bayiliği</a>
+    <a href="#product/paraf" data-product="paraf">Paraf Deneme Grubu Bölge Bayiliği</a>
+    <a href="#product/sinav-olcme" data-product="sinav-olcme">Sınav Ölçme Değerlendirme</a>
+    <a href="#product/deneme-takip" data-product="deneme-takip">Kurumsal Deneme Takip Sistemi</a>
+  </details>
+  <a href="#products" class="all-products-link">Tüm Ürünleri Gör →</a>
+</div>
+<a href="#operation">Kurumsal Sınav</a><a href="#publishers">Yayınlar</a><a href="#selector">Kurumlara Özel</a><a href="#intelligence">Hakkımızda</a><a href="#contact">İletişim</a>
+  </nav>
+  <button class="btn primary mobile-cta js-wizard">Kurumunuz İçin Çözüm Alın →</button>
+</div>
+
+<script>
+const chainItems=["Tedarik","Sınav","Ölçme","Analiz","Kişiselleştirme","Öğrenme","Koçluk","Öğrenci Gelişimi","Öğretmen Gelişimi","Kurumsal Yönetim Zekâsı"];
+document.getElementById("chain").innerHTML=chainItems.map((x,i)=>`<div class="chain-item ${i===0?'active':''}"><div class="chain-num">${String(i+1).padStart(2,'0')}</div><b>${x}</b><small>${i<3?'Operasyon':i<6?'Öğrenme zekâsı':i<9?'Gelişim yönetimi':'Karar desteği'}</small></div>`).join("");
+
+const process=["Takvim","Sipariş","Admin Onay","Satınalma / Tedarik","Hazırlık","Teslimat","Finans","Raporlama"];
+document.getElementById("process").innerHTML=process.map(x=>`<div class="step"><div class="dot"></div><b>${x}</b></div>`).join("");
+
+const pipeline=["Veri","Tespit","Risk / Gelişim Alanı","Müdahale","Görev","Takip","Sonuç","Etki"];
+document.getElementById("pipeline").innerHTML=pipeline.map((x,i)=>`<div class="pipe"><small>${String(i+1).padStart(2,'0')}</small><strong>${x}</strong></div>`).join("");
+
+const solutions={
+ "Okul":{desc:"Akademik başarı, öğrenci gelişimi ve öğretmen gelişimini aynı kurumsal yapı içinde yönetin.",items:[["XYS Analiz","Ölçme & Analiz"],["Visiteen","Gelişim & Koçluk"],["Maarif Ekosistemi","Öğretmen Gelişimi"]]},
+ "Kurs Merkezi":{desc:"Deneme yoğun operasyonu, analiz ve öğrenci koçluğunu birbirine bağlayan sonuç odaklı yapı.",items:[["Kurumsal Deneme","Sınav Operasyonu"],["XYS Analiz","Performans Analizi"],["Visiteen","Koçluk & Takip"]]},
+ "Zincir Eğitim Kurumu":{desc:"Çoklu kampüslerde standardizasyon, merkezi görünürlük ve kurumlar arası performans yönetimi.",items:[["Merkezi Sınav Yönetimi","Operasyon"],["XYS Analiz","Kampüs Karşılaştırma"],["Visiteen","Kurumsal Gelişim"]]},
+ "Ölçme-Değerlendirme Merkezi":{desc:"Sınav ve ölçme verisini kurumlara operasyon, analiz ve gelişim değeri üreten bir hizmete dönüştürün.",items:[["Sınav Ölçme-Değerlendirme","Veri Üretimi"],["XYS Analiz","Analitik Katman"],["Visiteen Entegrasyonu","Gelişim Katmanı"]]}
+};
+const tabs=document.getElementById("selectorTabs");
+const result=document.getElementById("solutionResult");
+function setSolution(name){
+ [...tabs.children].forEach(b=>b.classList.toggle("active",b.dataset.name===name));
+ const s=solutions[name]; document.getElementById("solutionTitle").textContent=name+" İçin"; document.getElementById("solutionDesc").textContent=s.desc;
+ result.innerHTML=s.items.map(i=>`<div class="result-card"><strong>${i[0]}</strong><span>${i[1]}</span></div>`).join("");
+}
+Object.keys(solutions).forEach((name,i)=>{const b=document.createElement("button");b.className="sel"+(i===0?" active":"");b.dataset.name=name;b.textContent=name;b.onclick=()=>setSolution(name);tabs.appendChild(b)}); setSolution("Okul");
+
+/* header / navigation / mega menu */
+const header=document.getElementById("header");
+const mega=document.getElementById("mega");
+const trigger=document.getElementById("solutionsTrigger");
+const productsTrigger=document.getElementById("productsTrigger");
+const productMega=document.getElementById("productMega");
+const drawer=document.getElementById("mobileDrawer");
+const mobileSub=document.getElementById("mobileSub");
+
+function headerOffset(){
+  return (header?.offsetHeight || 80) + 12;
+}
+
+function scrollToTarget(selector){
+  if(!selector || selector==="#") return false;
+  const target=document.querySelector(selector);
+  if(!target) return false;
+  const y=target.getBoundingClientRect().top + window.scrollY - headerOffset();
+  window.scrollTo({top:y,behavior:"smooth"});
+  return true;
+}
+
+function closeMega(){
+  mega?.classList.remove("open");
+  trigger?.classList.remove("mega-toggle-open");
+}
+
+function openMega(){
+  if(typeof closeProductMega==="function") closeProductMega();
+  mega?.classList.add("open");
+  trigger?.classList.add("mega-toggle-open");
+}
+
+function toggleMega(){
+  if(mega?.classList.contains("open")) closeMega();
+  else openMega();
+}
+
+function closeMobile(){
+  drawer?.classList.remove("open");
+  document.body.style.overflow="";
+}
+
+window.addEventListener("scroll",()=>header?.classList.toggle("scrolled",window.scrollY>24),{passive:true});
+
+/* Çözümler: desktop hover + click, tablet/desktop click */
+let megaTimer;
+if(trigger){
+  trigger.addEventListener("click",(e)=>{
+    e.preventDefault();
+    toggleMega();
+  });
+  trigger.addEventListener("mouseenter",()=>{
+    if(window.innerWidth>1050){
+      clearTimeout(megaTimer);
+      openMega();
+    }
+  });
+  trigger.addEventListener("mouseleave",()=>{
+    if(window.innerWidth>1050){
+      megaTimer=setTimeout(closeMega,140);
+    }
+  });
+}
+if(mega){
+  mega.addEventListener("mouseenter",()=>clearTimeout(megaTimer));
+  mega.addEventListener("mouseleave",()=>{
+    if(window.innerWidth>1050) megaTimer=setTimeout(closeMega,140);
+  });
+}
+
+/* All internal navigation links */
+document.addEventListener("click",(e)=>{
+  const a=e.target.closest('a[href^="#"]');
+  if(!a || a===trigger || a===productsTrigger) return;
+  const href=a.getAttribute("href");
+  if(!href || href.length<=1 || href.startsWith("#product/")) return;
+  let target=null;
+  try{ target=document.querySelector(href); }catch(err){ return; }
+  if(target){
+    e.preventDefault();
+    closeMega();
+    if(typeof closeProductMega==="function") closeProductMega();
+    closeMobile();
+    scrollToTarget(href);
+  }
+});
+
+/* Close mega on outside click */
+document.addEventListener("click",(e)=>{
+  if(!mega?.contains(e.target) && e.target!==trigger && !trigger?.contains(e.target)){
+    closeMega();
+  }
+});
+
+/* Active desktop menu item */
+const topLinks=[...document.querySelectorAll(".navlinks .navlink")].filter(a=>a!==trigger && a!==productsTrigger);
+const observedIds=["systems","products","operation","publishers","selector","intelligence","contact"];
+const observer=new IntersectionObserver((entries)=>{
+  const visible=entries
+    .filter(e=>e.isIntersecting)
+    .sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+  if(!visible) return;
+  const id=visible.target.id;
+  topLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+id));
+},{rootMargin:"-25% 0px -55% 0px",threshold:[0,.1,.25,.5]});
+observedIds.forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) observer.observe(el);
+});
+
+/* Mobile drawer */
+document.getElementById("mobileOpen")?.addEventListener("click",()=>{
+  drawer?.classList.add("open");
+  document.body.style.overflow="hidden";
+});
+document.getElementById("mobileClose")?.addEventListener("click",closeMobile);
+document.getElementById("mobileSolutions")?.addEventListener("click",(e)=>{
+  const isOpen=mobileSub?.classList.toggle("open");
+  e.currentTarget.textContent=isOpen ? "Çözümler −" : "Çözümler +";
+});
+
+/* Escape */
+document.addEventListener("keydown",(e)=>{
+  if(e.key==="Escape"){
+    closeMega();
+    closeMobile();
+    if(typeof closeWizard==="function") closeWizard();
+  }
+});
+
+/* K12 Toptan Lead Motoru */
+const K12_API_URL="https://vtrcufrhmgmnqbbqiowh.supabase.co/functions/v1/submit-k12-lead";
+const K12_PUBLISHABLE_KEY="sb_publishable_g4FJ3WKPJLOFc068Tyzuew_OFylBDvX";
+const wizard=document.getElementById("wizard");
+const body=document.getElementById("wizardBody");
+const back=document.getElementById("wizardBack");
+const next=document.getElementById("wizardNext");
+const prog=document.getElementById("prog");
+const leadStepLabel=document.getElementById("leadStepLabel");
+const leadStepName=document.getElementById("leadStepName");
+const leadValidation=document.getElementById("leadValidation");
+const wizardActions=document.getElementById("wizardActions");
+
+const LEAD_STEPS=[
+  "Kurum Tipi",
+  "Kurum Ölçeği",
+  "Öncelikli İhtiyaçlar",
+  "Mevcut Sistemler",
+  "Önerilen Çözüm",
+  "İletişim Bilgileri",
+  "Talep Özeti"
+];
+
+const leadState={
+  step:1,
+  institutionType:"",
+  studentCount:"",
+  campusCount:"1",
+  needs:[],
+  currentSystems:[],
+  currentSystemNote:"",
+  recommendations:[],
+  contact:{
+    institutionName:"",
+    personName:"",
+    title:"",
+    phone:"",
+    email:"",
+    city:"",
+    district:"",
+    preferredContact:"Telefon",
+    note:"",
+    consent:false
+  },
+  leadId:""
+};
+
+const institutionOptions=[
+  ["Okul","K12 okul yapısı; öğrenci, öğretmen ve akademik gelişim yönetimi."],
+  ["Kurs Merkezi","Yoğun deneme, analiz, koçluk ve öğrenci takip operasyonu."],
+  ["Zincir Eğitim Kurumu","Çoklu kampüslerde standardizasyon ve merkezi yönetim görünürlüğü."],
+  ["Ölçme-Değerlendirme Merkezi","Sınav operasyonu, sonuç işleme ve analiz servisleri."],
+  ["Yayın / Deneme Organizasyonu","Yayın, sınav tedariki, sipariş ve kurum operasyonu."],
+  ["Diğer Eğitim Kurumu","Kurum yapınıza göre özel çözüm kombinasyonu."]
+];
+
+const needOptions=[
+  "Kurumsal Sınav & Deneme Operasyonu",
+  "Yayın & Tedarik",
+  "Ölçme & Analiz",
+  "Kişiselleştirilmiş Öğrenme",
+  "Kurumsal Koçluk",
+  "Öğrenci Gelişimi",
+  "Akademik Başarı Yönetimi",
+  "Öğretmen Gelişimi",
+  "Yapay Zekâ Destekli Öğretmen Üretimi",
+  "Dijital Eğitim"
+];
+
+const systemOptions=[
+  "Excel / Manuel Takip",
+  "Farklı Ölçme-Değerlendirme Sistemi",
+  "Deneme / Sipariş Takip Sistemi",
+  "Koçluk / Öğrenci Takip Sistemi",
+  "Dijital Öğrenme Platformu",
+  "Öğretmen Gelişim Sistemi",
+  "CRM / Kurum Yönetim Sistemi",
+  "Henüz Sistem Kullanmıyoruz"
+];
+
+const recMeta={
+  "xys-analiz":["XYS Analiz","Ölçme verisini ders, konu ve kazanım düzeyinde gelişim kararına dönüştürür."],
+  "sifir-hata":["Sıfır Hata Kitapçığı","Öğrencinin yaptığı hataları kişisel tekrar ve iyileştirme döngüsüne taşır."],
+  "kisiye-ozel-soru-bankasi":["Kişiye Özel Soru Bankası","Öğrencinin gerçek performansına göre kişisel soru çalışması üretir."],
+  "dijital-egitim":["Dijital Eğitim Destek Sistemi","Analiz sonucunu hedefli dijital öğrenme içeriğiyle destekler."],
+  "visiteen":["Visiteen","Öğrenci, koç, öğretmen, veli ve yöneticiyi aynı gelişim ekosisteminde buluşturur."],
+  "ogrenci-gelisim":["Kurumsal Öğrenci Gelişim Yönetimi","Hedef, çalışma, görev ve gelişim göstergelerini tek öğrenci profilinde yönetir."],
+  "kurumsal-kocluk":["Kurumsal Koçluk Yönetimi","Seans, görev, takip ve müdahale süreçlerini kurum standardına taşır."],
+  "akademik-basari":["Kurumsal Akademik Başarı Yönetimi","Ölçme verisini risk, müdahale, görev ve etki döngüsüne dönüştürür."],
+  "ogretmen-radari":["Maarif Öğretmen Radarı","Öğretmenin güçlü ve gelişime açık yetkinlik alanlarını görünür hale getirir."],
+  "ogretmen-akademisi":["Maarif Öğretmen Akademisi","Radar sonucunu eğitim, uygulama ve gelişim programına dönüştürür."],
+  "maarif-gpt":["Maarif GPT","Öğretmenin günlük mesleki üretimini yapay zekâ ile destekler."],
+  "deneme-takip":["Kurumsal Deneme Takip Sistemi","Takvim, sipariş, onay, tedarik, teslimat, finans ve raporlamayı tek akışta yönetir."],
+  "sinav-olcme":["Sınav Ölçme Değerlendirme","Sınav sonucunu standart, analize hazır akademik veriye dönüştürür."],
+  "ozdebir":["Özdebir Yayınları Bölge Bayiliği","Kurumsal sınav ve yayın tedarik operasyonunu sistematik hale getirir."],
+  "paraf":["Paraf Deneme Grubu Bölge Bayiliği","Deneme tedarikini sipariş, teslimat ve analiz zincirine bağlar."]
+};
+
+const needScores={
+  "Kurumsal Sınav & Deneme Operasyonu":[["deneme-takip",8],["sinav-olcme",6],["xys-analiz",3]],
+  "Yayın & Tedarik":[["deneme-takip",7],["ozdebir",6],["paraf",6],["sinav-olcme",2]],
+  "Ölçme & Analiz":[["xys-analiz",9],["sinav-olcme",5],["akademik-basari",3]],
+  "Kişiselleştirilmiş Öğrenme":[["xys-analiz",6],["sifir-hata",8],["kisiye-ozel-soru-bankasi",8],["dijital-egitim",6]],
+  "Kurumsal Koçluk":[["visiteen",8],["kurumsal-kocluk",9],["xys-analiz",2]],
+  "Öğrenci Gelişimi":[["visiteen",9],["ogrenci-gelisim",9],["akademik-basari",3]],
+  "Akademik Başarı Yönetimi":[["akademik-basari",9],["xys-analiz",8],["visiteen",6]],
+  "Öğretmen Gelişimi":[["ogretmen-radari",9],["ogretmen-akademisi",9],["maarif-gpt",5]],
+  "Yapay Zekâ Destekli Öğretmen Üretimi":[["maarif-gpt",9],["ogretmen-akademisi",5],["ogretmen-radari",3]],
+  "Dijital Eğitim":[["dijital-egitim",9],["xys-analiz",5],["kisiye-ozel-soru-bankasi",4]]
+};
+
+const institutionScores={
+  "Okul":[["xys-analiz",3],["visiteen",4],["ogrenci-gelisim",3],["ogretmen-radari",2]],
+  "Kurs Merkezi":[["deneme-takip",4],["xys-analiz",4],["visiteen",4],["kurumsal-kocluk",3]],
+  "Zincir Eğitim Kurumu":[["visiteen",4],["xys-analiz",4],["deneme-takip",3],["akademik-basari",3],["ogretmen-radari",2]],
+  "Ölçme-Değerlendirme Merkezi":[["sinav-olcme",5],["xys-analiz",5],["deneme-takip",3]],
+  "Yayın / Deneme Organizasyonu":[["deneme-takip",6],["ozdebir",3],["paraf",3],["sinav-olcme",3]]
+};
+
+function escapeLead(s){
+  return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+
+function showValidation(msg){
+  leadValidation.textContent=msg;
+  leadValidation.classList.add("show");
+}
+function clearValidation(){
+  leadValidation.textContent="";
+  leadValidation.classList.remove("show");
+}
+
+function setLeadStepMeta(){
+  leadStepLabel.textContent=`Adım ${leadState.step} / ${LEAD_STEPS.length}`;
+  leadStepName.textContent=LEAD_STEPS[leadState.step-1];
+  prog.style.width=`${(leadState.step/LEAD_STEPS.length)*100}%`;
+  back.style.visibility=leadState.step===1||leadState.step===7?"hidden":"visible";
+  wizardActions.style.display=leadState.step===7?"none":"flex";
+}
+
+function updateDraftFromVisibleFields(){
+  if(leadState.step===2){
+    leadState.studentCount=document.getElementById("leadStudentCount")?.value.trim()||leadState.studentCount;
+    leadState.campusCount=document.getElementById("leadCampusCount")?.value.trim()||leadState.campusCount;
+  }
+  if(leadState.step===4){
+    leadState.currentSystemNote=document.getElementById("leadSystemNote")?.value.trim()||"";
+  }
+  if(leadState.step===6){
+    const fields=["institutionName","personName","title","phone","email","city","district","preferredContact","note"];
+    fields.forEach(k=>{
+      const el=document.getElementById("lead_"+k);
+      if(el) leadState.contact[k]=el.value.trim();
+    });
+    leadState.contact.consent=!!document.getElementById("lead_consent")?.checked;
+  }
+}
+
+function toggleArrayValue(arr,val){
+  const i=arr.indexOf(val);
+  if(i>=0) arr.splice(i,1);
+  else arr.push(val);
+}
+
+function calculateRecommendations(){
+  const scores={};
+  const reasons={};
+  const add=(id,score,reason)=>{
+    scores[id]=(scores[id]||0)+score;
+    if(!reasons[id]) reasons[id]=[];
+    if(reason && !reasons[id].includes(reason)) reasons[id].push(reason);
+  };
+
+  leadState.needs.forEach(need=>{
+    (needScores[need]||[]).forEach(([id,score])=>add(id,score,need));
+  });
+  (institutionScores[leadState.institutionType]||[]).forEach(([id,score])=>add(id,score,leadState.institutionType));
+
+  const students=parseInt(leadState.studentCount||"0",10)||0;
+  const campuses=parseInt(leadState.campusCount||"1",10)||1;
+  if(students>=500){ add("visiteen",2,"Kurum ölçeği"); add("xys-analiz",2,"Kurum ölçeği"); }
+  if(students>=1000 || campuses>1){ add("akademik-basari",2,"Çoklu/ölçekli yönetim"); add("deneme-takip",1,"Çoklu/ölçekli yönetim"); }
+  if(campuses>=3){ add("visiteen",2,"Merkezi kampüs yönetimi"); add("ogretmen-radari",1,"Kurumsal standardizasyon"); }
+
+  if(leadState.currentSystems.includes("Excel / Manuel Takip")) add("deneme-takip",2,"Manuel süreçlerin dijitalleşmesi");
+  if(leadState.currentSystems.includes("Farklı Ölçme-Değerlendirme Sistemi")) add("visiteen",1,"Harici ölçme verisinin gelişim sürecine bağlanması");
+  if(leadState.currentSystems.includes("Henüz Sistem Kullanmıyoruz")){ add("xys-analiz",1,"Temel ölçme altyapısı"); add("visiteen",1,"Temel gelişim altyapısı"); }
+
+  let ranked=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  if(!ranked.length){
+    ranked=[["xys-analiz",5],["visiteen",4],["deneme-takip",3]];
+  }
+
+  leadState.recommendations=ranked.slice(0,6).map(([id,score],i)=>({
+    id,
+    score,
+    core:i<3,
+    name:recMeta[id]?.[0]||id,
+    description:recMeta[id]?.[1]||"",
+    reason:(reasons[id]||[]).slice(0,2).join(" · ")
+  }));
+}
+
+function renderLeadStep(){
+  clearValidation();
+  setLeadStepMeta();
+
+  if(leadState.step===1){
+    body.innerHTML=`
+      <h3 class="lead-step-title">Kurumunuz hangisi?</h3>
+      <p class="lead-step-desc">K12 Toptan çözüm mimarisini kurum tipinize göre önceliklendireceğiz.</p>
+      <div class="choices">
+        ${institutionOptions.map(([name,desc])=>`
+          <button type="button" class="choice ${leadState.institutionType===name?"selected":""}" data-inst="${escapeLead(name)}">
+            ${escapeLead(name)}<small>${escapeLead(desc)}</small>
+          </button>`).join("")}
+      </div>`;
+    next.textContent="Kurum Ölçeği →";
+  }
+
+  if(leadState.step===2){
+    body.innerHTML=`
+      <h3 class="lead-step-title">Kurum ölçeğinizi belirtin</h3>
+      <p class="lead-step-desc">Öğrenci ve kampüs ölçeği, önerilecek sistemin operasyon ve yönetim kapsamını etkiler.</p>
+      <div class="lead-grid">
+        <div class="field">
+          <label>Toplam Öğrenci Sayısı *</label>
+          <input id="leadStudentCount" type="number" min="1" inputmode="numeric" placeholder="Örn. 850" value="${escapeLead(leadState.studentCount)}">
+          <span class="hint">Yaklaşık sayı yeterlidir.</span>
+        </div>
+        <div class="field">
+          <label>Kampüs / Şube Sayısı *</label>
+          <input id="leadCampusCount" type="number" min="1" inputmode="numeric" placeholder="Örn. 1" value="${escapeLead(leadState.campusCount)}">
+          <span class="hint">Tek kurum için 1 yazabilirsiniz.</span>
+        </div>
+      </div>`;
+    next.textContent="İhtiyaçları Belirle →";
+  }
+
+  if(leadState.step===3){
+    body.innerHTML=`
+      <h3 class="lead-step-title">Öncelikli ihtiyaçlarınız neler?</h3>
+      <p class="lead-step-desc">Birden fazla alan seçebilirsiniz. Öneri motoru çözüm kombinasyonunu buna göre oluşturur.</p>
+      <div class="choices">
+        ${needOptions.map(x=>`<button type="button" class="choice multi ${leadState.needs.includes(x)?"selected":""}" data-need="${escapeLead(x)}">${escapeLead(x)}</button>`).join("")}
+      </div>`;
+    next.textContent="Mevcut Yapıyı Belirle →";
+  }
+
+  if(leadState.step===4){
+    body.innerHTML=`
+      <h3 class="lead-step-title">Şu anda hangi sistemleri kullanıyorsunuz?</h3>
+      <p class="lead-step-desc">Bu bilgi, mevcut yapıyı tamamen değiştirmek yerine doğru entegrasyon ve geçiş yaklaşımını önermemize yardımcı olur.</p>
+      <div class="choices">
+        ${systemOptions.map(x=>`<button type="button" class="choice multi ${leadState.currentSystems.includes(x)?"selected":""}" data-system="${escapeLead(x)}">${escapeLead(x)}</button>`).join("")}
+      </div>
+      <div class="field full" style="margin-top:14px">
+        <label>Kullandığınız sistem / yayın / platform varsa belirtin</label>
+        <textarea id="leadSystemNote" placeholder="Örn. mevcut ölçme-değerlendirme sistemi, yayın grubu, koçluk yazılımı...">${escapeLead(leadState.currentSystemNote)}</textarea>
+      </div>`;
+    next.textContent="Çözüm Önerisini Oluştur →";
+  }
+
+  if(leadState.step===5){
+    calculateRecommendations();
+    const core=leadState.recommendations.filter(x=>x.core).length;
+    body.innerHTML=`
+      <h3 class="lead-step-title">Kurumunuz için önerilen K12 Toptan yapısı</h3>
+      <p class="lead-step-desc">Seçimleriniz, kurum ölçeğiniz ve mevcut yapınıza göre en yüksek eşleşmeye sahip çözümleri öne çıkardık.</p>
+      <div class="lead-kpi">
+        <div><b>${escapeLead(leadState.institutionType)}</b><span>Kurum Tipi</span></div>
+        <div><b>${escapeLead(leadState.studentCount)} öğrenci</b><span>Kurum Ölçeği</span></div>
+        <div><b>${core} ana çözüm</b><span>Öncelikli Sistem</span></div>
+      </div>
+      <div class="recommend">
+        ${leadState.recommendations.map((r,i)=>`
+          <div class="rec-card ${r.core?"core":""}">
+            <div class="rec-top">
+              <strong>${escapeLead(r.name)}</strong>
+              <span class="rec-badge">${r.core?"Ana Çözüm":"Destekleyici"}</span>
+            </div>
+            <p>${escapeLead(r.description)}</p>
+            ${r.reason?`<p style="color:#a24612"><b>Neden:</b> ${escapeLead(r.reason)}</p>`:""}
+          </div>`).join("")}
+      </div>`;
+    next.textContent="İletişim Bilgileri →";
+  }
+
+  if(leadState.step===6){
+    const c=leadState.contact;
+    body.innerHTML=`
+      <h3 class="lead-step-title">Görüşme talebinizi oluşturalım</h3>
+      <p class="lead-step-desc">Önerilen çözüm mimarisini kurumunuza göre detaylandırabilmemiz için iletişim bilgilerinizi ekleyin.</p>
+      <div class="lead-grid">
+        <input id="lead_website" type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:1px;width:1px">
+        <div class="field">
+          <label>Kurum Adı *</label>
+          <input id="lead_institutionName" autocomplete="organization" placeholder="Kurumunuzun adı" value="${escapeLead(c.institutionName)}">
+        </div>
+        <div class="field">
+          <label>Yetkili Ad Soyad *</label>
+          <input id="lead_personName" autocomplete="name" placeholder="Ad Soyad" value="${escapeLead(c.personName)}">
+        </div>
+        <div class="field">
+          <label>Görev / Ünvan</label>
+          <input id="lead_title" autocomplete="organization-title" placeholder="Örn. Kurum Müdürü" value="${escapeLead(c.title)}">
+        </div>
+        <div class="field">
+          <label>Telefon *</label>
+          <input id="lead_phone" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx" value="${escapeLead(c.phone)}">
+        </div>
+        <div class="field">
+          <label>E-posta *</label>
+          <input id="lead_email" type="email" autocomplete="email" placeholder="ornek@kurum.com" value="${escapeLead(c.email)}">
+        </div>
+        <div class="field">
+          <label>Tercih Edilen İletişim</label>
+          <select id="lead_preferredContact">
+            ${["Telefon","E-posta","WhatsApp","Yüz Yüze Görüşme"].map(x=>`<option ${c.preferredContact===x?"selected":""}>${x}</option>`).join("")}
+          </select>
+        </div>
+        <div class="field">
+          <label>İl *</label>
+          <input id="lead_city" autocomplete="address-level1" placeholder="İl" value="${escapeLead(c.city)}">
+        </div>
+        <div class="field">
+          <label>İlçe</label>
+          <input id="lead_district" autocomplete="address-level2" placeholder="İlçe" value="${escapeLead(c.district)}">
+        </div>
+        <div class="field full">
+          <label>Ek Not / Beklenti</label>
+          <textarea id="lead_note" placeholder="Kurumunuzun özel ihtiyacını veya görüşmede ele alınmasını istediğiniz konuyu yazabilirsiniz.">${escapeLead(c.note)}</textarea>
+        </div>
+        <div class="field full">
+          <div class="consent">
+            <input id="lead_consent" type="checkbox" ${c.consent?"checked":""}>
+            <label for="lead_consent">İletişim talebim kapsamında verdiğim bilgilerin K12 Toptan tarafından benimle iletişime geçilmesi ve talebimin değerlendirilmesi amacıyla kullanılmasını kabul ediyorum. *</label>
+          </div>
+        </div>
+      </div>`;
+    next.textContent="Talebi Oluştur →";
+  }
+
+  if(leadState.step===7){
+    const c=leadState.contact;
+    const recNames=leadState.recommendations.filter(x=>x.core).map(x=>x.name).join(", ");
+    body.innerHTML=`
+      <div class="lead-success">
+        <div class="success-icon">✓</div>
+        <div class="eyebrow">Talep Oluşturuldu</div>
+        <h3 class="lead-step-title">${escapeLead(c.institutionName)} için çözüm talebi hazır.</h3>
+        <div class="lead-id">${escapeLead(leadState.leadId)}</div>
+        <div class="lead-summary">
+          <div class="summary-box">
+            <h4>Kurum Bilgileri</h4>
+            <div class="summary-list">
+              <div class="summary-line"><span>Kurum</span><b>${escapeLead(c.institutionName)}</b></div>
+              <div class="summary-line"><span>Tip</span><b>${escapeLead(leadState.institutionType)}</b></div>
+              <div class="summary-line"><span>Öğrenci</span><b>${escapeLead(leadState.studentCount)}</b></div>
+              <div class="summary-line"><span>Kampüs</span><b>${escapeLead(leadState.campusCount)}</b></div>
+              <div class="summary-line"><span>Yetkili</span><b>${escapeLead(c.personName)}</b></div>
+            </div>
+          </div>
+          <div class="summary-box">
+            <h4>Önerilen Ana Çözümler</h4>
+            <div class="summary-list">
+              ${leadState.recommendations.filter(x=>x.core).map(x=>`<div class="summary-line"><span>K12 Toptan</span><b>${escapeLead(x.name)}</b></div>`).join("")}
+            </div>
+          </div>
+        </div>
+        <div class="lead-final-actions">
+          <button class="btn outline" id="leadCopy" style="color:var(--deep)">Özeti Kopyala</button>
+          <button class="btn outline" id="leadDownload" style="color:var(--deep)">JSON İndir</button>
+          <button class="btn primary" id="leadNew">Yeni Talep Oluştur</button>
+        </div>
+        <p class="success-note"><b>Talebiniz merkezi K12 Toptan lead sistemine kaydedildi.</b> Talep numaranızı görüşme ve takip sürecinizde kullanabilirsiniz.</p>
+      </div>`;
+
+    document.getElementById("leadCopy")?.addEventListener("click",async()=>{
+      const text=leadSummaryText();
+      try{
+        await navigator.clipboard.writeText(text);
+        document.getElementById("leadCopy").textContent="Kopyalandı ✓";
+      }catch(e){
+        window.prompt("Özeti kopyalayın:",text);
+      }
+    });
+
+    document.getElementById("leadDownload")?.addEventListener("click",()=>{
+      const payload=buildLeadPayload();
+      const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url;a.download=`${leadState.leadId}.json`;a.click();
+      setTimeout(()=>URL.revokeObjectURL(url),500);
+    });
+
+    document.getElementById("leadNew")?.addEventListener("click",()=>{
+      resetLeadState();
+      renderLeadStep();
+    });
+  }
+
+  body.querySelectorAll("[data-inst]").forEach(x=>x.addEventListener("click",()=>{
+    leadState.institutionType=x.dataset.inst;
+    renderLeadStep();
+  }));
+  body.querySelectorAll("[data-need]").forEach(x=>x.addEventListener("click",()=>{
+    toggleArrayValue(leadState.needs,x.dataset.need);
+    renderLeadStep();
+  }));
+  body.querySelectorAll("[data-system]").forEach(x=>x.addEventListener("click",()=>{
+    const val=x.dataset.system;
+    if(val==="Henüz Sistem Kullanmıyoruz"){
+      leadState.currentSystems=[val];
+    }else{
+      leadState.currentSystems=leadState.currentSystems.filter(v=>v!=="Henüz Sistem Kullanmıyoruz");
+      toggleArrayValue(leadState.currentSystems,val);
+    }
+    renderLeadStep();
+  }));
+}
+
+function validateCurrentLeadStep(){
+  updateDraftFromVisibleFields();
+  if(leadState.step===1 && !leadState.institutionType){
+    showValidation("Devam etmek için kurum tipinizi seçin."); return false;
+  }
+  if(leadState.step===2){
+    const students=parseInt(leadState.studentCount,10);
+    const campuses=parseInt(leadState.campusCount,10);
+    if(!students || students<1){ showValidation("Toplam öğrenci sayısını girin."); return false; }
+    if(!campuses || campuses<1){ showValidation("Kampüs / şube sayısını girin."); return false; }
+  }
+  if(leadState.step===3 && leadState.needs.length===0){
+    showValidation("En az bir öncelikli ihtiyaç seçin."); return false;
+  }
+  if(leadState.step===6){
+    const c=leadState.contact;
+    const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email);
+    const phoneDigits=(c.phone||"").replace(/\D/g,"");
+    if(c.institutionName.length<2){ showValidation("Kurum adını girin."); return false; }
+    if(c.personName.length<3){ showValidation("Yetkili ad soyad bilgisini girin."); return false; }
+    if(phoneDigits.length<10){ showValidation("Geçerli bir telefon numarası girin."); return false; }
+    if(!emailOk){ showValidation("Geçerli bir e-posta adresi girin."); return false; }
+    if(c.city.length<2){ showValidation("İl bilgisini girin."); return false; }
+    if(!c.consent){ showValidation("İletişim talebini oluşturmak için kullanım onayını işaretleyin."); return false; }
+  }
+  return true;
+}
+
+function buildLeadPayload(){
+  return {
+    leadId:leadState.leadId,
+    createdAt:new Date().toISOString(),
+    institutionType:leadState.institutionType,
+    studentCount:Number(leadState.studentCount),
+    campusCount:Number(leadState.campusCount),
+    needs:[...leadState.needs],
+    currentSystems:[...leadState.currentSystems],
+    currentSystemNote:leadState.currentSystemNote,
+    recommendations:leadState.recommendations.map(r=>({id:r.id,name:r.name,score:r.score,core:r.core,reason:r.reason})),
+    contact:{...leadState.contact},
+    source:"K12 Toptan Web Lead Motoru V15",
+    sourcePage:location.href,
+    referrer:document.referrer||"",
+    website:document.getElementById("lead_website")?.value||""
+  };
+}
+
+function saveLeadLocally(payload){
+  let leads=[];
+  try{ leads=JSON.parse(localStorage.getItem("k12_toptan_leads_backup_v1")||"[]"); }catch(e){ leads=[]; }
+  leads.unshift(payload);
+  leads=leads.slice(0,20);
+  try{ localStorage.setItem("k12_toptan_leads_backup_v1",JSON.stringify(leads)); }catch(e){}
+}
+
+async function submitLeadToServer(){
+  const payload=buildLeadPayload();
+  const res=await fetch(K12_API_URL,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","apikey":K12_PUBLISHABLE_KEY},
+    body:JSON.stringify(payload)
+  });
+  let data={};
+  try{ data=await res.json(); }catch(e){}
+  if(!res.ok || !data.ok) throw new Error(data.error||"Talep merkezi sisteme kaydedilemedi.");
+  leadState.leadId=data.leadCode;
+  const finalPayload=buildLeadPayload();
+  finalPayload.serverCreatedAt=data.createdAt||new Date().toISOString();
+  finalPayload.notification=data.notification||"pending";
+  saveLeadLocally(finalPayload);
+  return data;
+}
+
+function leadSummaryText(){
+  const p=buildLeadPayload();
+  return [
+    `K12 Toptan Çözüm Talebi — ${p.leadId}`,
+    `Kurum: ${p.contact.institutionName}`,
+    `Yetkili: ${p.contact.personName}`,
+    `Kurum Tipi: ${p.institutionType}`,
+    `Öğrenci / Kampüs: ${p.studentCount} / ${p.campusCount}`,
+    `İhtiyaçlar: ${p.needs.join(", ")}`,
+    `Önerilen Ana Çözümler: ${p.recommendations.filter(x=>x.core).map(x=>x.name).join(", ")}`,
+    `Telefon: ${p.contact.phone}`,
+    `E-posta: ${p.contact.email}`,
+    `İl / İlçe: ${p.contact.city}${p.contact.district?" / "+p.contact.district:""}`,
+    `Tercih Edilen İletişim: ${p.contact.preferredContact}`,
+    p.contact.note?`Not: ${p.contact.note}`:""
+  ].filter(Boolean).join("\n");
+}
+
+function resetLeadState(){
+  leadState.step=1;
+  leadState.institutionType="";
+  leadState.studentCount="";
+  leadState.campusCount="1";
+  leadState.needs=[];
+  leadState.currentSystems=[];
+  leadState.currentSystemNote="";
+  leadState.recommendations=[];
+  leadState.contact={institutionName:"",personName:"",title:"",phone:"",email:"",city:"",district:"",preferredContact:"Telefon",note:"",consent:false};
+  leadState.leadId="";
+}
+
+function openWizard(){
+  resetLeadState();
+  renderLeadStep();
+  wizard.classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeWizard(){
+  updateDraftFromVisibleFields();
+  wizard.classList.remove("open");
+  document.body.style.overflow="";
+}
+
+document.querySelectorAll(".js-wizard").forEach(b=>b.addEventListener("click",openWizard));
+document.getElementById("wizardClose").onclick=closeWizard;
+wizard.addEventListener("click",e=>{if(e.target===wizard)closeWizard()});
+
+next.onclick=async()=>{
+  clearValidation();
+  if(!validateCurrentLeadStep()) return;
+
+  if(leadState.step===4) calculateRecommendations();
+
+  if(leadState.step===6){
+    calculateRecommendations();
+    const original=next.textContent;
+    next.classList.add("loading");
+    next.textContent="Talep Kaydediliyor...";
+    next.disabled=true;
+    try{
+      await submitLeadToServer();
+      leadState.step=7;
+      renderLeadStep();
+    }catch(err){
+      showValidation(err?.message||"Talep kaydedilemedi. Lütfen tekrar deneyin.");
+      next.classList.remove("loading");
+      next.textContent=original;
+      next.disabled=false;
+    }
+    return;
+  }
+
+  if(leadState.step<6){
+    leadState.step++;
+    renderLeadStep();
+  }
+};
+
+back.onclick=()=>{
+  updateDraftFromVisibleFields();
+  clearValidation();
+  if(leadState.step>1 && leadState.step<7){
+    leadState.step--;
+    renderLeadStep();
+  }
+};
+
+</script>
+
+<script>
+window.K12_PRODUCT_DATA = {"xys-analiz": {"name": "XYS Analiz", "category": "Ölçme, Analiz & Öğrenme", "tagline": "Ölçme verisini öğrenme kararına dönüştürün.", "summary": "Öğrenci, sınıf ve kurum düzeyinde sınav sonuçlarını ders, konu ve kazanım bazında anlamlandıran; akademik eksikleri görünür hale getirerek gelişim aksiyonlarına bağlayan ölçme-değerlendirme ve analiz sistemi.", "problems": ["Sınav sonuçlarının yalnızca net, puan ve sıralama olarak kalması", "Konu ve kazanım düzeyindeki eksiklerin geç fark edilmesi", "Öğrenci, sınıf ve kurum performansının aynı veri diliyle izlenememesi", "Analiz sonucunun öğrenme ve koçluk aksiyonlarına dönüşmemesi"], "flow": ["Sınav Verisi", "Ölçme", "Ders/Konu/Kazanım Analizi", "Eksik Tespiti", "Önceliklendirme", "Gelişim Aksiyonu", "Yeniden Ölçüm"], "features": [["Öğrenci Analizi", "Öğrencinin ders, konu, kazanım ve sınav performansını ayrıntılı olarak görünür hale getirir."], ["Sınıf ve Kurum Analizi", "Sınıflar ve kurum geneli için karşılaştırmalı performans görünürlüğü sağlar."], ["Konu/Kazanım Derinliği", "Başarının veya eksikliğin hangi akademik bileşenden kaynaklandığını ayrıştırır."], ["Gelişim Takibi", "Tek sınava değil, zaman içindeki performans değişimine odaklanır."], ["Kişiselleştirme Köprüsü", "Analiz sonuçlarını Sıfır Hata, Kişiye Özel Soru Bankası ve dijital desteklere bağlar."], ["Visiteen Entegrasyonu", "Akademik verinin Visiteen platformunda görev, müdahale, takip ve koçluk süreçlerine dönüşmesini destekler."]], "benefits": ["Daha hızlı akademik teşhis", "Veriye dayalı zümre ve yönetim kararları", "Öğrenciye özel gelişim planı", "Sınav sonrası aksiyon görünürlüğü", "Kurumsal performans standardizasyonu"], "users": ["Kurum Yöneticisi", "Ölçme-Değerlendirme Birimi", "Rehberlik/Koçluk Ekibi", "Branş Öğretmenleri", "Öğrenci"], "integrations": ["Sıfır Hata Kitapçığı", "Kişiye Özel Soru Bankası", "Dijital Eğitim Destek Sistemi", "Visiteen"]}, "sifir-hata": {"name": "Sıfır Hata Kitapçığı", "category": "Ölçme, Analiz & Öğrenme", "tagline": "Öğrencinin yaptığı hatayı kişisel tekrar programına dönüştürün.", "summary": "Sınavlarda yapılan yanlışlar ve öğrenme eksiklerinden hareketle öğrencinin kendi hata geçmişine göre hedefli tekrar ve iyileştirme çalışmaları oluşturan kişiselleştirilmiş öğrenme çözümü.", "problems": ["Yanlış soruların sınav sonrasında tekrar ele alınmaması", "Öğrencinin aynı hata tiplerini tekrar etmesi", "Genel tekrarların öğrencinin gerçek ihtiyacına uymaması", "Öğretmenin her öğrenci için manuel tekrar materyali hazırlamak zorunda kalması"], "flow": ["Sınav", "Yanlışların Belirlenmesi", "Hata/Konu Eşleştirmesi", "Kişisel Tekrar Seti", "Çözüm", "Kontrol", "Yeni Ölçüm"], "features": [["Hata Bazlı İçerik", "Öğrencinin gerçek yanlışları üzerinden çalışma oluşturur."], ["Konu ve Kazanım Eşleştirmesi", "Yanlışları ilgili akademik alanlarla ilişkilendirir."], ["Kişisel Kitapçık", "Her öğrenci için farklı tekrar ihtiyacını yansıtan yapı sunar."], ["Tekrar Döngüsü", "Yanlışın yalnızca gösterilmesini değil, yeniden çalışılmasını hedefler."], ["XYS Veri Kaynağı", "XYS Analiz çıktılarından beslenerek hangi alanın öncelikli olduğunu belirler."], ["Gelişim Kanıtı", "Yeni ölçüm sonuçlarıyla hataların azalıp azalmadığının izlenmesine imkân verir."]], "benefits": ["Aynı hataların tekrarını azaltma", "Hedefli tekrar", "Öğrenciye özel materyal", "Öğretmen zaman tasarrufu", "Ölçülebilir iyileştirme döngüsü"], "users": ["Öğrenci", "Branş Öğretmeni", "Koç/Rehber Öğretmen", "Ölçme-Değerlendirme Birimi"], "integrations": ["XYS Analiz", "Kişiye Özel Soru Bankası", "Dijital Eğitim Destek Sistemi", "Visiteen"]}, "kisiye-ozel-soru-bankasi": {"name": "Kişiye Özel Soru Bankası", "category": "Ölçme, Analiz & Öğrenme", "tagline": "Herkese aynı soru yerine, öğrencinin ihtiyacına uygun çalışma.", "summary": "Öğrencinin ders, konu, kazanım ve performans verilerine göre ihtiyaç duyduğu soru çalışmalarını kişiselleştiren, eksik alanlara odaklı dinamik soru bankası yapısı.", "problems": ["Tüm öğrencilere aynı kaynak ve aynı soru yoğunluğunun verilmesi", "Öğrencinin güçlü olduğu alanlarda gereksiz tekrar yapması", "Zayıf alanlarda yeterli soru yoğunluğuna ulaşamaması", "Çalışma planının gerçek sınav verisinden kopuk olması"], "flow": ["XYS Analiz", "Öncelikli Konular", "Soru Seçimi", "Kişisel Set", "Çözüm", "Performans", "Yeni Set"], "features": [["Performans Bazlı Seçim", "Soru dağılımını öğrencinin gerçek performansına göre şekillendirir."], ["Konu/Kazanım Hedefleme", "Çalışmayı genel ders seviyesinden daha ayrıntılı akademik alanlara indirger."], ["Dinamik Yapı", "Öğrencinin gelişimine göre sonraki çalışma ihtiyacının değişmesine izin verir."], ["Kişisel Yoğunluk", "Eksik alanlara daha fazla, güçlü alanlara kontrollü tekrar yaklaşımı sağlar."], ["Analizle Bağlantı", "XYS Analiz verisini doğrudan çalışma kararına dönüştürür."], ["Koçluk Desteği", "Visiteen görevleriyle kişisel soru çalışmaları takip edilebilir."]], "benefits": ["Daha verimli soru çözümü", "Öğrenciye özel çalışma yoğunluğu", "Eksiklere doğrudan müdahale", "Koçluk görevleriyle takip", "Kaynak kullanımında verimlilik"], "users": ["Öğrenci", "Branş Öğretmeni", "Koç", "Kurum Yöneticisi"], "integrations": ["XYS Analiz", "Sıfır Hata Kitapçığı", "Visiteen", "Dijital Eğitim Destek Sistemi"]}, "dijital-egitim": {"name": "Dijital Eğitim Destek Sistemi", "category": "Ölçme, Analiz & Öğrenme", "tagline": "Analiz sonucunu doğru dijital öğrenme desteğiyle tamamlayın.", "summary": "Öğrencinin analiz sonuçlarını video, içerik, tekrar ve dijital öğrenme kaynaklarıyla ilişkilendirerek sınav sonrası öğrenme desteğini sistematik hale getiren dijital eğitim katmanı.", "problems": ["Analiz edilen eksik için hangi içeriğin çalışılacağının belirsiz kalması", "Dijital içeriklerin öğrencinin gerçek ihtiyacından kopuk tüketilmesi", "Ölçme ve öğrenme sistemlerinin ayrı çalışması", "Öğrenci çalışma sürecinin takip edilememesi"], "flow": ["Analiz", "Eksik Alan", "Dijital İçerik", "Çalışma", "Görev/Takip", "Kontrol", "Yeni Ölçüm"], "features": [["Analizden İçeriğe", "Tespit edilen akademik ihtiyacı ilgili dijital desteğe bağlar."], ["Video ve Öğrenme İçeriği", "Konu tekrarını dijital kaynaklarla destekler."], ["Hedefli Çalışma", "İçerik tüketimini öğrencinin öncelikli gelişim alanına göre düzenler."], ["Görevleştirme", "Visiteen üzerinden dijital çalışma görevleriyle süreç takip edilebilir."], ["Öğrenme Döngüsü", "İçerik sonrası yeniden ölçümle gelişimin kontrol edilmesine imkân verir."], ["Kurum Görünürlüğü", "Dijital desteğin akademik gelişim sürecindeki yerini kurumsal olarak görünür kılar."]], "benefits": ["İhtiyaca uygun dijital içerik", "Sınav sonrası hızlı öğrenme aksiyonu", "Ölçme ve öğrenmenin birleşmesi", "Görev ve takip imkânı", "Daha bütünsel öğrenci deneyimi"], "users": ["Öğrenci", "Öğretmen", "Koç", "Kurum Yöneticisi"], "integrations": ["XYS Analiz", "Kişiye Özel Soru Bankası", "Visiteen"]}, "visiteen": {"name": "Visiteen", "category": "Öğrenci & Akademik Gelişim", "tagline": "Öğrenciyi takip etmekten, gelişimi kurumsal olarak yönetmeye.", "summary": "Öğrenci, koç, öğretmen, veli ve yöneticiyi aynı gelişim ekosisteminde buluşturan; görev, seans, hedef, çalışma, risk, müdahale, KPI ve akademik başarı süreçlerini tek platformda yöneten kurumsal öğrenci gelişim sistemi.", "problems": ["Koçluk ve öğrenci takibinin kişilere bağlı, standart dışı ilerlemesi", "Akademik verinin günlük gelişim aksiyonlarına dönüşmemesi", "Öğrenci, veli, öğretmen ve yöneticinin farklı bilgi kaynakları kullanması", "Risklerin geç fark edilmesi ve müdahalenin kayıt altına alınmaması"], "flow": ["Veri", "Hedef", "Görev", "Seans", "Risk Sinyali", "Müdahale", "Takip", "Gelişim", "Yönetim KPI"], "features": [["Öğrenci Gelişim Profili", "Hedef, çalışma, görev, akademik performans ve gelişim göstergelerini tek profilde toplar."], ["Seans Yönetimi", "Koçluk görüşmelerini planlı, kayıtlı ve kurumsal standartta yürütür."], ["Görev Yönetimi", "Öğrenciye verilen akademik ve gelişim görevlerini takip eder."], ["Risk Sinyalleri", "Düşük performans, gecikme veya takip gerektiren durumları erken görünür hale getirir."], ["Çoklu Rol Yapısı", "Öğrenci, koç, öğretmen, veli ve yöneticinin kendi rolüne uygun görünümle çalışmasını sağlar."], ["Yönetim KPI'ları", "Kurum yöneticisinin koçluk, görev, gelişim ve akademik performans göstergelerini izlemesine imkân verir."], ["Branş Öğretmeni Katılımı", "Branş öğretmenlerinin öğrencilerini kendi dersiyle ilgili takip ve görevlendirme süreçlerine dahil olmasını destekler."], ["AI / VisiBot Katmanı", "Öğrenci, koç, veli ve yönetici deneyimlerinde yapay zekâ destekli yönlendirme ve yardımcı roller için altyapı sunar."]], "benefits": ["Kurumsal koçluk standardı", "Erken risk görünürlüğü", "Öğrenci gelişiminin tek ekranda yönetimi", "Veli-yönetici görünürlüğü", "Veri temelli müdahale", "Ölçeklenebilir kurum modeli"], "users": ["Öğrenci", "Koç", "Branş Öğretmeni", "Veli", "Kurum Yöneticisi", "Zincir/Kampüs Yöneticisi"], "integrations": ["XYS Analiz", "Sıfır Hata Kitapçığı", "Kişiye Özel Soru Bankası", "Dijital Eğitim Destek Sistemi"]}, "ogrenci-gelisim": {"name": "Kurumsal Öğrenci Gelişim Yönetimi", "category": "Öğrenci & Akademik Gelişim", "tagline": "Öğrencinin akademik ve gelişim yolculuğunu tek profilde yönetin.", "summary": "Öğrencinin hedeflerini, çalışma davranışlarını, görevlerini, akademik sonuçlarını ve gelişim göstergelerini bir araya getirerek kurumun her öğrenci için bütüncül gelişim yönetimi yapmasını sağlayan Visiteen katmanı.", "problems": ["Öğrenci verilerinin farklı kişilerde dağınık kalması", "Hedef ile günlük çalışma arasında bağ kurulamaması", "Gelişim sürecinin yalnızca sınav sonuçlarıyla değerlendirilmesi", "Müdahalelerin ve sonuçlarının izlenememesi"], "flow": ["Öğrenci Profili", "Hedef", "Plan", "Görev", "Çalışma", "Akademik Veri", "Geri Bildirim", "Gelişim"], "features": [["Tek Öğrenci Profili", "Akademik ve gelişim verilerini aynı görünümde toplar."], ["Hedef Yönetimi", "Kısa ve uzun vadeli hedeflerin görünür ve takip edilebilir olmasını sağlar."], ["Çalışma Takibi", "Öğrencinin planlanan ve gerçekleşen çalışmalarını gelişim sürecinin parçası yapar."], ["Görevler", "Koç ve öğretmen tarafından verilen görevlerin durumunu yönetir."], ["Gelişim Göstergeleri", "Sadece sonuç değil, süreç davranışlarının da izlenmesini sağlar."], ["Müdahale Geçmişi", "Öğrenci için alınan aksiyonların kayıtlı kalmasına imkân verir."]], "benefits": ["Bütüncül öğrenci görünürlüğü", "Hedef ve davranış takibi", "Kişiye özel gelişim yönetimi", "Erken müdahale", "Kurumsal öğrenci standardı"], "users": ["Öğrenci", "Koç", "Öğretmen", "Veli", "Yönetici"], "integrations": ["Visiteen", "XYS Analiz", "Dijital Eğitim Destek Sistemi"]}, "kurumsal-kocluk": {"name": "Kurumsal Koçluk Yönetimi", "category": "Öğrenci & Akademik Gelişim", "tagline": "Koçluğu kişisel uygulamadan kurumsal sisteme dönüştürün.", "summary": "Koç-öğrenci-veli-yönetici arasındaki seans, görev, takip, geri bildirim, hedef ve müdahale süreçlerini standartlaştıran ve kurum yönetimi tarafından görünür hale getiren Visiteen çözümü.", "problems": ["Koçluk kalitesinin koçtan koça değişmesi", "Seans kayıtlarının dağınık veya eksik tutulması", "Görevlerin takip edilememesi", "Yönetimin koçluk performansını görememesi"], "flow": ["Koç Atama", "Seans", "Hedef", "Görev", "Takip", "Geri Bildirim", "Müdahale", "KPI"], "features": [["Seans Planlama ve Kayıt", "Koçluk görüşmelerini düzenli ve izlenebilir hale getirir."], ["Görev ve Takip", "Seansın aksiyona dönüşmesini ve görevin tamamlanma durumunu yönetir."], ["Koç Performansı", "Koçluk faaliyetlerinin kurum yönetimi açısından görünür olmasını destekler."], ["Veli Bilgilendirme", "Gelişim sürecinin uygun özetlerle veli tarafında takip edilebilmesini sağlar."], ["Risk/Müdahale", "Sorunlu durumlarda koçun aldığı aksiyonları kayıt altına alır."], ["Kurumsal Standart", "Farklı koçların ortak süreç ve veri diliyle çalışmasına yardımcı olur."]], "benefits": ["Standart koçluk modeli", "Seans sonrası aksiyon", "Görev tamamlama görünürlüğü", "Koç performans yönetimi", "Veli ve yönetici güveni"], "users": ["Koç", "Öğrenci", "Veli", "Kurum Yöneticisi", "Branş Öğretmeni"], "integrations": ["Visiteen", "XYS Analiz", "Kurumsal Akademik Başarı Yönetimi"]}, "akademik-basari": {"name": "Kurumsal Akademik Başarı Yönetimi", "category": "Öğrenci & Akademik Gelişim", "tagline": "Akademik veriyi müdahale ve gelişim sürecine dönüştürün.", "summary": "XYS Analiz gibi ölçme sistemlerinden gelen verilerin Visiteen platformunda öğrencinin gelişim sürecine dönüştürülmesini sağlayan; tespit, risk, müdahale, görev, takip ve etki döngüsünü yöneten kurumsal başarı katmanı.", "problems": ["Sınav analizi yapıldığı halde aksiyon alınmaması", "Riskli öğrencilerin geç fark edilmesi", "Branş ve koçluk müdahalelerinin birbirinden kopuk kalması", "Müdahalenin etkisinin ölçülememesi"], "flow": ["Veri", "Tespit", "Risk / Gelişim Alanı", "Müdahale", "Görev", "Takip", "Sonuç", "Etki"], "features": [["Ölçme Verisi Entegrasyonu", "XYS Analiz gibi sistemlerden gelen veriyi gelişim yönetimine taşır."], ["Risk ve Öncelik", "Hangi öğrenci veya alanın daha hızlı müdahaleye ihtiyacı olduğunu görünür kılar."], ["Müdahale Kaydı", "Akademik sorun karşısında alınan aksiyonu kayıt altına alır."], ["Görevleştirme", "Müdahaleyi öğrenci, öğretmen veya koç görevlerine dönüştürür."], ["Takip ve Sonuç", "Aksiyonun uygulanıp uygulanmadığını ve sonucu izler."], ["Etki Döngüsü", "Yeni ölçümle müdahalenin etkisini değerlendirmeye zemin hazırlar."]], "benefits": ["Sınav sonrası gerçek aksiyon", "Erken risk yönetimi", "Branş ve koçluk koordinasyonu", "Müdahale etkisinin görünürlüğü", "Kurumsal başarı hafızası"], "users": ["Kurum Yöneticisi", "Koç", "Branş Öğretmeni", "Ölçme-Değerlendirme Birimi"], "integrations": ["Visiteen", "XYS Analiz", "Sıfır Hata Kitapçığı", "Kişiye Özel Soru Bankası"]}, "ogretmen-akademisi": {"name": "Maarif Öğretmen Akademisi", "category": "Öğretmen Gelişimi", "tagline": "Radar sonucunu uygulamaya dayalı gelişime dönüştürün.", "summary": "Öğretmen Radarı ile belirlenen gelişim ihtiyaçlarını eğitim, uygulama, atölye üretimi ve takip süreçlerine dönüştüren kurumsal mesleki gelişim sistemi.", "problems": ["Eğitimlerin gerçek ihtiyaca dayanmaması", "Eğitim sonrasında uygulamanın takip edilmemesi", "Öğretmen gelişiminin tek seferlik seminerlerde kalması", "Kurumsal etki ölçümünün yapılamaması"], "flow": ["Radar", "Gelişim Önceliği", "Akademi Modülü", "Uygulama", "Üretim Atölyesi", "Takip", "Etki"], "features": [["Radar Bazlı Gelişim", "Eğitim önceliklerini öğretmenin gerçek gelişim alanına göre şekillendirir."], ["Modüler Eğitim", "Farklı öğretmen yetkinlik alanları için odaklı program yapısı sunar."], ["Uygulama ve Atölye", "Öğrenilen yaklaşımın sınıf içi üretime dönüşmesini hedefler."], ["Gelişim Takibi", "Eğitim sonrasındaki uygulama sürecinin izlenmesini destekler."], ["Maarif GPT Desteği", "Öğretmenin öğrendiği yöntemi günlük mesleki üretiminde kullanmasına yardımcı olur."], ["Etki Zekâsı", "Kurumun öğretmen gelişim yatırımlarının uygulanma ve etki seviyesini değerlendirmesine zemin hazırlar."]], "benefits": ["İhtiyaca uygun eğitim", "Uygulamaya dayalı gelişim", "Öğrenilenin sınıfa aktarılması", "Kurumsal gelişim standardı", "Etki takibi"], "users": ["Öğretmen", "Akademik Koordinatör", "Kurum Yöneticisi", "Eğitim Birimi"], "integrations": ["Maarif Öğretmen Radarı", "Maarif GPT"]}, "ogretmen-radari": {"name": "Maarif Öğretmen Radarı", "category": "Öğretmen Gelişimi", "tagline": "Öğretmenin mevcut durumunu görünür hale getirin.", "summary": "Öğretmenlerin pedagojik reflekslerini, güçlü alanlarını ve gelişim eğilimlerini belirleyerek kurumsal öğretmen gelişiminin başlangıç verisini oluşturan yetkinlik ve gelişim radarı.", "problems": ["Öğretmen gelişim ihtiyaçlarının varsayımla belirlenmesi", "Herkese aynı eğitimin verilmesi", "Güçlü yön ve gelişim alanlarının görünür olmaması", "Yönetimin öğretmen gelişimini veriyle planlayamaması"], "flow": ["Radar Uygulaması", "Yetkinlik Profili", "Güçlü Alanlar", "Gelişim Alanları", "Akademi Önerisi", "Uygulama", "Etki Takibi"], "features": [["Yetkinlik Görünürlüğü", "Öğretmenin mevcut gelişim profilini görünür hale getirir."], ["6 Gelişim Alanı", "AI asistanı, bağlam/beceri öğretimi, soru tasarımı, oyunlaştırma, ölçme-analiz ve ders deneyimi tasarımı gibi gelişim alanlarıyla çalışır."], ["Bireysel Rapor", "Öğretmenin kendi güçlü ve gelişime açık yönlerini görmesini sağlar."], ["Yönetici Görünümü", "Kurumun öğretmen gelişim eğilimlerini toplu olarak izlemesine imkân verir."], ["Akademiye Geçiş", "Radar sonucunu Maarif Öğretmen Akademisi gelişim planına bağlar."], ["Gelişim Başlangıç Noktası", "Öğretmen gelişiminde ölçülebilir bir başlangıç verisi oluşturur."]], "benefits": ["Veriye dayalı öğretmen gelişimi", "İhtiyaca uygun eğitim", "Kurumsal yetkinlik görünürlüğü", "Gelişim yatırımında verim", "Akademi için doğru başlangıç"], "users": ["Öğretmen", "Kurum Yöneticisi", "Akademik Koordinatör", "İK/Eğitim Birimi"], "integrations": ["Maarif Öğretmen Akademisi", "Maarif GPT"]}, "maarif-gpt": {"name": "Maarif GPT", "category": "Öğretmen Gelişimi", "tagline": "Öğretmenin günlük üretimine yapay zekâ desteği ekleyin.", "summary": "Öğretmenin ders planlama, soru tasarımı, içerik üretimi, ölçme, geri bildirim ve mesleki üretim süreçlerinde yapay zekâ destekli çalışma asistanı olarak konumlanan öğretmen destek katmanı.", "problems": ["Öğretmenin AI araçlarını dağınık ve standart dışı kullanması", "Prompt ve çıktı kalitesinin kişiden kişiye değişmesi", "Akademide öğrenilen yöntemlerin günlük uygulamaya geçmemesi", "Kurumsal AI kullanım kültürünün oluşmaması"], "flow": ["İhtiyaç", "Maarif GPT", "Taslak/Üretim", "Öğretmen Kontrolü", "Uygulama", "Geri Bildirim", "Gelişim"], "features": [["Öğretmen AI Asistanı", "Günlük mesleki üretim süreçlerinde öğretmene destek olur."], ["Ders Deneyimi Desteği", "Ders planı, etkinlik ve öğrenme deneyimi tasarımını destekler."], ["Soru ve Ölçme Desteği", "Soru tasarımı, değerlendirme ve geri bildirim üretiminde yardımcı olur."], ["Prompt Standardı", "Öğretmenlerin AI ile daha kontrollü ve verimli çalışmasına zemin hazırlar."], ["Akademi Devamlılığı", "Maarif Öğretmen Akademisi'nde öğrenilen yöntemlerin günlük uygulamaya taşınmasını destekler."], ["Kurumsal Kullanım Kültürü", "AI kullanımını bireysel denemeden kurumsal gelişim modeline taşır."]], "benefits": ["Öğretmen zaman tasarrufu", "Daha nitelikli mesleki üretim", "AI kullanım standardı", "Akademi sonrası uygulama desteği", "Kurumsal dönüşüm"], "users": ["Öğretmen", "Akademik Koordinatör", "Kurum Yöneticisi"], "integrations": ["Maarif Öğretmen Radarı", "Maarif Öğretmen Akademisi"]}, "ozdebir": {"name": "Özdebir Yayınları Bölge Bayiliği", "category": "Sınav & Operasyon", "tagline": "Kurumsal sınav ve yayın tedarikini operasyon sistemiyle birlikte yönetin.", "summary": "Özdebir sınav ve yayınlarının eğitim kurumlarına yönelik bölgesel sipariş, tedarik ve operasyon süreçlerini K12 Toptan'ın kurumsal sınav yönetim yapısı içinde sunan çözüm.", "problems": ["Kurum siparişlerinin dağınık ilerlemesi", "Sınav takvimi ve tedarik planının ayrı yürütülmesi", "Teslimat ve finans görünürlüğünün zayıf olması"], "flow": ["Sınav Takvimi", "Kurum Siparişi", "Onay", "Tedarik", "Hazırlık", "Teslimat", "Ölçme/Analiz"], "features": [["Kurumsal Sipariş", "Kurumların sınav ve yayın taleplerini sistematik sipariş sürecine taşır."], ["Takvim Yönetimi", "Sınav tarihleri ve sipariş zamanlamasını operasyonla ilişkilendirir."], ["Tedarik Planlama", "Kurum taleplerini merkezi satınalma ve tedarik planına dönüştürür."], ["Teslimat Takibi", "Siparişin kurum teslimatına kadar durum bazlı izlenmesini destekler."], ["Analiz Ekosistemi", "Uygun sınav verilerinin ölçme-değerlendirme ve XYS Analiz süreçlerine bağlanmasına imkân verir."]], "benefits": ["Tek merkezden tedarik", "Sipariş görünürlüğü", "Operasyon kolaylığı", "Teslimat takibi", "Analiz ekosistemine geçiş"], "users": ["Okullar", "Kurs Merkezleri", "Zincir Kurumlar", "K12 Toptan Operasyon"], "integrations": ["Kurumsal Deneme Takip Sistemi", "Sınav Ölçme Değerlendirme", "XYS Analiz"]}, "paraf": {"name": "Paraf Deneme Grubu Bölge Bayiliği", "category": "Sınav & Operasyon", "tagline": "Deneme tedarikini planlama, teslimat ve analiz zincirine bağlayın.", "summary": "Paraf Deneme Grubu ürünlerinin eğitim kurumlarına yönelik bölgesel sipariş, tedarik ve sınav operasyonlarını K12 Toptan'ın kurumsal yönetim sistemi içinde sunan çözüm.", "problems": ["Deneme siparişlerinin manuel toplanması", "Öğrenci adedi ve sınav bilgisinde hata riski", "Tedarik ile teslimat arasında görünürlük eksikliği", "Sınav sonrası veri kullanımının sınırlı kalması"], "flow": ["Takvim", "Sipariş", "Onay", "Tedarik", "Teslimat", "Sınav", "Ölçme/Analiz"], "features": [["Kurum Sipariş Yönetimi", "Deneme taleplerini kurum, sınav ve adet bazında kayıt altına alır."], ["Operasyon Takibi", "Siparişten teslimata kadar süreci durum bazlı yönetir."], ["Tedarik Konsolidasyonu", "Farklı kurum taleplerini merkezi planlama için birleştirir."], ["Finans Görünürlüğü", "Sipariş ve finans akışının aynı operasyon yapısında izlenmesini destekler."], ["Analiz Bağlantısı", "Sınav sonuçlarının ölçme-değerlendirme ve analiz süreçlerine geçişini destekler."]], "benefits": ["Sipariş hatalarının azalması", "Merkezi tedarik planı", "Teslimat görünürlüğü", "Kurum portalı avantajı", "Analiz zincirine bağlanma"], "users": ["Okullar", "Kurs Merkezleri", "Zincir Kurumlar", "K12 Toptan Operasyon"], "integrations": ["Kurumsal Deneme Takip Sistemi", "Sınav Ölçme Değerlendirme", "XYS Analiz"]}, "sinav-olcme": {"name": "Sınav Ölçme Değerlendirme", "category": "Sınav & Operasyon", "tagline": "Sınav sonucunu standart, kullanılabilir akademik veriye dönüştürün.", "summary": "Basılı veya dijital sınavlardan elde edilen sonuçların işlenmesi, standartlaştırılması, raporlanması ve gerektiğinde XYS Analiz ekosistemine aktarılması için ölçme-değerlendirme hizmet katmanı.", "problems": ["Sınav uygulaması ile analiz arasında veri kopukluğu", "Sonuçların farklı formatlarda gelmesi", "Kurumun ölçme sürecini operasyonel olarak ayrıca yönetmesi", "Sınav verisinin gelişim ekosistemine bağlanamaması"], "flow": ["Sınav Uygulaması", "Veri/Optik", "İşleme", "Sonuç", "Rapor", "XYS Analiz", "Gelişim"], "features": [["Sınav Sonuç İşleme", "Sınav verisini kullanılabilir sonuçlara dönüştürür."], ["Standart Raporlama", "Öğrenci, sınıf ve kurum seviyesinde okunabilir çıktılar sağlar."], ["XYS Aktarımı", "Daha derin akademik analiz için verinin XYS Analiz'e taşınmasını destekler."], ["Kurumsal Operasyon", "Sınav uygulaması ile sonuç süreci arasındaki operasyonu sadeleştirir."], ["Veri Sürekliliği", "Sınav verisinin sonraki öğrenme ve gelişim aşamalarına aktarılmasını sağlar."]], "benefits": ["Sınavdan veriye hızlı geçiş", "Standart sonuç yapısı", "Analize hazır veri", "Kurumsal operasyon kolaylığı", "XYS ve Visiteen zincirine geçiş"], "users": ["Eğitim Kurumu", "Ölçme-Değerlendirme Birimi", "K12 Toptan Operasyon", "Kurum Yöneticisi"], "integrations": ["Kurumsal Deneme Takip Sistemi", "XYS Analiz", "Visiteen"]}, "deneme-takip": {"name": "Kurumsal Deneme Takip Sistemi", "category": "Sınav & Operasyon", "tagline": "Deneme sınavı satın almaktan, bütün deneme operasyonunu dijital olarak yönetmeye.", "summary": "Kurumlarla yürütülen deneme sınavı operasyonunu takvim, sipariş, merkezi onay, satınalma/tedarik, hazırlık, teslimat, finans, kurum portalı ve raporlama adımlarıyla tek B2B sistemde yöneten operasyon platformu.", "problems": ["Siparişlerin WhatsApp, telefon ve Excel üzerinden dağınık yürütülmesi", "Yanlış sınav veya yanlış adet riski", "Sipariş, tedarik, teslimat ve finansın birbirinden kopuk olması", "Kurumun kendi sipariş durumunu görememesi", "Yönetimin gerçek zamanlı operasyon görünürlüğüne sahip olmaması"], "flow": ["Deneme Takvimi", "Sipariş", "Admin Onay", "Satınalma / Tedarik", "Hazırlık", "Teslimat", "Faturalama", "Tahsilat", "Raporlama"], "features": [["Deneme Takvimi", "Yaklaşan sınavları, tarihleri, türleri ve sipariş son tarihlerini tek ekranda gösterir."], ["Kurum Yönetimi", "Kurum bilgileri, sipariş geçmişi, teslimatlar ve finansal hareketleri tek profil altında toplar."], ["Teklif ve Sipariş", "Sınav, yayınevi, öğrenci adedi ve teslimat bilgileriyle sistematik sipariş akışı sağlar."], ["Merkezi Admin Onayı", "Onaylanmamış siparişlerin satınalma ve finans hesaplarına girmemesini sağlar."], ["Satınalma/Tedarik Konsolidasyonu", "Hangi yayından hangi sınavdan kaç adet alınacağını merkezi olarak görünür kılar."], ["Hazırlık ve Operasyon", "Siparişin hazırlanıyor, teslimata hazır ve teslim edildi gibi durumlarla izlenmesini sağlar."], ["Teslimat & Lojistik", "Teslim tarihi ve durumunu kurum ve sınav bazında takip eder."], ["Akıllı Uyarılar", "Yaklaşan sınav, onay bekleyen sipariş, gecikme, faturalanmamış işlem ve açık tahsilat gibi kritik durumları görünür hale getirir."], ["Finans Yönetimi", "Sipariş tutarı, fatura, ödeme, tahsilat ve açık bakiye görünürlüğü sağlar."], ["Kurum Portalı", "Her kurumun yalnızca kendi sipariş ve operasyonlarını takip edebileceği kullanıcı alanı sağlar."], ["Yönetim Raporları", "Kurum, yayın, sınav, satış, teslimat ve finans göstergelerini merkezi raporlara dönüştürür."]], "benefits": ["Daha az manuel operasyon", "Sipariş hatalarının azalması", "Kurum self-servis görünürlüğü", "Tedarik planlama kolaylığı", "Teslimat kontrolü", "Finans ve satışın aynı akışta yönetimi", "Yönetim zekâsı"], "users": ["K12 Toptan Yönetimi", "Operasyon Ekibi", "Satınalma", "Finans", "Kurum Yetkilisi", "Bölge/Saha Ekibi"], "integrations": ["Özdebir Yayınları", "Paraf Deneme Grubu", "Sınav Ölçme Değerlendirme", "XYS Analiz"]}};
+
+const homeView=document.querySelector("main.home-view");
+const productView=document.getElementById("productView");
+const siteFooter=document.querySelector("footer.footer");
+
+function closeProductMega(){
+  productMega?.classList.remove("open");
+  productsTrigger?.classList.remove("menu-open");
+}
+function openProductMega(){
+  if(window.innerWidth<=1050) return;
+  if(typeof closeMega==="function") closeMega();
+  productMega?.classList.add("open");
+  productsTrigger?.classList.add("menu-open");
+}
+function toggleProductMega(){
+  if(productMega?.classList.contains("open")) closeProductMega();
+  else openProductMega();
+}
+productsTrigger?.addEventListener("click",(e)=>{
+  if(window.innerWidth>1050){
+    e.preventDefault();
+    toggleProductMega();
+  }
+});
+productsTrigger?.addEventListener("mouseenter",()=>{
+  if(window.innerWidth>1050) openProductMega();
+});
+productMega?.addEventListener("mouseleave",()=>{
+  if(window.innerWidth>1050) setTimeout(closeProductMega,120);
+});
+
+document.getElementById("mobileProducts")?.addEventListener("click",(e)=>{
+  const sub=document.getElementById("mobileProductsSub");
+  const isOpen=sub?.classList.toggle("open");
+  e.currentTarget.textContent=isOpen ? "Ürünler −" : "Ürünler +";
+});
+
+function esc(s){
+  return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+
+
+function getProductTheme(key){
+  const xys=["xys-analiz","sifir-hata","kisiye-ozel-soru-bankasi","dijital-egitim"];
+  const vis=["visiteen","ogrenci-gelisim","kurumsal-kocluk","akademik-basari","ogretmen-akademisi","ogretmen-radari","maarif-gpt"];
+  const ksy=["deneme-takip","sinav-olcme","ozdebir","paraf"];
+  if(xys.includes(key)) return "theme-xys";
+  if(vis.includes(key)) return "theme-vis";
+  if(ksy.includes(key)) return "theme-ksy";
+  return "";
+}
+function applyProductTheme(key){
+  productView?.classList.remove("theme-xys","theme-vis","theme-ksy");
+  const theme=getProductTheme(key);
+  if(theme) productView?.classList.add(theme);
+}
+
+function renderProduct(key){
+  const p=window.K12_PRODUCT_DATA[key];
+  if(!p) return false;
+  homeView.hidden=true;
+  productView.hidden=false;
+  applyProductTheme(key);
+
+  document.getElementById("pdBreadcrumb").textContent=`K12 Toptan / ${p.category} / ${p.name}`;
+  document.getElementById("pdCategory").textContent=p.category;
+  document.getElementById("pdTitle").textContent=p.name;
+  document.getElementById("pdTagline").textContent=p.tagline;
+  document.getElementById("pdSummary").textContent=p.summary;
+  document.getElementById("pdCtaTitle").textContent=`${p.name} çözümünü kurumunuzun yapısına göre birlikte kurgulayalım.`;
+
+  document.getElementById("pdProblems").innerHTML=p.problems.map((x,i)=>`<div class="pd-mini"><span>${String(i+1).padStart(2,"0")}</span><p>${esc(x)}</p></div>`).join("");
+  document.getElementById("pdFlow").innerHTML=p.flow.map((x,i)=>`<div class="pd-flow-step"><span>${String(i+1).padStart(2,"0")}</span><b>${esc(x)}</b></div>`).join("");
+  document.getElementById("pdFeaturesGrid").innerHTML=p.features.map((x,i)=>`<article class="pd-feature"><span>${String(i+1).padStart(2,"0")}</span><h3>${esc(x[0])}</h3><p>${esc(x[1])}</p></article>`).join("");
+  document.getElementById("pdBenefits").innerHTML=p.benefits.map(x=>`<div class="pd-pill">${esc(x)}</div>`).join("");
+  document.getElementById("pdUsers").innerHTML=p.users.map(x=>`<div class="pd-list-item">${esc(x)}</div>`).join("");
+  document.getElementById("pdIntegrations").innerHTML=p.integrations.map(x=>`<div class="pd-list-item">${esc(x)}</div>`).join("");
+
+  closeProductMega();
+  if(typeof closeMega==="function") closeMega();
+  if(typeof closeMobile==="function") closeMobile();
+  window.scrollTo({top:0,behavior:"instant"});
+  document.title=`${p.name} — K12 Toptan`;
+  return true;
+}
+
+function restoreHome(targetHash=""){
+  productView.hidden=true;
+  productView.classList.remove("theme-xys","theme-vis","theme-ksy");
+  homeView.hidden=false;
+  document.title="K12 Toptan — Kurumsal Eğitim Çözümleri ve Yönetim Merkezi";
+  requestAnimationFrame(()=>{
+    if(targetHash && targetHash!=="#"){
+      const el=document.querySelector(targetHash);
+      if(el){
+        const offset=(document.getElementById("header")?.offsetHeight||80)+12;
+        const y=el.getBoundingClientRect().top+window.scrollY-offset;
+        window.scrollTo({top:y,behavior:"smooth"});
+      }
+    }
+  });
+}
+
+function routeFromHash(){
+  const hash=location.hash||"";
+  if(hash.startsWith("#product/")){
+    const key=hash.slice("#product/".length);
+    renderProduct(key);
+  } else {
+    restoreHome(hash);
+  }
+}
+
+document.addEventListener("click",(e)=>{
+  const productLink=e.target.closest("[data-product]");
+  if(productLink){
+    e.preventDefault();
+    const key=productLink.dataset.product;
+    if(key){
+      location.hash=`product/${key}`;
+      if(location.hash===`#product/${key}`) renderProduct(key);
+    }
+    return;
+  }
+
+  const a=e.target.closest('a[href^="#"]');
+  if(!a) return;
+  const href=a.getAttribute("href");
+  if(href==="#products"){
+    e.preventDefault();
+    closeProductMega();
+    if(typeof closeMega==="function") closeMega();
+    if(typeof closeMobile==="function") closeMobile();
+    if(!productView.hidden){
+      history.pushState(null,"","#products");
+      restoreHome("#products");
+    } else {
+      const target=document.querySelector("#products");
+      if(target){
+        const offset=(document.getElementById("header")?.offsetHeight||80)+12;
+        window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-offset,behavior:"smooth"});
+        history.replaceState(null,"","#products");
+      }
+    }
+  }
+}, true);
+
+document.getElementById("productBack")?.addEventListener("click",()=>{
+  location.hash="products";
+});
+
+window.addEventListener("hashchange",routeFromHash);
+window.addEventListener("load",routeFromHash);
+
+/* Outside click closes Product menu */
+document.addEventListener("click",(e)=>{
+  if(productMega && productsTrigger && !productMega.contains(e.target) && e.target!==productsTrigger && !productsTrigger.contains(e.target)){
+    closeProductMega();
+  }
+});
+</script>
+
+</body>
+</html>
