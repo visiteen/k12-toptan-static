@@ -100,7 +100,7 @@
 
   function addDetail(){
     if(document.getElementById('kurumsal-yapay-zeka')) return;
-    var anchor=document.getElementById('yetkinlik-ve-gelecek') || document.getElementById('products');
+    var anchor=document.getElementById('selector') || document.getElementById('yetkinlik-ve-gelecek') || document.getElementById('products');
     if(!anchor) return;
     var sec=document.createElement('section');
     sec.className='section k12-ai-detail';
