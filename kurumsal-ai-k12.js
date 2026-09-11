@@ -64,7 +64,7 @@
     if(!grid || grid.querySelector('.k12-ai-mega')) return;
     var row=document.createElement('div');
     row.className='k12-ai-mega';
-    row.innerHTML='<div><strong>05 · Kurumsal Yapay Zekâ Çözümleri</strong><br><span>VIP · Kuruma özel AI ürünleri, agentlar, otomasyonlar ve karar destek sistemleri</span></div><a href="#kurumsal-yapay-zeka">Özel Projeyi İncele →</a>';
+    row.innerHTML='<div><strong>06 · Kurumsal Yapay Zekâ Çözümleri</strong><br><span>VIP · Kuruma özel AI ürünleri, agentlar, otomasyonlar ve karar destek sistemleri</span></div><a href="#kurumsal-yapay-zeka">Özel Projeyi İncele →</a>';
     grid.appendChild(row);
   }
 
@@ -83,10 +83,10 @@
     var family=document.createElement('section');
     family.className='catalog-family k12-ai-family';
     family.innerHTML=
-      '<div class="catalog-family-head"><div><span>05</span><h3>Kurumsal Yapay Zekâ Çözümleri</h3></div><p>VIP · Kuruma Özel Geliştirme</p></div>'+
+      '<div class="catalog-family-head"><div><span>06</span><h3>Kurumsal Yapay Zekâ Çözümleri</h3></div><p>VIP · Kuruma Özel Geliştirme</p></div>'+
       '<div class="catalog-grid">'+
       '<a class="catalog-card k12-ai-vip" href="#kurumsal-yapay-zeka">'+
-      '<div class="catalog-top"><span>05</span><b>→</b></div>'+
+      '<div class="catalog-top"><span>06</span><b>→</b></div>'+
       '<h3>Hazır bir yapay zekâ ürünü değil; kurumunuzun ihtiyacına göre tasarlanan yapay zekâ sistemi.</h3>'+
       '<p>Eğitim süreçlerinden yönetime, operasyondan satış ve iletişime, veri analizinden insan kaynaklarına kadar kurumunuzun ihtiyaç duyduğu yapay zekâ ürünleri, AI agentları, otomasyonlar ve karar destek çözümleri kuruma özel geliştirilebilir.</p>'+
       '<div class="k12-ai-chips"><em>AI Agent</em><em>Özel GPT / Bilgi Asistanı</em><em>İş Akışı Otomasyonu</em><em>Karar Zekâsı</em><em>Veri Analizi</em><em>Kuruma Özel AI Ürünü</em></div>'+
