@@ -263,4 +263,163 @@
       clearInterval(sfTimer);
     }
   },100);
+
+
+  /* Smart scoring engine v2 — current systems become active decision variables */
+  var smartProbe=0;
+  var smartTimer=setInterval(function(){
+    smartProbe++;
+    if(typeof window.calculateRecommendations==='function'){
+      clearInterval(smartTimer);
+
+      window.calculateRecommendations=function(){
+        var scores={};
+        var reasons={};
+
+        function add(id,score,reason){
+          scores[id]=(scores[id]||0)+score;
+          if(!reasons[id]) reasons[id]=[];
+          if(reason && reasons[id].indexOf(reason)<0) reasons[id].push(reason);
+        }
+
+        /* 1. Declared needs */
+        leadState.needs.forEach(function(need){
+          (needScores[need]||[]).forEach(function(pair){ add(pair[0],pair[1],need); });
+        });
+
+        /* 2. Institution profile */
+        (institutionScores[leadState.institutionType]||[]).forEach(function(pair){
+          add(pair[0],pair[1],leadState.institutionType);
+        });
+
+        /* Other institution: needs stay dominant, but create a neutral digital baseline */
+        if(leadState.institutionType==='Diğer Eğitim Kurumu'){
+          add('xys-analiz',1,'Esnek kurumsal altyapı');
+          add('visiteen',1,'Esnek kurumsal altyapı');
+        }
+
+        /* 3. Scale */
+        var students=parseInt(leadState.studentCount||'0',10)||0;
+        var campuses=parseInt(leadState.campusCount||'1',10)||1;
+        if(students>=500){
+          add('visiteen',2,'Kurum ölçeği');
+          add('xys-analiz',2,'Kurum ölçeği');
+        }
+        if(students>=1000 || campuses>1){
+          add('akademik-basari',2,'Çoklu/ölçekli yönetim');
+          add('deneme-takip',1,'Çoklu/ölçekli yönetim');
+        }
+        if(campuses>=3){
+          add('visiteen',2,'Merkezi kampüs yönetimi');
+          add('ogretmen-radari',1,'Kurumsal standardizasyon');
+        }
+
+        /* 4. Existing-system intelligence:
+           reduce duplicate/replacement recommendations, increase complementary value */
+        var cs=leadState.currentSystems||[];
+
+        if(cs.includes('Excel / Manuel Takip')){
+          add('deneme-takip',3,'Manuel süreçlerin dijitalleşmesi');
+          add('visiteen',2,'Manuel gelişim takibinin kurumsallaşması');
+          add('xys-analiz',1,'Verinin merkezi yapıya taşınması');
+        }
+
+        if(cs.includes('Farklı Ölçme-Değerlendirme Sistemi')){
+          add('visiteen',3,'Mevcut ölçme verisini gelişim sürecine bağlama');
+          add('akademik-basari',2,'Ölçme verisini müdahale yönetimine taşıma');
+          add('xys-analiz',1,'İleri analiz / veri derinleştirme');
+          add('sinav-olcme',-2,'Mevcut ölçme altyapısı bulunduğu için tekrar ihtiyacı düşük');
+        }
+
+        if(cs.includes('Deneme / Sipariş Takip Sistemi')){
+          add('deneme-takip',-3,'Mevcut deneme/sipariş sistemi nedeniyle tekrar ihtiyacı düşük');
+          add('xys-analiz',2,'Mevcut sınav operasyonunu analizle tamamlama');
+          add('sinav-olcme',2,'Sınav verisini standartlaştırma');
+          add('visiteen',1,'Sınav verisini gelişim yönetimine bağlama');
+        }
+
+        if(cs.includes('Koçluk / Öğrenci Takip Sistemi')){
+          add('kurumsal-kocluk',-3,'Mevcut koçluk sistemi nedeniyle tekrar ihtiyacı düşük');
+          add('ogrenci-gelisim',-2,'Mevcut öğrenci takip sistemi nedeniyle tekrar ihtiyacı düşük');
+          add('xys-analiz',2,'Koçluğu akademik veriyle besleme');
+          add('akademik-basari',2,'Takibi risk ve müdahale yönetimine dönüştürme');
+          add('visiteen',1,'Mevcut yapıyla kurumsal entegrasyon potansiyeli');
+        }
+
+        if(cs.includes('Dijital Öğrenme Platformu')){
+          add('dijital-egitim',-3,'Mevcut dijital öğrenme platformu nedeniyle tekrar ihtiyacı düşük');
+          add('xys-analiz',2,'Dijital öğrenmeyi performans verisiyle yönlendirme');
+          add('kisiye-ozel-soru-bankasi',2,'Mevcut dijital yapıyı kişiselleştirme');
+          add('sifir-hata',1,'Hata bazlı kişisel tekrar katmanı');
+        }
+
+        if(cs.includes('Öğretmen Gelişim Sistemi')){
+          add('ogretmen-akademisi',-2,'Mevcut öğretmen gelişim sistemi nedeniyle tekrar ihtiyacı düşük');
+          add('ogretmen-radari',2,'Mevcut gelişim yapısına ölçme ve yetkinlik radarı ekleme');
+          add('maarif-gpt',2,'Mevcut öğretmen gelişimini AI destekli üretimle tamamlama');
+        }
+
+        if(cs.includes('CRM / Kurum Yönetim Sistemi')){
+          add('visiteen',2,'CRM üzerine öğrenci gelişim katmanı ekleme');
+          add('akademik-basari',1,'Kurumsal yönetimi akademik karar verisiyle tamamlama');
+          add('deneme-takip',1,'CRM dışında sınav operasyonu uzmanlaşması');
+        }
+
+        if(cs.includes('Henüz Sistem Kullanmıyoruz')){
+          add('xys-analiz',2,'Temel ölçme ve analiz altyapısı');
+          add('visiteen',2,'Temel gelişim yönetimi altyapısı');
+          if(leadState.needs.includes('Kurumsal Sınav & Deneme Operasyonu') || leadState.needs.includes('Yayın & Tedarik')){
+            add('deneme-takip',2,'Temel sınav operasyon altyapısı');
+          }
+        }
+
+        /* 5. Need-aware complement rules */
+        if(leadState.needs.includes('Kurumsal Koçluk') && cs.includes('Koçluk / Öğrenci Takip Sistemi')){
+          add('xys-analiz',2,'Mevcut koçluğu veri temelli hale getirme');
+          add('akademik-basari',2,'Mevcut koçluğa risk/müdahale katmanı ekleme');
+        }
+        if(leadState.needs.includes('Dijital Eğitim') && cs.includes('Dijital Öğrenme Platformu')){
+          add('kisiye-ozel-soru-bankasi',2,'Mevcut dijital platformu kişiselleştirme');
+          add('xys-analiz',2,'İçerik kullanımını ölçme verisiyle yönlendirme');
+        }
+        if(leadState.needs.includes('Öğretmen Gelişimi') && cs.includes('Öğretmen Gelişim Sistemi')){
+          add('ogretmen-radari',2,'Mevcut gelişim sistemine ölçme katmanı');
+          add('maarif-gpt',2,'Mevcut gelişim sistemine uygulama/AI katmanı');
+        }
+        if(leadState.needs.includes('Ölçme & Analiz') && cs.includes('Farklı Ölçme-Değerlendirme Sistemi')){
+          add('xys-analiz',3,'Mevcut ölçme sisteminin ileri analizle güçlendirilmesi');
+        }
+
+        /* Do not allow negative totals to create misleading rankings */
+        Object.keys(scores).forEach(function(id){
+          if(scores[id]<0) scores[id]=0;
+        });
+
+        var ranked=Object.entries(scores)
+          .filter(function(entry){ return entry[1]>0; })
+          .sort(function(a,b){ return b[1]-a[1]; });
+
+        if(!ranked.length){
+          ranked=[['xys-analiz',5],['visiteen',4],['deneme-takip',3]];
+          reasons['xys-analiz']=['Temel kurumsal altyapı'];
+          reasons['visiteen']=['Temel kurumsal altyapı'];
+          reasons['deneme-takip']=['Temel operasyon altyapısı'];
+        }
+
+        leadState.recommendations=ranked.slice(0,6).map(function(entry,i){
+          var id=entry[0], score=entry[1];
+          return {
+            id:id,
+            score:score,
+            core:i<3,
+            name:(recMeta[id]&&recMeta[id][0])||id,
+            description:(recMeta[id]&&recMeta[id][1])||'',
+            reason:(reasons[id]||[]).slice(0,3).join(' · ')
+          };
+        });
+      };
+    }else if(smartProbe>120){
+      clearInterval(smartTimer);
+    }
+  },100);
 })();
