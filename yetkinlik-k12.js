@@ -97,4 +97,101 @@
     if(document.getElementById('products')){clearInterval(timer);init();}
     else if(tries>120){clearInterval(timer);}
   },100);
+
+
+  /* Solution Finder integration */
+  var futureNeedSelected=false;
+  var FUTURE_NEED='Yetkinlik & Gelecek Gelişim';
+
+  function enhanceSolutionFinder(){
+    var wb=document.getElementById('wizardBody');
+    if(!wb) return;
+
+    /* Step 3: add a real need choice by proxying the existing lead engine */
+    var choices=wb.querySelector('.choices');
+    var proxy=wb.querySelector('[data-need="Öğrenci Gelişimi"]');
+    if(choices && proxy && !wb.querySelector('[data-k12-future-need]')){
+      var btn=document.createElement('button');
+      btn.type='button';
+      btn.className='choice multi'+(futureNeedSelected?' selected':'');
+      btn.setAttribute('data-k12-future-need','1');
+      btn.innerHTML='Yetkinlik &amp; Gelecek Gelişim<small>Programlar, atölyeler ve seminerlerle gelecek becerileri gelişimi.</small>';
+      btn.addEventListener('click',function(){
+        var p=wb.querySelector('[data-need="Öğrenci Gelişimi"]');
+        if(!p) return;
+        futureNeedSelected=!futureNeedSelected;
+        p.dataset.need=FUTURE_NEED;
+        p.click();
+        setTimeout(enhanceSolutionFinder,0);
+      });
+      choices.appendChild(btn);
+    }
+
+    /* Step 5: surface the new family as an actual recommendation */
+    var recommend=wb.querySelector('.recommend');
+    if(recommend && futureNeedSelected && !recommend.querySelector('.k12-future-rec')){
+      var card=document.createElement('div');
+      card.className='rec-card core k12-future-rec';
+      card.style.borderColor='#fe6203';
+      card.innerHTML='<div class="rec-top"><strong>Yetkinlik ve Gelecek Gelişim</strong><span class="rec-badge" style="background:#fff2e8;color:#c94e02">Ana Çözüm</span></div><p>Future Days, InnoTeen ve InnoHub programlarını; yetkinlik atölyeleri ve gelişim seminerleriyle kurum yapınıza göre bir araya getirir.</p><p style="color:#c94e02"><b>Neden:</b> Gelecek yetkinlikleri ve bütünsel öğrenci gelişimi ihtiyacı</p>';
+      recommend.insertBefore(card,recommend.firstChild);
+      var kpis=wb.querySelectorAll('.lead-kpi > div');
+      if(kpis[2]){
+        var kb=kpis[2].querySelector('b');
+        if(kb){
+          var kn=parseInt(kb.textContent,10);
+          if(!isNaN(kn)) kb.textContent=(kn+1)+' ana çözüm';
+        }
+      }
+    }
+
+    /* Step 6: keep the selected family visible in the request context */
+    var note=document.getElementById('lead_note');
+    if(note && futureNeedSelected && !note.dataset.futureTagged){
+      note.dataset.futureTagged='1';
+      if(!note.value.trim()) note.placeholder='Yetkinlik & Gelecek Gelişim seçiminiz talebinize eklendi. Ek notunuz varsa yazabilirsiniz.';
+    }
+
+    /* Step 7: include it in the visible final recommendation summary */
+    var success=wb.querySelector('.lead-success .lead-summary');
+    if(success && futureNeedSelected && !success.querySelector('.k12-future-summary')){
+      var boxes=success.querySelectorAll('.summary-box');
+      if(boxes[1]){
+        var list=boxes[1].querySelector('.summary-list');
+        if(list){
+          var line=document.createElement('div');
+          line.className='summary-line k12-future-summary';
+          line.innerHTML='<span>K12 Kurumsal</span><b>Yetkinlik ve Gelecek Gelişim</b>';
+          list.appendChild(line);
+        }
+      }
+    }
+  }
+
+  document.addEventListener('click',function(e){
+    if(e.target.closest && e.target.closest('.js-wizard')){
+      futureNeedSelected=false;
+      setTimeout(enhanceSolutionFinder,80);
+    }
+    if(e.target.closest && e.target.closest('#leadNew')){
+      futureNeedSelected=false;
+    }
+  },true);
+
+  var sfProbe=0;
+  var sfTimer=setInterval(function(){
+    sfProbe++;
+    if(typeof window.renderLeadStep==='function'){
+      clearInterval(sfTimer);
+      var originalLeadRender=window.renderLeadStep;
+      window.renderLeadStep=function(){
+        var out=originalLeadRender.apply(this,arguments);
+        setTimeout(enhanceSolutionFinder,0);
+        return out;
+      };
+      setTimeout(enhanceSolutionFinder,0);
+    }else if(sfProbe>120){
+      clearInterval(sfTimer);
+    }
+  },100);
 })();
