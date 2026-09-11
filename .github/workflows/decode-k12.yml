@@ -17,7 +17,7 @@ jobs:
           s = ""
           for fn in sorted(glob.glob("p*.js")):
               txt = open(fn, encoding="utf-8").read()
-              m = re.search(r'\\+"([A-Za-z0-9+/=]+)"', txt)
+              m = re.search(r'\\+\\s*"([A-Za-z0-9+/=]+)"', txt)
               if m:
                   s += m.group(1)
           html = gzip.decompress(base64.b64decode(s)).decode("utf-8")
