@@ -16,7 +16,7 @@
     grid.classList.add('k12-six-col');
     var col=document.createElement('div');
     col.className='mega-col k12-future-link';
-    col.innerHTML='<strong>04 · Yetkinlik & Gelecek</strong><a href="#yetkinlik-programlari">Gelişim Programları</a><a href="#yetkinlik-atolyeleri">Gelişim Atölyeleri</a><a href="#yetkinlik-seminerleri">Gelişim Seminerleri</a>';
+    col.innerHTML='<strong>05 · Yetkinlik & Gelecek</strong><a href="#yetkinlik-programlari">Gelişim Programları</a><a href="#yetkinlik-atolyeleri">Gelişim Atölyeleri</a><a href="#yetkinlik-seminerleri">Gelişim Seminerleri</a>';
     var feature=grid.querySelector('.feature-card');
     grid.insertBefore(col,feature||null);
   }
@@ -37,11 +37,11 @@
     if(intro) intro.textContent='Dört ana sistem altında ölçme-değerlendirme, öğrenci gelişimi, öğretmen gelişimi, kurumsal sınav operasyonu ve gelecek yetkinlikleri çözümlerinin tamamı.';
     var family=document.createElement('section');
     family.className='catalog-family k12-yetkinlik-family';
-    family.innerHTML='<div class="catalog-family-head"><div><span>04</span><h3>Yetkinlik ve Gelecek Gelişim</h3></div><p>Programlar · Atölyeler · Seminerler</p></div>'+
+    family.innerHTML='<div class="catalog-family-head"><div><span>05</span><h3>Yetkinlik ve Gelecek Gelişim</h3></div><p>Programlar · Atölyeler · Seminerler</p></div>'+
       '<div class="catalog-grid">'+
-      '<a class="catalog-card k12-yetkinlik-card" href="#yetkinlik-programlari"><div class="catalog-top"><span>04</span><b>→</b></div><h3>Yetkinlik Geliştirme Programları</h3><p>Yaş düzeyine göre yapılandırılmış uzun dönemli gelişim programları.</p><div class="mini-list"><em>Future Days</em><em>InnoTeen</em><em>InnoHub</em></div></a>'+
-      '<a class="catalog-card k12-yetkinlik-card" href="#yetkinlik-atolyeleri"><div class="catalog-top"><span>04</span><b>→</b></div><h3>Yetkinlik Geliştirme Atölyeleri</h3><p>Gelecek becerilerini deneyim ve üretim yoluyla geliştiren modüler çalışmalar.</p><div class="mini-list"><em>Sustaineer</em><em>GenAI School</em><em>AI Fusion Lab</em></div></a>'+
-      '<a class="catalog-card k12-yetkinlik-card" href="#yetkinlik-seminerleri"><div class="catalog-top"><span>04</span><b>→</b></div><h3>Yetkinlik Geliştirme Seminerleri</h3><p>Farkındalık, yönelim ve gelişim odaklı yüksek etkili kısa formatlar.</p><div class="mini-list"><em>Future Talks</em><em>THub</em><em>JoHub</em><em>CoHub</em></div></a>'+
+      '<a class="catalog-card k12-yetkinlik-card" href="#yetkinlik-programlari"><div class="catalog-top"><span>05</span><b>→</b></div><h3>Yetkinlik Geliştirme Programları</h3><p>Yaş düzeyine göre yapılandırılmış uzun dönemli gelişim programları.</p><div class="mini-list"><em>Future Days</em><em>InnoTeen</em><em>InnoHub</em></div></a>'+
+      '<a class="catalog-card k12-yetkinlik-card" href="#yetkinlik-atolyeleri"><div class="catalog-top"><span>05</span><b>→</b></div><h3>Yetkinlik Geliştirme Atölyeleri</h3><p>Gelecek becerilerini deneyim ve üretim yoluyla geliştiren modüler çalışmalar.</p><div class="mini-list"><em>Sustaineer</em><em>GenAI School</em><em>AI Fusion Lab</em></div></a>'+
+      '<a class="catalog-card k12-yetkinlik-card" href="#yetkinlik-seminerleri"><div class="catalog-top"><span>05</span><b>→</b></div><h3>Yetkinlik Geliştirme Seminerleri</h3><p>Farkındalık, yönelim ve gelişim odaklı yüksek etkili kısa formatlar.</p><div class="mini-list"><em>Future Talks</em><em>THub</em><em>JoHub</em><em>CoHub</em></div></a>'+
       '</div>';
     wrap.appendChild(family);
   }
