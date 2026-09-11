@@ -102,6 +102,17 @@
   /* Solution Finder integration */
   var futureNeedSelected=false;
   var FUTURE_NEED='Yetkinlik & Gelecek Gelişim';
+  var futurePractices=[];
+  var FUTURE_PRACTICES=[
+    'Uzun Dönemli Öğrenci Gelişim Programı',
+    'Atölye / Workshop Çalışmaları',
+    'Seminer / Konferans Çalışmaları',
+    'Girişimcilik & İnovasyon Programları',
+    'Yapay Zekâ / Teknoloji Atölyeleri',
+    'Kariyer & Gelecek Meslekleri Çalışmaları',
+    'Değerler / Karakter Gelişimi',
+    'Bu Alanda Henüz Sistematik Bir Çalışmamız Yok'
+  ];
 
   function enhanceSolutionFinder(){
     var wb=document.getElementById('wizardBody');
@@ -127,13 +138,61 @@
       choices.appendChild(btn);
     }
 
+    /* Step 4: ask about current development practices only when relevant */
+    var systemNote=document.getElementById('leadSystemNote');
+    if(systemNote && futureNeedSelected && !wb.querySelector('.k12-future-practices')){
+      var block=document.createElement('div');
+      block.className='k12-future-practices';
+      block.style.cssText='margin-top:22px;padding:20px;border:1px solid #ffd2b5;border-radius:16px;background:#fff8f3';
+      block.innerHTML='<div style="font-size:11px;font-weight:800;letter-spacing:.08em;color:#fe6203;margin-bottom:7px">YETKİNLİK & GELECEK GELİŞİM</div>'+
+        '<h4 style="margin:0 0 6px;color:var(--deep);font-size:18px">Mevcut Gelişim Uygulamaları</h4>'+
+        '<p style="margin:0 0 14px;color:var(--muted);font-size:12px">Kurumunuzda öğrencilerin gelecek becerileri ve yetkinlik gelişimi için hâlihazırda hangi çalışmalar yürütülüyor?</p>'+
+        '<div class="choices k12-future-practice-choices"></div>';
+      systemNote.closest('.field').before(block);
+      var pc=block.querySelector('.k12-future-practice-choices');
+      FUTURE_PRACTICES.forEach(function(label){
+        var b=document.createElement('button');
+        b.type='button';
+        b.className='choice multi'+(futurePractices.includes(label)?' selected':'');
+        b.textContent=label;
+        b.addEventListener('click',function(){
+          var none='Bu Alanda Henüz Sistematik Bir Çalışmamız Yok';
+          if(label===none){
+            futurePractices=[none];
+          }else{
+            futurePractices=futurePractices.filter(function(x){return x!==none;});
+            var i=futurePractices.indexOf(label);
+            if(i>=0) futurePractices.splice(i,1); else futurePractices.push(label);
+          }
+          block.querySelectorAll('.choice').forEach(function(el){
+            el.classList.toggle('selected',futurePractices.includes(el.textContent.trim()));
+          });
+        });
+        pc.appendChild(b);
+      });
+      var field=systemNote.closest('.field');
+      var lab=field && field.querySelector('label');
+      if(lab) lab.textContent='Kullandığınız program, eğitim modeli veya iş birliği varsa belirtin';
+      systemNote.placeholder='Örn. girişimcilik programı, AI atölyesi, kariyer çalışması, dış kurum iş birliği...';
+    }
+
     /* Step 5: surface the new family as an actual recommendation */
     var recommend=wb.querySelector('.recommend');
     if(recommend && futureNeedSelected && !recommend.querySelector('.k12-future-rec')){
       var card=document.createElement('div');
       card.className='rec-card core k12-future-rec';
       card.style.borderColor='#fe6203';
-      card.innerHTML='<div class="rec-top"><strong>Yetkinlik ve Gelecek Gelişim</strong><span class="rec-badge" style="background:#fff2e8;color:#c94e02">Ana Çözüm</span></div><p>Future Days, InnoTeen ve InnoHub programlarını; yetkinlik atölyeleri ve gelişim seminerleriyle kurum yapınıza göre bir araya getirir.</p><p style="color:#c94e02"><b>Neden:</b> Gelecek yetkinlikleri ve bütünsel öğrenci gelişimi ihtiyacı</p>';
+      var focus=[];
+      var none='Bu Alanda Henüz Sistematik Bir Çalışmamız Yok';
+      if(futurePractices.includes(none) || futurePractices.length===0) focus.push('Future Days / InnoTeen / InnoHub + Atölye + Seminer');
+      if(futurePractices.includes('Yapay Zekâ / Teknoloji Atölyeleri')) focus.push('GenAI School + AI Fusion Lab');
+      if(futurePractices.includes('Kariyer & Gelecek Meslekleri Çalışmaları')) focus.push('InnoHub + JoHub');
+      if(futurePractices.includes('Girişimcilik & İnovasyon Programları')) focus.push('InnoTeen / InnoHub');
+      if(futurePractices.includes('Değerler / Karakter Gelişimi')) focus.push('Character 24');
+      if(futurePractices.includes('Atölye / Workshop Çalışmaları') && !focus.length) focus.push('Sustaineer + New Age 8 Literacy Skills');
+      if(futurePractices.includes('Seminer / Konferans Çalışmaları') && !focus.length) focus.push('Future Talks + THub + CoHub');
+      var focusText=focus.length?'<p style="margin-top:10px"><b>Önerilen Odak:</b> '+focus.join(' · ')+'</p>':'';
+      card.innerHTML='<div class="rec-top"><strong>Yetkinlik ve Gelecek Gelişim</strong><span class="rec-badge" style="background:#fff2e8;color:#c94e02">Ana Çözüm</span></div><p>Future Days, InnoTeen ve InnoHub programlarını; yetkinlik atölyeleri ve gelişim seminerleriyle kurum yapınıza göre bir araya getirir.</p>'+focusText+'<p style="color:#c94e02"><b>Neden:</b> Gelecek yetkinlikleri ve bütünsel öğrenci gelişimi ihtiyacı</p>';
       recommend.insertBefore(card,recommend.firstChild);
       var kpis=wb.querySelectorAll('.lead-kpi > div');
       if(kpis[2]){
@@ -171,10 +230,20 @@
   document.addEventListener('click',function(e){
     if(e.target.closest && e.target.closest('.js-wizard')){
       futureNeedSelected=false;
+      futurePractices=[];
       setTimeout(enhanceSolutionFinder,80);
     }
     if(e.target.closest && e.target.closest('#leadNew')){
       futureNeedSelected=false;
+      futurePractices=[];
+    }
+    if(e.target.closest && e.target.closest('#wizardNext') && futureNeedSelected){
+      var sn=document.getElementById('leadSystemNote');
+      if(sn && document.querySelector('.k12-future-practices') && futurePractices.length){
+        var tag='[Yetkinlik & Gelecek - Mevcut Uygulamalar: '+futurePractices.join(' | ')+']';
+        var base=sn.value.replace(/\n?\[Yetkinlik & Gelecek - Mevcut Uygulamalar:[^\]]*\]/g,'').trim();
+        sn.value=(base?base+'\n':'')+tag;
+      }
     }
   },true);
 
