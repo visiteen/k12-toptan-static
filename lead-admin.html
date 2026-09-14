@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>K12 Kurumsal Lead Yönetimi</title>
+
+<style>
+:root{
+  --navy:#031d49;
+  --orange:#fc6101;
+  --line:#e4e7ec;
+  --soft:#f6f8fb;
+  --ink:#101828;
+  --muted:#667085;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--soft);
+  color:var(--ink)
+}
+header{
+  background:linear-gradient(120deg,#020817,#031d49);
+  color:#fff;
+  padding:17px 0
+}
+.wrap{
+  width:min(calc(100% - 30px),1220px);
+  margin:auto
+}
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+.brand{font-weight:800}
+.brand span{color:var(--orange)}
+button{
+  border:0;
+  border-radius:10px;
+  padding:10px 13px;
+  font-weight:800;
+  cursor:pointer
+}
+.primary{background:var(--orange);color:#fff}
+.ghost{
+  background:#fff;
+  color:var(--navy);
+  border:1px solid var(--line)
+}
+.login{
+  width:min(440px,calc(100% - 30px));
+  margin:70px auto;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:24px
+}
+.field{
+  display:grid;
+  gap:6px;
+  margin-top:12px
+}
+.field label{
+  font-size:12px;
+  font-weight:800
+}
+.field input{
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:10px
+}
+.err{
+  display:none;
+  background:#fff0f0;
+  color:#b42318;
+  padding:10px;
+  border-radius:9px;
+  margin-top:10px;
+  font-size:12px
+}
+.err.show{display:block}
+main{
+  display:none;
+  padding:28px 0 60px
+}
+main.open{display:block}
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px
+}
+.sub{
+  color:var(--muted);
+  font-size:14px
+}
+.tools{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
+}
+.tools input,.tools select{
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff
+}
+.kpis{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:9px;
+  margin:20px 0
+}
+.kpi{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:15px
+}
+.kpi span{
+  display:block;
+  color:var(--muted);
+  font-size:11px
+}
+.kpi b{
+  font-size:25px;
+  color:var(--navy)
+}
+.box{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:15px;
+  overflow:auto
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:980px
+}
+th,td{
+  padding:11px;
+  border-bottom:1px solid #eff1f4;
+  text-align:left;
+  vertical-align:top
+}
+th{
+  font-size:10px;
+  text-transform:uppercase;
+  color:var(--muted);
+  background:#fafbfc
+}
+td{font-size:11px}
+.strong{font-weight:800}
+.small{
+  display:block;
+  color:var(--muted);
+  margin-top:3px
+}
+.status{
+  padding:6px 8px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:10px;
+  font-weight:800;
+  background:#fff
+}
+.rowbtn{
+  padding:6px 8px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:8px;
+  font-size:10px;
+  font-weight:800
+}
+.drawer{
+  position:fixed;
+  right:0;
+  top:0;
+  bottom:0;
+  width:min(520px,100%);
+  background:#fff;
+  z-index:20;
+  box-shadow:-18px 0 60px rgba(0,0,0,.18);
+  transform:translateX(105%);
+  transition:.2s;
+  overflow:auto
+}
+.drawer.open{transform:none}
+.dhead{
+  position:sticky;
+  top:0;
+  background:#fff;
+  padding:17px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between
+}
+.dbody{padding:18px}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+.detail{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px
+}
+.detail span{
+  display:block;
+  font-size:10px;
+  color:var(--muted)
+}
+.title{
+  font-size:11px;
+  text-transform:uppercase;
+  color:var(--navy);
+  font-weight:800;
+  margin:18px 0 8px
+}
+.chips{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap
+}
+.chip{
+  padding:6px 8px;
+  border-radius:999px;
+  background:#f2f4f7;
+  font-size:10px
+}
+.rec{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:7px
+}
+.rec.core{
+  background:#fff7f1;
+  border-color:#ffc79d
+}
+.empty{
+  padding:35px;
+  text-align:center;
+  color:var(--muted)
+}
+@media(max-width:900px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .head{display:block}
+  .tools{margin-top:12px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="wrap">
+<nav>
+<div class="brand">K12 <span>KURUMSAL</span> · Lead Yönetimi</div>
+<button class="ghost" id="logout" style="display:none">Çıkış</button>
+</nav>
+</div>
+</header>
+
+<section class="login" id="login">
+<h2>Yönetici Girişi</h2>
+<p class="sub">K12 yönetici hesabınızla giriş yapın.</p>
+
+<div class="field">
+<label>E-posta</label>
+<input id="email" type="email" value="o.farukayaz@gmail.com">
+</div>
+
+<div class="field">
+<label>Şifre</label>
+<input id="pass" type="password">
+</div>
+
+<div class="err" id="err"></div>
+
+<button class="primary" id="loginBtn" style="width:100%;margin-top:14px">
+Giriş Yap
+</button>
+</section>
+
+<main id="main">
+<div class="wrap">
+
+<div class="head">
+<div>
+<h1>K12 Lead Yönetim Paneli</h1>
+<p class="sub">k12kurumsal.com üzerinden gelen çözüm taleplerini yönetin.</p>
+</div>
+
+<div class="tools">
+<input id="search" placeholder="Kurum, yetkili, telefon...">
+
+<select id="filter">
+<option value="">Tüm Durumlar</option>
+<option value="new">Yeni</option>
+<option value="contacted">İletişime Geçildi</option>
+<option value="qualified">Nitelikli</option>
+<option value="proposal">Teklif</option>
+<option value="won">Kazanıldı</option>
+<option value="lost">Kaybedildi</option>
+<option value="archived">Arşiv</option>
+</select>
+
+<button class="ghost" id="refresh">Yenile</button>
+</div>
+</div>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="box">
+<table>
+<thead>
+<tr>
+<th>Talep</th>
+<th>Kurum</th>
+<th>Yetkili</th>
+<th>İhtiyaçlar</th>
+<th>Ana Öneri</th>
+<th>Durum</th>
+<th>Tarih</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody id="tbody"></tbody>
+</table>
+
+<div class="empty" id="empty" style="display:none">
+Kayıt bulunamadı.
+</div>
+</div>
+
+</div>
+</main>
+
+<aside class="drawer" id="drawer">
+<div class="dhead">
+<div>
+<span class="small">Lead Detayı</span>
+<h3 id="dtitle"></h3>
+</div>
+<button class="ghost" id="close">✕</button>
+</div>
+
+<div class="dbody" id="dbody"></div>
+</aside>
+
+<script>
+
+const URL = "https://ysrncfrcxdcdofalsadf.supabase.co";
+const KEY = "sb_publishable_m-n4chknKkwfY5c-179zwA_BjLihqoF";
+
+let token = localStorage.getItem("k12_lead_admin_token") || "";
+let leads = [];
+
+function headers(){
+  return {
+    "apikey": KEY,
+    "Authorization": "Bearer " + token,
+    "Content-Type": "application/json"
+  };
+}
+
+function esc(x){
+  return String(x == null ? "" : x)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;");
+}
+
+function fmt(x){
+  if(!x) return "-";
+
+  return new Intl.DateTimeFormat(
+    "tr-TR",
+    {
+      dateStyle:"short",
+      timeStyle:"short"
+    }
+  ).format(new Date(x));
+}
+
+function labelStatus(s){
+
+  const map = {
+    new:"Yeni",
+    contacted:"İletişime Geçildi",
+    qualified:"Nitelikli",
+    proposal:"Teklif",
+    won:"Kazanıldı",
+    lost:"Kaybedildi",
+    archived:"Arşiv"
+  };
+
+  return map[s] || s;
+}
+
+async function getUser(){
+
+  const r = await fetch(
+    URL + "/auth/v1/user",
+    { headers:headers() }
+  );
+
+  if(!r.ok){
+    throw new Error("Oturum geçersiz");
+  }
+
+  return await r.json();
+}
+
+async function adminCheck(){
+
+  const u = await getUser();
+
+  const endpoint =
+    URL +
+    "/rest/v1/profiles?select=rol,durum,onay&auth_id=eq." +
+    encodeURIComponent(u.id);
+
+  const r = await fetch(
+    endpoint,
+    { headers:headers() }
+  );
+
+  const d = await r.json();
+
+  if(
+    !r.ok ||
+    !d[0] ||
+    d[0].rol !== "admin" ||
+    d[0].durum !== "aktif"
+  ){
+    throw new Error("Bu hesap yönetici değil.");
+  }
+}
+
+async function signIn(email,password){
+
+  const r = await fetch(
+    URL + "/auth/v1/token?grant_type=password",
+    {
+      method:"POST",
+      headers:{
+        "apikey":KEY,
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        email:email,
+        password:password
+      })
+    }
+  );
+
+  const d = await r.json();
+
+  if(!r.ok){
+    throw new Error(
+      d.error_description ||
+      d.msg ||
+      "Giriş başarısız"
+    );
+  }
+
+  token = d.access_token;
+
+  localStorage.setItem(
+    "k12_lead_admin_token",
+    token
+  );
+}
+
+async function loadLeads(){
+
+  const endpoint =
+    URL +
+    "/rest/v1/k12_leads?select=*&order=created_at.desc&limit=500";
+
+  const r = await fetch(
+    endpoint,
+    { headers:headers() }
+  );
+
+  if(!r.ok){
+
+    const t = await r.text();
+
+    throw new Error(
+      "Leadler alınamadı: " + t
+    );
+  }
+
+  leads = await r.json();
+
+  render();
+}
+
+function filteredRows(){
+
+  const q = document
+    .getElementById("search")
+    .value
+    .toLocaleLowerCase("tr");
+
+  const f = document
+    .getElementById("filter")
+    .value;
+
+  return leads.filter(function(l){
+
+    const statusOk =
+      !f || l.status === f;
+
+    const text =
+      [
+        l.lead_code,
+        l.institution_name,
+        l.contact_name,
+        l.phone,
+        l.email
+      ]
+      .join(" ")
+      .toLocaleLowerCase("tr");
+
+    const searchOk =
+      !q || text.includes(q);
+
+    return statusOk && searchOk;
+  });
+}
+
+function render(){
+
+  const counts = {
+    total:leads.length,
+    new:0,
+    contacted:0,
+    qualified:0,
+    won:0
+  };
+
+  leads.forEach(function(x){
+
+    if(
+      counts[x.status] !== undefined
+    ){
+      counts[x.status]++;
+    }
+
+  });
+
+  document.getElementById("kpis").innerHTML =
+    '<div class="kpi"><span>Toplam</span><b>' +
+    counts.total +
+    '</b></div>' +
+
+    '<div class="kpi"><span>Yeni</span><b>' +
+    counts.new +
+    '</b></div>' +
+
+    '<div class="kpi"><span>İletişim</span><b>' +
+    counts.contacted +
+    '</b></div>' +
+
+    '<div class="kpi"><span>Nitelikli</span><b>' +
+    counts.qualified +
+    '</b></div>' +
+
+    '<div class="kpi"><span>Kazanıldı</span><b>' +
+    counts.won +
+    '</b></div>';
+
+  const list = filteredRows();
+
+  let htmlRows = "";
+
+  list.forEach(function(l){
+
+    const core = (l.recommendations || [])
+      .filter(function(x){
+        return x.core;
+      })
+      .map(function(x){
+        return x.name;
+      })
+      .slice(0,2)
+      .join(", ");
+
+    let options = "";
+
+    [
+      "new",
+      "contacted",
+      "qualified",
+      "proposal",
+      "won",
+      "lost",
+      "archived"
+    ].forEach(function(s){
+
+      options +=
+        '<option value="' +
+        esc(s) +
+        '"' +
+        (s === l.status ? " selected" : "") +
+        ">" +
+        esc(labelStatus(s)) +
+        "</option>";
+    });
+
+    htmlRows +=
+      "<tr>" +
+
+      "<td>" +
+      '<span class="strong">' +
+      esc(l.lead_code) +
+      "</span>" +
+      '<span class="small">' +
+      esc(l.institution_type) +
+      "</span>" +
+      "</td>" +
+
+      "<td>" +
+      '<span class="strong">' +
+      esc(l.institution_name) +
+      "</span>" +
+      '<span class="small">' +
+      esc(l.city) +
+      (l.district
+        ? " · " + esc(l.district)
+        : "") +
+      " · " +
+      esc(l.student_count) +
+      " öğrenci</span>" +
+      "</td>" +
+
+      "<td>" +
+      esc(l.contact_name) +
+      '<span class="small">' +
+      esc(l.phone) +
+      " · " +
+      esc(l.email) +
+      "</span>" +
+      "</td>" +
+
+      "<td>" +
+      esc(
+        (l.needs || [])
+        .slice(0,2)
+        .join(", ")
+      ) +
+      "</td>" +
+
+      "<td>" +
+      esc(core || "-") +
+      "</td>" +
+
+      "<td>" +
+      '<select class="status" data-id="' +
+      esc(l.id) +
+      '">' +
+      options +
+      "</select>" +
+      "</td>" +
+
+      "<td>" +
+      fmt(l.created_at) +
+      "</td>" +
+
+      "<td>" +
+      '<button class="rowbtn" data-open="' +
+      esc(l.id) +
+      '">Detay</button>' +
+      "</td>" +
+
+      "</tr>";
+  });
+
+  document.getElementById("tbody").innerHTML =
+    htmlRows;
+
+  document.getElementById("empty").style.display =
+    list.length
+      ? "none"
+      : "block";
+
+  document
+    .querySelectorAll("[data-open]")
+    .forEach(function(b){
+
+      b.onclick = function(){
+        showDetail(
+          b.getAttribute("data-open")
+        );
+      };
+
+    });
+
+  document
+    .querySelectorAll("[data-id]")
+    .forEach(function(s){
+
+      s.onchange = function(){
+        updateStatus(
+          s.getAttribute("data-id"),
+          s.value
+        );
+      };
+
+    });
+}
+
+async function updateStatus(id,status){
+
+  const body = {
+    status:status
+  };
+
+  if(status === "contacted"){
+    body.last_contacted_at =
+      new Date().toISOString();
+  }
+
+  const r = await fetch(
+    URL +
+    "/rest/v1/k12_leads?id=eq." +
+    encodeURIComponent(id),
+    {
+      method:"PATCH",
+      headers:Object.assign(
+        {},
+        headers(),
+        {
+          "Prefer":
+          "return=representation"
+        }
+      ),
+      body:JSON.stringify(body)
+    }
+  );
+
+  if(!r.ok){
+    alert("Güncellenemedi");
+    return;
+  }
+
+  const data = await r.json();
+
+  const row = data[0];
+
+  const index =
+    leads.findIndex(function(x){
+      return x.id === id;
+    });
+
+  if(index >= 0){
+    leads[index] = row;
+  }
+
+  render();
+}
+
+function showDetail(id){
+
+  const l =
+    leads.find(function(x){
+      return x.id === id;
+    });
+
+  if(!l) return;
+
+  document
+    .getElementById("dtitle")
+    .textContent =
+    l.institution_name;
+
+  let details =
+    '<div class="grid">';
+
+  [
+    ["Talep",l.lead_code],
+    ["Durum",labelStatus(l.status)],
+    ["Tip",l.institution_type],
+    ["Öğrenci",l.student_count],
+    ["Kampüs",l.campus_count],
+    ["Yetkili",l.contact_name],
+    ["Telefon",l.phone],
+    ["E-posta",l.email],
+    [
+      "Konum",
+      l.city +
+      (
+        l.district
+        ? " / " + l.district
+        : ""
+      )
+    ],
+    [
+      "Bildirim",
+      l.notification_status || "-"
+    ]
+  ].forEach(function(x){
+
+    details +=
+      '<div class="detail">' +
+      "<span>" +
+      esc(x[0]) +
+      "</span>" +
+      "<b>" +
+      esc(x[1]) +
+      "</b>" +
+      "</div>";
+
+  });
+
+  details += "</div>";
+
+  details +=
+    '<div class="title">İhtiyaçlar</div>';
+
+  details +=
+    '<div class="chips">';
+
+  (l.needs || [])
+    .forEach(function(x){
+
+      details +=
+        '<span class="chip">' +
+        esc(x) +
+        "</span>";
+
+    });
+
+  details += "</div>";
+
+  details +=
+    '<div class="title">Önerilen Çözümler</div>';
+
+  (l.recommendations || [])
+    .forEach(function(r){
+
+      details +=
+        '<div class="rec ' +
+        (r.core ? "core" : "") +
+        '">' +
+        "<b>" +
+        esc(r.name) +
+        (
+          r.core
+          ? " · Ana Çözüm"
+          : ""
+        ) +
+        "</b>" +
+        '<span class="small">' +
+        esc(r.reason || "") +
+        "</span>" +
+        "</div>";
+
+    });
+
+  details +=
+    '<div class="title">Not</div>';
+
+  details +=
+    '<div class="rec">' +
+    esc(
+      l.note ||
+      l.current_system_note ||
+      "Not yok."
+    ) +
+    "</div>";
+
+  document
+    .getElementById("dbody")
+    .innerHTML = details;
+
+  document
+    .getElementById("drawer")
+    .classList
+    .add("open");
+}
+
+function showPanel(){
+
+  document
+    .getElementById("login")
+    .style.display = "none";
+
+  document
+    .getElementById("main")
+    .classList
+    .add("open");
+
+  document
+    .getElementById("logout")
+    .style.display =
+    "inline-block";
+
+  loadLeads()
+    .catch(function(e){
+      alert(e.message);
+    });
+}
+
+document
+  .getElementById("loginBtn")
+  .onclick = async function(){
+
+    const box =
+      document.getElementById("err");
+
+    box.classList.remove("show");
+
+    try{
+
+      await signIn(
+        document
+          .getElementById("email")
+          .value,
+
+        document
+          .getElementById("pass")
+          .value
+      );
+
+      await adminCheck();
+
+      showPanel();
+
+    }catch(e){
+
+      box.textContent =
+        e.message;
+
+      box.classList.add("show");
+    }
+  };
+
+document
+  .getElementById("logout")
+  .onclick = function(){
+
+    localStorage.removeItem(
+      "k12_lead_admin_token"
+    );
+
+    location.reload();
+  };
+
+document
+  .getElementById("refresh")
+  .onclick =
+  loadLeads;
+
+document
+  .getElementById("search")
+  .oninput =
+  render;
+
+document
+  .getElementById("filter")
+  .onchange =
+  render;
+
+document
+  .getElementById("close")
+  .onclick =
+  function(){
+
+    document
+      .getElementById("drawer")
+      .classList
+      .remove("open");
+  };
+
+(async function(){
+
+  if(!token) return;
+
+  try{
+
+    await adminCheck();
+
+    showPanel();
+
+  }catch(e){
+
+    localStorage.removeItem(
+      "k12_lead_admin_token"
+    );
+
+  }
+
+})();
+
+</script>
+</body>
+</html>
