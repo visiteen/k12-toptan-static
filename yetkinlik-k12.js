@@ -250,10 +250,10 @@
   var sfProbe=0;
   var sfTimer=setInterval(function(){
     sfProbe++;
-    if(typeof window.renderLeadStep==='function'){
+    if(typeof renderLeadStep==='function'){
       clearInterval(sfTimer);
-      var originalLeadRender=window.renderLeadStep;
-      window.renderLeadStep=function(){
+      var originalLeadRender=renderLeadStep;
+      renderLeadStep=function(){
         var out=originalLeadRender.apply(this,arguments);
         setTimeout(enhanceSolutionFinder,0);
         return out;
@@ -269,10 +269,10 @@
   var smartProbe=0;
   var smartTimer=setInterval(function(){
     smartProbe++;
-    if(typeof window.calculateRecommendations==='function'){
+    if(typeof calculateRecommendations==='function'){
       clearInterval(smartTimer);
 
-      window.calculateRecommendations=function(){
+      calculateRecommendations=function(){
         var scores={};
         var reasons={};
 
