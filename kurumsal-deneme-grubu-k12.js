@@ -101,10 +101,10 @@
   }
 
   function updateVisibleText(){
-    document.querySelectorAll('a,span,h3,p,strong').forEach(function(el){
+    document.querySelectorAll('a,span,h3,strong').forEach(function(el){
       var t=el.textContent.trim();
       if(t==='Paraf Deneme Grubu Bölge Bayiliği' || t==='Paraf Deneme Grubu'){
-        el.textContent='Kurumsal Deneme Grubu';
+        if(el.textContent!=='Kurumsal Deneme Grubu') el.textContent='Kurumsal Deneme Grubu';
       }
     });
   }
@@ -138,8 +138,6 @@
     if(!document.getElementById(MARK)){
       var m=document.createElement('span');m.id=MARK;m.hidden=true;document.body.appendChild(m);
     }
-    var obs=new MutationObserver(function(){refresh();});
-    obs.observe(document.body,{childList:true,subtree:true});
     window.addEventListener('hashchange',function(){
       handleLegacyHash();
       if(location.hash==='#product/'+NEW_KEY && typeof renderProduct==='function'){
