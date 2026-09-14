@@ -94,7 +94,7 @@
     var terms=article.querySelector('.terms');
     if(h3) h3.textContent='Kurumsal Deneme Grubu';
     if(p) p.textContent='53 aktif yayın/seri ile 11 sınav düzeyinde 236 farklı yayın × sınav seviyesi seçeneğini tek kurumsal deneme portföyünde yönetin.';
-    if(terms){
+    if(terms && !terms.classList.contains('k12-deneme-stats')){
       terms.innerHTML='<span class="k12-deneme-stat"><b>53</b> Aktif Yayın / Seri</span><span class="k12-deneme-stat"><b>236</b> Sınav Seçeneği</span><span class="k12-deneme-stat"><b>11</b> Sınav Düzeyi</span>';
       terms.classList.add('k12-deneme-stats');
     }
