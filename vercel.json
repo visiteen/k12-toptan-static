@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/k12-kurumsal-whatsapp.jpg",
-      "destination": "/api/k12-social-original.js"
+      "destination": "/api/k12-social-final.js"
     }
   ],
   "headers": [
