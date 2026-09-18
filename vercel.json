@@ -1,5 +1,11 @@
 {
   "cleanUrls": false,
+  "rewrites": [
+    {
+      "source": "/k12-kurumsal-whatsapp.jpg",
+      "destination": "/api/k12-social-original.js"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
