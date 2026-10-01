@@ -2,6 +2,7 @@
   const BRAND_FROM = 'K12 Toptan';
   const BRAND_TO = 'K12 Kurumsal';
   const DOMAIN = 'https://k12kurumsal.com/';
+  const LOGO_SRC = '/assets/k12-kurumsal-logo.png';
 
   function replaceText(value){
     if (typeof value !== 'string') return value;
@@ -45,6 +46,67 @@
     while ((node = walker.nextNode())) {
       if (node.nodeType === Node.TEXT_NODE) patchTextNode(node);
       else patchElement(node);
+    }
+  }
+
+  function ensureLogoStyles(){
+    if (document.getElementById('k12-brand-logo-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'k12-brand-logo-styles';
+    style.textContent = `
+      .logo-wrap .k12-brand-logo{
+        width:100%;
+        height:auto;
+        display:block;
+        object-fit:contain;
+        filter:drop-shadow(0 8px 20px rgba(0,0,0,.08));
+      }
+      .footer .footer-text-logo{
+        display:flex;
+        align-items:center;
+        min-height:54px;
+        margin-bottom:14px;
+      }
+      .footer .footer-text-logo .k12-brand-logo{
+        width:min(100%,260px);
+        height:auto;
+        display:block;
+        object-fit:contain;
+      }
+      @media(max-width:700px){
+        .footer .footer-text-logo .k12-brand-logo{width:min(100%,230px)}
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function makeLogo(){
+    const img = document.createElement('img');
+    img.src = LOGO_SRC;
+    img.alt = 'K12 Kurumsal — Kurumsal Eğitim Çözümleri ve Yönetim Merkezi';
+    img.className = 'k12-brand-logo';
+    img.decoding = 'async';
+    return img;
+  }
+
+  function patchLogos(){
+    ensureLogoStyles();
+
+    const headerLogo = document.querySelector('.logo-wrap');
+    if (headerLogo) {
+      headerLogo.setAttribute('aria-label','K12 Kurumsal ana sayfa');
+      const current = headerLogo.querySelector('img.k12-brand-logo');
+      if (!current || current.getAttribute('src') !== LOGO_SRC) {
+        headerLogo.replaceChildren(makeLogo());
+      }
+    }
+
+    const footerLogo = document.querySelector('.footer-text-logo');
+    if (footerLogo) {
+      const current = footerLogo.querySelector('img.k12-brand-logo');
+      if (!current || current.getAttribute('src') !== LOGO_SRC) {
+        footerLogo.replaceChildren(makeLogo());
+      }
     }
   }
 
@@ -105,6 +167,7 @@
   function run(){
     patchSeo();
     patchTree(document.documentElement);
+    patchLogos();
     patchRuntimeFunctions();
 
     const observer = new MutationObserver(mutations => {
@@ -113,6 +176,7 @@
         mutation.addedNodes.forEach(patchTree);
       }
       patchSeo();
+      patchLogos();
       patchRuntimeFunctions();
     });
     observer.observe(document.documentElement,{subtree:true,childList:true,characterData:true});
